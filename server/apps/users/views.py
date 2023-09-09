@@ -1,6 +1,9 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from rest_framework import viewsets
+from rest_framework.response import Response
+from .serializers import UserSerialize
+from .models import User
 
 
-def users(request):
-    return render(request, HttpResponseRedirect("Hello World"))
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerialize
