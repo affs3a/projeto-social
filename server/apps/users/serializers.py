@@ -5,13 +5,12 @@ from .models import User
 
 class UserSerialize(serializers.ModelSerializer):
     username = serializers.CharField(
-        validators=[UniqueValidator(queryset=User.objects.all())]
-    )
+        validators=[UniqueValidator(queryset=User.objects.all())],
+        write_only=False)
 
     email = serializers.EmailField(
         validators=[UniqueValidator(queryset=User.objects.all())],
-        write_only=True
-    )
+        write_only=True)
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
@@ -26,7 +25,4 @@ class UserSerialize(serializers.ModelSerializer):
         model = User
         exclude = ['last_login']
         read_only_fields = ['date_joined']
-        extra_kwargs = {
-            'password': {'write_only': True},
-            'email': {'write_only': True},
-        }
+        extra_kwargs = {'password': {'write_only': True}}
