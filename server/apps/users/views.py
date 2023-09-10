@@ -9,14 +9,14 @@ class UserList(APIView):
     def get(self, request, format=False):
         queryset = User.objects.all()
         serializer = UserSerialize(queryset, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, format=False):
         serializer = UserSerialize(data=request.data)
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        user = UserSerialize(serializer.create())
-        return Response(user.data, status=status.HTTP_201_CREATED)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class UserDetails(APIView):
@@ -29,4 +29,17 @@ class UserDetails(APIView):
     def get(self, request, user_id, format=False):
         user = self.get_user(user_id)
         serializer = UserSerialize(user)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def patch(self, request, user_id, format=False):
+        user = self.get_user(user_id)
+        serializer = UserSerialize(user, data=request.data, partial=True)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, user_id, format=False):
+        user = self.get_user(user_id)
+        user.delete()
+        return Response('user deleted', status=status.HTTP_204_NO_CONTENT)
