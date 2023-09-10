@@ -2,7 +2,7 @@ from django.contrib.auth.models import BaseUserManager
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, username, name, email, date_joined, role, password=None):
+    def create_user(self, username, name, email, role, password=None):
         if not username:
             raise ValueError('faltou o campo "username"!')
 
@@ -19,7 +19,6 @@ class UserManager(BaseUserManager):
             username=username,
             name=name,
             email=self.normalize_email(email),
-            date_joined=date_joined,
             role=role
         )
 
@@ -28,12 +27,11 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, username, name, email, date_joined, password=None):
+    def create_superuser(self, username, name, email, password=None):
         user = self.create_user(
             username=username,
             name=name,
             email=email,
-            date_joined=date_joined,
             password=password,
             role=3
         )

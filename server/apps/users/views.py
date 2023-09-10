@@ -15,7 +15,7 @@ class UserList(APIView):
         serializer = UserSerialize(data=request.data)
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        user = UserSerialize(data=serializer.create())
+        user = UserSerialize(serializer.create())
         return Response(user.data, status=status.HTTP_201_CREATED)
 
 

@@ -1,25 +1,23 @@
 from rest_framework import serializers
-from rest_framework.validators import UniqueTogetherValidator
+from rest_framework.validators import UniqueValidator
 from .models import User
 
 
 class UserSerialize(serializers.ModelSerializer):
-    def create(self):
-        user = User(
-            username=self.validated_data['username'],
-            name=self.validated_data['name'],
-            email=self.validated_data['email'],
-            role=self.validated_data['role'])
+    username = serializers.CharField(
+        validators=[UniqueValidator(queryset=User.objects.all())])
+    email = serializers.EmailField(
+        validators=[UniqueValidator(queryset=User.objects.all())],
+        write_only=True)
 
-        user.set_password(self.validated_data['password'])
-        user.save()
-        return user
+    def create(self):
+        return User.objects.create_user(**self.validated_data)
 
     class Meta:
         model = User
-        fields = ('id', 'name', 'username', 'password',
-                  'email', 'date_joined', 'role')
-        read_only_fields = ('date_joined', 'email', 'role')
-        validators = UniqueTogetherValidator(
-            queryset=User.objects.all(),
-            fields=('username', 'email'))
+        exclude = ['last_login']
+        read_only_fields = ['date_joined']
+        extra_kwargs = {
+            'password': {'write_only': True},
+            'email': {'write_only': True},
+        }
