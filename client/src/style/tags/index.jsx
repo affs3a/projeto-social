@@ -7,4 +7,5 @@ export const Div = styled.div`
 
 export const Description = styled.p`
     font-size: ${props => props.fontSize};
+    display: ${props => props.display || "block"};
 `

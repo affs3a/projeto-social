@@ -1,12 +1,22 @@
 import { styled } from "styled-components"
 
 export const Button = styled.button`
-    background: ${props => props.back};
+    background: ${props => props.back || "none"};
     color: ${props => props.color};
-    padding: .5rem 1rem;
-    border-radius: 8px;
-    border: none;
+    font-size: ${props => props.fontSize};
+    display: ${props => props.display};
     width: ${props => props.width || "auto"};
     height: ${props => props.height || "auto"};
+    justify-content: ${props => props.justify || "center"};
+    border-radius: 8px;
+    border: none;
     cursor: pointer;
+    align-items: center;
+    padding: .3rem;
+    gap: .3rem;
+
+    &:hover {
+        filter: drop-shadow(0 0 10px #0000003a);
+
+    }
 `

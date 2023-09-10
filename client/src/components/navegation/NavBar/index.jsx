@@ -1,6 +1,7 @@
 import styled from "styled-components"
-import MenuIcon from '@mui/icons-material/Menu';
 import MenuNav from "../MenuNav";
+import { MenuIcon } from "/src/style/icons";
+import { Button } from "../../others/Button";
 
 const Header = styled.header`
     width: 100%;
@@ -16,10 +17,18 @@ const Logo = styled.h1`
 `
 
 const NavBar = () => {
+
+    const toggleButton = () => {
+    }
+
     return (
         <Header>
             <Logo>Serviços Araripe</Logo>
-            <MenuIcon />
+            <Button onClick={toggleButton}>
+                <MenuIcon
+                    fontSize={"35px"}
+                />
+            </Button>
             <MenuNav />
         </Header>
     )
