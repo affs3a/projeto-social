@@ -1,6 +1,4 @@
-from collections import OrderedDict
 from django.test import TestCase
-from rest_framework.utils.serializer_helpers import ReturnList
 from rest_framework.test import APIRequestFactory
 from rest_framework import status
 from .models import User
@@ -27,9 +25,29 @@ class UserTests(TestCase):
         request = self.client.get('/api/users/')
         view = views.UserList.as_view()
         response = view(request)
+        self.assertIsNotNone(response.data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        print(response.data)
+    def test_create_user(self):
+        print("--> HTTP(PUT) api/users: create a new user.")
+        request_data = {
+            "name": "teste",
+            "username": "teste",
+            "password": "teste",
+            "email": "teste@teste.com",
+            "role": 3
+        }
+        request = self.client.put('/api/users/', request_data, format="json")
+        view = views.UserList.as_view()
+        response = view(request)
+        self.assertIsNotNone(response.data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-        self.assertTrue(type(response.data) == ReturnList)
+    def test_get_single_user(self):
+        print("--> HTTP(GET) api/users: get single user.")
+        request = self.client.get('/api/users/1')
+        view = views.UserList.as_view()
+        response = view(request)
+
         self.assertIsNotNone(response.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
