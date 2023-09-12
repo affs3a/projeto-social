@@ -20,6 +20,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'rest_framework',
+    'rest_framework_simplejwt',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -29,13 +30,18 @@ INSTALLED_APPS = [
 
     # Apps
     'apps.users.apps.UsersConfig',
+    'apps.authentication.apps.AuthenticationConfig',
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_PARSER_CLASSES': [
         'rest_framework.parsers.JSONParser',
-    ]
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
 }
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
