@@ -2,44 +2,40 @@ import { styled } from "styled-components"
 import { Description } from "/src/style/tags"
 import { Button } from "/src/components/others/Button"
 
-//Icons
-import { LoginIcon } from "/src/style/icons"
-
 const Span = styled.span`
     display: flex;
-    align-items: start;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    border-radius: 8px;
-    gap: .5rem;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    gap: 1rem;
     width: 100%;
+    text-align: center;
+    background: #bbb7b7;
+    padding: .5rem 1rem;
 `
 
 const ActionsMenu = () => {
     return (
         <Span>
-            <Description display={"none"}>
-                É prestador?
+            <Description>
+                Prestador?
             </Description>
             <Button
-                fontSize="20px"
+                fontSize="18px"
                 as="a"
-                display={"flex"}
-                width={"100%"}
                 justify={"start"}
+                back={"#f9f9f9"}
+                height={"40px"}
             >
-                <LoginIcon fontSize={"27px"} />
                 Entrar
             </Button>
             <Button
-                fontSize="20px"
+                fontSize="18px"
                 as="a"
-                display={"flex"}
-                width={"100%"}
                 justify={"start"}
+                back={"#f9f9f9"}
+                height={"40px"}
             >
-                <LoginIcon fontSize={"27px"} />
                 Registrar
             </Button>
         </Span>

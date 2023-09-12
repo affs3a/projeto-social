@@ -1,7 +1,6 @@
 import { styled } from "styled-components"
-import { ListIcon, ErrorIcon } from "/src/style//icons"
+import { ListIcon, ErrorIcon, LoginIcon, ResgisterIcon } from "/src/style//icons"
 import { Div } from "/src/style/tags"
-import ActionsMenu from "../ActionsMenu"
 
 const Link = styled.a`
     display: flex;
@@ -15,7 +14,7 @@ const TitleLink = styled.h3`
     font-size: 20px;
 `
 
-const DivHeader = styled(Div)`
+const DivMobile = styled(Div)`
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -24,18 +23,33 @@ const DivHeader = styled(Div)`
     width: 70%;
     max-width: 200px;
     background: #D9D9D9;
-    right: 0;
     top: 72px;
     padding: .5rem 1em;
     gap: .5rem;
-    display: none;
+    right: ${props => props.visible ? "0px" : "-200px"};
+    animation: showMenu .4s;
+
+    @keyframes showMenu {
+        from {
+            opacity: 0;
+            width: 0;
+        }
+        to {
+            opacity: 1;
+            width: 70%;
+            max-width: 200px;
+        }
+    }
+
+    @media (min-width: 500px) {
+        display: none;
+    }
 
 `
 
-
 const MenuNav = () => {
     return (
-        <DivHeader flex={"true"}>
+        <DivMobile flex={"true"} visible>
             <Link>
                 <ListIcon fontSize={'27px'} />
                 <TitleLink>Serviços</TitleLink>
@@ -44,8 +58,15 @@ const MenuNav = () => {
                 <ErrorIcon fontSize={'27px'} />
                 <TitleLink>Sobre</TitleLink>
             </Link>
-            <ActionsMenu />
-        </DivHeader>
+            <Link>
+                <LoginIcon fontSize={'27px'} />
+                <TitleLink>Entrar</TitleLink>
+            </Link>
+            <Link>
+                <ResgisterIcon fontSize={'27px'} />
+                <TitleLink>Registrar</TitleLink>
+            </Link>
+        </DivMobile>
     )
 }
 

@@ -1,5 +1,5 @@
 import { styled } from "styled-components"
-import { ListAlt, ErrorOutline, Login, Menu }
+import { ListAlt, ErrorOutline, Login, Menu, PersonAdd }
     from '@mui/icons-material';
 
 export const ListIcon = styled(ListAlt)`
@@ -20,4 +20,18 @@ export const LoginIcon = styled(Login)`
 export const MenuIcon = styled(Menu)`
     font-size: ${props => props.fontSize};
     color: ${props => props.color};
+    cursor: pointer;
+    display: block;
+
+    @media (min-width: 500px) {
+        opacity: 0;
+    }
+
+`
+
+export const ResgisterIcon = styled(PersonAdd)`
+    font-size: ${props => props.fontSize};
+    color: ${props => props.color};
+    cursor: pointer;
+
 `

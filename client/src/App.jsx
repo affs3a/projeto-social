@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    cursor: pointer;
+      cursor: pointer;
   }
 `
 

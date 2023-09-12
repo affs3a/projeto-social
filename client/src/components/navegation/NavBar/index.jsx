@@ -1,7 +1,10 @@
 import styled from "styled-components"
-import MenuNav from "../MenuNav";
 import { MenuIcon } from "/src/style/icons";
-import { Button } from "../../others/Button";
+import MenuMobile from "./components/MenuMobile";
+import MenuDesktop from "./components/MenuDesktop";
+import { useState } from "react";
+
+
 
 const Header = styled.header`
     width: 100%;
@@ -10,26 +13,32 @@ const Header = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0 2rem;
+
+    @media (min-width: 500px) {
+        height: 80px;
+    }
     
 `
+
 const Logo = styled.h1`
     font-size: 16px;
 `
 
 const NavBar = () => {
 
-    const toggleButton = () => {
-    }
+    const [menuVisible, setMenuVisible] = useState(false)
+    const showMenu = () => setMenuVisible(!menuVisible)
 
     return (
         <Header>
             <Logo>Serviços Araripe</Logo>
-            <Button onClick={toggleButton}>
-                <MenuIcon
-                    fontSize={"35px"}
-                />
-            </Button>
-            <MenuNav />
+            <MenuIcon
+                fontSize={"30px"}
+                onClick={showMenu}
+            />
+            {menuVisible && <MenuMobile visible={menuVisible} />}
+            <MenuDesktop />
         </Header>
     )
 }
