@@ -23,8 +23,8 @@ export const MenuIcon = styled(Menu)`
     cursor: pointer;
     display: block;
 
-    @media (min-width: 500px) {
-        opacity: 0;
+    @media (min-width: 700px) {
+        display: none;
     }
 
 `

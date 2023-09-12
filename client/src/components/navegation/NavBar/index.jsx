@@ -3,8 +3,7 @@ import { MenuIcon } from "/src/style/icons";
 import MenuMobile from "./components/MenuMobile";
 import MenuDesktop from "./components/MenuDesktop";
 import { useState } from "react";
-
-
+import { Button } from "../../others/Button";
 
 const Header = styled.header`
     width: 100%;
@@ -33,10 +32,13 @@ const NavBar = () => {
     return (
         <Header>
             <Logo>Serviços Araripe</Logo>
-            <MenuIcon
-                fontSize={"30px"}
+            <Button
                 onClick={showMenu}
-            />
+                minDisplay={"none"}>
+                <MenuIcon
+                    fontSize={"30px"}
+                />
+            </Button>
             {menuVisible && <MenuMobile visible={menuVisible} />}
             <MenuDesktop />
         </Header>

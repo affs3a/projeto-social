@@ -21,20 +21,20 @@ const ActionsMenu = () => {
                 Prestador?
             </Description>
             <Button
-                fontSize="18px"
+                fontSize="16px"
                 as="a"
                 justify={"start"}
                 back={"#f9f9f9"}
-                height={"40px"}
+                height={"35px"}
             >
                 Entrar
             </Button>
             <Button
-                fontSize="18px"
+                fontSize="16px"
                 as="a"
                 justify={"start"}
                 back={"#f9f9f9"}
-                height={"40px"}
+                height={"35px"}
             >
                 Registrar
             </Button>

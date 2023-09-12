@@ -1,6 +1,6 @@
 import { styled } from "styled-components"
 import { ListIcon, ErrorIcon, LoginIcon, ResgisterIcon } from "/src/style//icons"
-import { Div } from "/src/style/tags"
+import { Div, TitleLink } from "/src/style/tags"
 
 const Link = styled.a`
     display: flex;
@@ -10,9 +10,6 @@ const Link = styled.a`
     gap: .3rem;
 `
 
-const TitleLink = styled.h3`
-    font-size: 20px;
-`
 
 const DivMobile = styled(Div)`
     display: flex;
@@ -41,7 +38,7 @@ const DivMobile = styled(Div)`
         }
     }
 
-    @media (min-width: 500px) {
+    @media (min-width: 700px) {
         display: none;
     }
 
