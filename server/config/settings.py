@@ -1,20 +1,19 @@
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=-ruxn=#i%l#=ng35rjoz48r=f7xh%z8co%)8#*ta_10q)%+y0'
+SECRET_KEY = "django-insecure-=-ruxn=#i%l#=ng35rjoz48r=f7xh%z8co%)8#*ta_10q)%+y0"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -42,6 +41,13 @@ REST_FRAMEWORK = {
     )
 }
 
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=6),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=15),
+    "ALGORITHM": "HS256",
+    "SIGNING_KEY": SECRET_KEY,
+    "TOKEN_OBTAIN_SERIALIZER": "apps.authentication.serializers.TokenSerializer",
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
