@@ -1,5 +1,6 @@
 import NavBar from "./components/navegation/NavBar"
 import { createGlobalStyle } from "styled-components"
+import { Outlet } from "react-router-dom";
 
 const GlobalStyle = createGlobalStyle`
   *, body {
@@ -8,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: sans-serif;
     font-weight: normal;
+    text-decoration: none;
   }
 
   body {
@@ -20,10 +22,12 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const App = () => {
+
   return (
     <>
       <GlobalStyle />
       <NavBar />
+      <Outlet />
     </>
   )
 }

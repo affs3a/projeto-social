@@ -3,7 +3,7 @@ import { MenuIcon } from "/src/style/icons";
 import MenuMobile from "./components/MenuMobile";
 import MenuDesktop from "./components/MenuDesktop";
 import { useState } from "react";
-import { Button } from "../../others/Button";
+import { Button } from "/src/components/others/Button";
 
 const Header = styled.header`
     width: 100%;

@@ -1,15 +1,7 @@
 import { styled } from "styled-components"
-import { ListIcon, ErrorIcon, LoginIcon, ResgisterIcon } from "/src/style//icons"
-import { Div, TitleLink } from "/src/style/tags"
-
-const Link = styled.a`
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: .3rem;
-    gap: .3rem;
-`
-
+import { ListIcon, ErrorIcon, LoginIcon, ResgisterIcon, HomeIcon }
+    from "/src/style/icons"
+import { Div, TitleLink, LinkRouter } from "/src/style/tags"
 
 const DivMobile = styled(Div)`
     display: flex;
@@ -46,23 +38,42 @@ const DivMobile = styled(Div)`
 
 const MenuNav = () => {
     return (
-        <DivMobile flex={"true"} visible>
-            <Link>
+        <DivMobile display={"true"} visible>
+            <LinkRouter
+                to={'/'}
+                display={'flex'}
+            >
+                <HomeIcon fontSize={'27px'} />
+                <TitleLink>Home</TitleLink>
+            </LinkRouter>
+            <LinkRouter
+                to={'servicos'}
+                display={'flex'}
+            >
                 <ListIcon fontSize={'27px'} />
                 <TitleLink>Serviços</TitleLink>
-            </Link>
-            <Link>
+            </LinkRouter>
+            <LinkRouter
+                to={'sobre'}
+                display={'flex'}
+            >
                 <ErrorIcon fontSize={'27px'} />
                 <TitleLink>Sobre</TitleLink>
-            </Link>
-            <Link>
+            </LinkRouter>
+            <LinkRouter
+                to={'#'}
+                display={'flex'}
+            >
                 <LoginIcon fontSize={'27px'} />
                 <TitleLink>Entrar</TitleLink>
-            </Link>
-            <Link>
+            </LinkRouter>
+            <LinkRouter
+                to={'#'}
+                display={'flex'}
+            >
                 <ResgisterIcon fontSize={'27px'} />
                 <TitleLink>Registrar</TitleLink>
-            </Link>
+            </LinkRouter>
         </DivMobile>
     )
 }

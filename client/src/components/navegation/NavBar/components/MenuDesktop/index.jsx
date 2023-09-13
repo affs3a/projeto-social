@@ -1,17 +1,9 @@
 import { styled } from "styled-components"
 import ActionsMenu from "./components/ActionsMenu"
-import { Div, TitleLink } from "/src/style/tags"
+import { Div, TitleLink, LinkRouter } from "/src/style/tags"
 
-import { ListIcon, ErrorIcon }
+import { ListIcon, ErrorIcon, HomeIcon }
     from "/src/style//icons"
-
-const Link = styled.a`
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: .3rem;
-    gap: .3rem;
-`
 
 
 const DivDesktop = styled(Div)`
@@ -27,23 +19,34 @@ const DivDesktop = styled(Div)`
 const MenuDesktop = () => {
     return (
         <DivDesktop>
-            <Div flex={"flex"} gap={"1rem"}>
-                <Link>
+            <Div display={'flex'} gap={'1rem'}>
+                <LinkRouter
+                    display={'flex'}
+                    to={'/'}
+                >
+                    <HomeIcon fontSize={'24px'} />
+                    <TitleLink as="p" fontSize={'18px'}>
+                        Home
+                    </TitleLink>
+                </LinkRouter>
+                <LinkRouter
+                    display={'flex'}
+                    to={'servicos'}
+                >
                     <ListIcon fontSize={'24px'} />
-                    <TitleLink
-                        as="p"
-                        fontSize={"18px"}>
+                    <TitleLink as="p" fontSize={'18px'}>
                         Serviços
                     </TitleLink>
-                </Link>
-                <Link>
+                </LinkRouter>
+                <LinkRouter
+                    display={'flex'}
+                    to={'sobre'}
+                >
                     <ErrorIcon fontSize={'24px'} />
-                    <TitleLink
-                        as="p"
-                        fontSize={"18px"}>
+                    <TitleLink as="p" fontSize={'18px'}>
                         Sobre
                     </TitleLink>
-                </Link>
+                </LinkRouter>
             </Div>
             <ActionsMenu />
         </DivDesktop>
