@@ -3,7 +3,7 @@ import ActionsMenu from "./components/ActionsMenu"
 import { Div, TitleLink, LinkRouter } from "/src/style/tags"
 
 import { ListIcon, ErrorIcon, HomeIcon }
-    from "/src/style//icons"
+    from "/src/style/icons"
 
 
 const DivDesktop = styled(Div)`

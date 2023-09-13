@@ -1,6 +1,6 @@
 import { styled } from "styled-components"
 import { Description } from "/src/style/tags"
-import { Button } from "/src/components/others/Button"
+import { Button } from "/src/components/common/Button"
 
 const Span = styled.span`
     display: flex;
