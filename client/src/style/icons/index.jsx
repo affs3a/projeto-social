@@ -26,9 +26,8 @@ export const MenuIcon = styled(Menu)`
     font-size: ${props => props.fontSize};
     color: ${props => props.color};
     cursor: pointer;
-    display: block;
 
-    @media (min-width: 700px) {
+    @media (min-width: 991px) {
         display: none;
     }
 

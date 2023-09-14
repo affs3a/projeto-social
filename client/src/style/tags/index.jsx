@@ -2,9 +2,13 @@ import { styled } from "styled-components"
 import { Link } from "react-router-dom"
 
 export const Div = styled.div`
-    display: ${props => props.display};
+    display: ${props => props.$flex == true ? "flex" :""};
     align-items: center;
     gap: ${props => props.gap};
+`
+
+export const Title = styled.h1`
+    font-size: ${props => props.fontSize};
 `
 
 export const Description = styled.p`
@@ -17,7 +21,7 @@ export const TitleLink = styled.h3`
 `
 
 export const LinkRouter = styled(Link)`
-    display: ${props => props.display};
+    display: ${props => props.$flex == true ? "flex" :""};
     color: #000;
     align-items: center;
     justify-content: start;

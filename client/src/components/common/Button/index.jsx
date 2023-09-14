@@ -17,8 +17,4 @@ export const Button = styled.button`
     justify-content: center;
     padding: .5rem .8rem;
     gap: .3rem;
-
-    @media (min-width: 700px) {
-        display: ${props => props.minDisplay};
-    }
 `

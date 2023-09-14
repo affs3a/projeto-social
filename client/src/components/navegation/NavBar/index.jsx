@@ -14,7 +14,7 @@ const Header = styled.header`
     justify-content: space-between;
     padding: 0 2rem;
 
-    @media (min-width: 500px) {
+    @media (min-width: 991px) {
         height: 80px;
     }
     
@@ -22,6 +22,12 @@ const Header = styled.header`
 
 const Logo = styled.h1`
     font-size: 16px;
+`
+
+const ButtonMenu = styled(Button)`
+    @media (min-width: 991px) {
+        display: none;
+    }
 `
 
 const NavBar = () => {
@@ -32,13 +38,13 @@ const NavBar = () => {
     return (
         <Header>
             <Logo>Serviços Araripe</Logo>
-            <Button
+            <ButtonMenu
                 onClick={showMenu}
-                minDisplay={"none"}>
+            >
                 <MenuIcon
                     fontSize={"30px"}
                 />
-            </Button>
+            </ButtonMenu>
             {menuVisible && <MenuMobile visible={menuVisible} />}
             <MenuDesktop />
         </Header>

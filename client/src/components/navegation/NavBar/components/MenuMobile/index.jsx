@@ -30,7 +30,7 @@ const DivMobile = styled(Div)`
         }
     }
 
-    @media (min-width: 700px) {
+    @media (min-width: 991px) {
         display: none;
     }
 
@@ -41,35 +41,35 @@ const MenuNav = () => {
         <DivMobile display={"true"} visible>
             <LinkRouter
                 to={'/'}
-                display={'flex'}
+                $flex={true}
             >
                 <HomeIcon fontSize={'27px'} />
                 <TitleLink>Home</TitleLink>
             </LinkRouter>
             <LinkRouter
                 to={'servicos'}
-                display={'flex'}
+                $flex={true}
             >
                 <ListIcon fontSize={'27px'} />
                 <TitleLink>Serviços</TitleLink>
             </LinkRouter>
             <LinkRouter
                 to={'sobre'}
-                display={'flex'}
+                $flex={true}
             >
                 <ErrorIcon fontSize={'27px'} />
                 <TitleLink>Sobre</TitleLink>
             </LinkRouter>
             <LinkRouter
                 to={'#'}
-                display={'flex'}
+                $flex={true}
             >
                 <LoginIcon fontSize={'27px'} />
                 <TitleLink>Entrar</TitleLink>
             </LinkRouter>
             <LinkRouter
                 to={'#'}
-                display={'flex'}
+                $flex={true}
             >
                 <ResgisterIcon fontSize={'27px'} />
                 <TitleLink>Registrar</TitleLink>

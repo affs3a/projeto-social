@@ -9,7 +9,7 @@ import { ListIcon, ErrorIcon, HomeIcon }
 const DivDesktop = styled(Div)`
     display: none;
 
-    @media (min-width: 700px) {
+    @media (min-width: 991px) {
         display: flex;
         gap: 1rem;
 
@@ -19,9 +19,9 @@ const DivDesktop = styled(Div)`
 const MenuDesktop = () => {
     return (
         <DivDesktop>
-            <Div display={'flex'} gap={'1rem'}>
+            <Div $flex={true} gap={'1rem'}>
                 <LinkRouter
-                    display={'flex'}
+                    $flex={true}
                     to={'/'}
                 >
                     <HomeIcon fontSize={'24px'} />
@@ -30,7 +30,7 @@ const MenuDesktop = () => {
                     </TitleLink>
                 </LinkRouter>
                 <LinkRouter
-                    display={'flex'}
+                    $flex={true}
                     to={'servicos'}
                 >
                     <ListIcon fontSize={'24px'} />
@@ -39,7 +39,7 @@ const MenuDesktop = () => {
                     </TitleLink>
                 </LinkRouter>
                 <LinkRouter
-                    display={'flex'}
+                    $flex={true}
                     to={'sobre'}
                 >
                     <ErrorIcon fontSize={'24px'} />

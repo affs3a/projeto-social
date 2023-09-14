@@ -1,6 +1,7 @@
-import NavBar from "./components/navegation/NavBar"
 import { createGlobalStyle } from "styled-components"
 import { Outlet } from "react-router-dom";
+import NavBar from "./components/navegation/NavBar"
+import FooterNav from "./components/navegation/FooterNav";
 
 const GlobalStyle = createGlobalStyle`
   *, body {
@@ -28,6 +29,7 @@ const App = () => {
       <GlobalStyle />
       <NavBar />
       <Outlet />
+      <FooterNav />
     </>
   )
 }
