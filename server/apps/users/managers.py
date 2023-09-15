@@ -1,8 +1,9 @@
 from django.contrib.auth.models import BaseUserManager
+from .constants import UserRoleEnum
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, username, name, email, role, password=None):
+    def create_user(self, username, name, email, phone, role, password):
         if not username:
             raise ValueError('faltou o campo "username"!')
 
@@ -12,6 +13,9 @@ class UserManager(BaseUserManager):
         if not email:
             raise ValueError('faltou o campo "email"!')
 
+        if not phone:
+            raise ValueError('faltou o campo "phone"!')
+
         if not role:
             raise ValueError('faltou o campo "role"!')
 
@@ -19,6 +23,7 @@ class UserManager(BaseUserManager):
             username=username,
             name=name,
             email=self.normalize_email(email),
+            phone=phone,
             role=role
         )
 
@@ -27,13 +32,15 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, username, name, email, password=None):
+    def create_superuser(self, username, name, email, phone, password):
+        USER_ADMIN_ROLE_CONSTANT = UserRoleEnum.ADMIN.value
         user = self.create_user(
             username=username,
             name=name,
             email=email,
             password=password,
-            role=3
+            phone=phone,
+            role=USER_ADMIN_ROLE_CONSTANT
         )
 
         user.save(using=self._db)
