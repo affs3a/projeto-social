@@ -33,7 +33,9 @@ const ButtonMenu = styled(Button)`
 const NavBar = () => {
 
     const [menuVisible, setMenuVisible] = useState(false)
-    const showMenu = () => setMenuVisible(!menuVisible)
+    const showMenu = () => {
+        setMenuVisible(!menuVisible)
+    }
 
     return (
         <Header>
@@ -45,7 +47,7 @@ const NavBar = () => {
                     fontSize={"30px"}
                 />
             </ButtonMenu>
-            {menuVisible && <MenuMobile visible={menuVisible} />}
+            <MenuMobile $menuVisible={menuVisible} setMenuVisible={setMenuVisible} />
             <MenuDesktop />
         </Header>
     )

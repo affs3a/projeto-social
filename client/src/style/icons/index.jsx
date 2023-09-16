@@ -1,5 +1,5 @@
 import { styled } from "styled-components"
-import { ListAlt, ErrorOutline, Login, Menu, PersonAdd, Home }
+import { ListAlt, ErrorOutline, Login, Menu, PersonAdd, Home, Close }
     from '@mui/icons-material';
 
 export const ListIcon = styled(ListAlt)`
@@ -20,6 +20,12 @@ export const LoginIcon = styled(Login)`
 export const HomeIcon = styled(Home)`
     font-size: ${props => props.fontSize};
     color: ${props => props.color};
+`
+
+export const CloseIcon = styled(Close)`
+    font-size: ${props => props.fontSize};
+    color: ${props => props.color};
+    cursor: pointer;
 `
 
 export const MenuIcon = styled(Menu)`
