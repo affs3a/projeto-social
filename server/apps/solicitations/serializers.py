@@ -3,7 +3,7 @@ from rest_framework.validators import UniqueValidator
 from .models import User
 
 
-class UserSerialize(serializers.ModelSerializer):
+class SolicitationSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         return User.objects.create(**validated_data)
 
