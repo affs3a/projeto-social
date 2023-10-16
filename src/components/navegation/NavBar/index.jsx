@@ -1,9 +1,10 @@
-import styled from "styled-components"
+import { styled, ThemeProvider } from "styled-components"
 import { MenuIcon } from "/src/style/icons";
 import MenuMobile from "./components/MenuMobile";
 import MenuDesktop from "./components/MenuDesktop";
 import { useState } from "react";
 import { Button } from "/src/components/common/Button";
+import { theme } from "/src/style/config";
 
 const Header = styled.header`
     width: 100%;
@@ -12,7 +13,7 @@ const Header = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 2rem;
+    padding: ${({theme}) => theme.Mobile.NavBar.padding};
 
     @media (min-width: 991px) {
         height: 80px;
@@ -38,18 +39,20 @@ const NavBar = () => {
     }
 
     return (
-        <Header>
-            <Logo>Serviços Araripe</Logo>
-            <ButtonMenu
-                onClick={showMenu}
-            >
-                <MenuIcon
-                    fontSize={"30px"}
-                />
-            </ButtonMenu>
-            <MenuMobile $menuVisible={menuVisible} setMenuVisible={setMenuVisible} />
-            <MenuDesktop />
-        </Header>
+        <ThemeProvider theme={theme}>
+            <Header>
+                <Logo>Serviços Araripe</Logo>
+                <ButtonMenu
+                    onClick={showMenu}
+                >
+                    <MenuIcon
+                        fontSize={"30px"}
+                    />
+                </ButtonMenu>
+                <MenuMobile $menuVisible={menuVisible} setMenuVisible={setMenuVisible} />
+                <MenuDesktop />
+            </Header>
+        </ThemeProvider>
     )
 }
 

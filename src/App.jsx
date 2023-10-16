@@ -1,7 +1,8 @@
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle, styled, ThemeProvider } from "styled-components"
 import { Outlet } from "react-router-dom";
 import NavBar from "./components/navegation/NavBar"
 import FooterNav from "./components/navegation/FooterNav";
+import { theme } from "/src/style/config";
 
 const GlobalStyle = createGlobalStyle`
   *, body {
@@ -22,13 +23,21 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
+const Main = styled.main`
+  padding: ${({ theme }) => theme.Mobile.Main};
+`
+
 const App = () => {
 
   return (
     <>
       <GlobalStyle />
       <NavBar />
-      <Outlet />
+      <ThemeProvider theme={theme}>
+        <Main>
+          <Outlet />
+        </Main>
+      </ThemeProvider>
       <FooterNav />
     </>
   )

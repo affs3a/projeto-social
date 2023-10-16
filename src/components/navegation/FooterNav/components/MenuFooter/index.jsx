@@ -25,7 +25,13 @@ const MenuFooter = () => {
         >
             {MenuList.map(itens => {
                 return (
-                    <LinkRouter $back={'#FFA553'} to={itens.http}>
+                    <LinkRouter
+                        back={'#FFA553'}
+                        padding={".3rem .5rem"}
+                        to={itens.http}
+                        key={itens.nome}
+                        fontSize={"14px"}
+                    >
                         {itens.nome}
                     </LinkRouter>
                 )
