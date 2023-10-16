@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from .models import User
+from .models import Solicitation
 
 
 class SolicitationSerialize(serializers.ModelSerializer):
     def create(self, validated_data):
-        return User.objects.create(**validated_data)
-
+        return Solicitation.objects.create(**validated_data)
+    
     class Meta:
-        model = User
-        read_only_fields = ['user', 'service_name', 'message', 'issue_date']
+        model = Solicitation
+        fields = ['user', 'service_name', 'message', 'issue_date'];
