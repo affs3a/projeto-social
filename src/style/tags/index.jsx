@@ -3,9 +3,12 @@ import { Link } from "react-router-dom"
 
 export const Div = styled.div`
     display: ${props => props.$flex == true ? "flex" : ""};
-    align-items: center;
     gap: ${props => props.gap};
+    flex-direction: ${props => props.direction};
     margin-bottom: ${props => props.bottom};
+    margin-top: ${props => props.top};
+    justify-content: center;
+    align-items: center;
 `
 
 export const Title = styled.h1`
@@ -38,4 +41,5 @@ export const LinkRouter = styled(Link)`
 export const Span = styled.span`
     font-size: ${props => props.fontSize};
     display: ${props => props.$flex == true ? "flex" : ""};
+    margin: ${props => props.margin};
 `
