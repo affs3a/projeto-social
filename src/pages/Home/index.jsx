@@ -1,9 +1,12 @@
+import CardHome from "@/components/cards/CardHome"
+import { Menuicon } from "@/style/icons"
 
 
 const Home = () => {
     return (
         <>
-            <h1>Home</h1>
+            <CardHome
+            />
         </>
     )
 }

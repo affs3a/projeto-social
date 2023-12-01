@@ -1,8 +1,8 @@
 import { createGlobalStyle, styled, ThemeProvider } from "styled-components"
 import { Outlet } from "react-router-dom";
-import NavBar from "./components/navegation/NavBar"
-import FooterNav from "./components/navegation/FooterNav";
-import { theme } from "/src/style/config";
+import NavBar from "@/components/navegation/NavBar"
+import FooterNav from "@/components/navegation/FooterNav";
+import { theme } from "@/style/config";
 
 const GlobalStyle = createGlobalStyle`
   *, body {
@@ -32,13 +32,13 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
-      <NavBar />
       <ThemeProvider theme={theme}>
+        <NavBar />
         <Main>
           <Outlet />
         </Main>
+        <FooterNav />
       </ThemeProvider>
-      <FooterNav />
     </>
   )
 }

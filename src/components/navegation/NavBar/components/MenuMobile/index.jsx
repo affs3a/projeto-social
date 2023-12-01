@@ -1,12 +1,13 @@
 import { styled } from "styled-components"
 import { ListIcon, ErrorIcon, LoginIcon, ResgisterIcon, HomeIcon, CloseIcon }
-    from "/src/style/icons"
-import { Div, TitleLink, LinkRouter } from "/src/style/tags"
+    from "@/style/icons"
+import { Div, TitleLink, LinkRouter } from "@/style/tags"
 
 const DivMobile = styled(Div)`
     display: flex;
     flex-direction: column;
     align-items: start;
+    justify-content: start;
     position: absolute;
     height: 100vh;
     width: 70%;

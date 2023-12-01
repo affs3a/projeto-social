@@ -1,9 +1,9 @@
 import { styled } from "styled-components"
 import ActionsMenu from "./components/ActionsMenu"
-import { Div, TitleLink, LinkRouter } from "/src/style/tags"
+import { Div, TitleLink, LinkRouter } from "@/style/tags"
 
 import { ListIcon, ErrorIcon, HomeIcon }
-    from "/src/style/icons"
+    from "@/style/icons"
 
 
 const DivDesktop = styled(Div)`

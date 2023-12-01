@@ -1,10 +1,10 @@
 import { styled, ThemeProvider } from "styled-components"
-import { MenuIcon } from "/src/style/icons";
-import MenuMobile from "./components/MenuMobile";
-import MenuDesktop from "./components/MenuDesktop";
+import { MenuIcon } from "@/style/icons";
+import MenuMobile from "@/components/MenuMobile";
+import MenuDesktop from "@/components/MenuDesktop";
 import { useState } from "react";
-import { Button } from "/src/components/common/Button";
-import { theme } from "/src/style/config";
+import { Button } from "@/components/common/Button";
+import { theme } from "@/style/config";
 
 const Header = styled.header`
     width: 100%;
@@ -13,12 +13,11 @@ const Header = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: ${({theme}) => theme.Mobile.NavBar.padding};
+    padding: ${({ theme }) => theme.Mobile.NavBar.padding};
 
     @media (min-width: 991px) {
         height: 80px;
     }
-    
 `
 
 const Logo = styled.h1`

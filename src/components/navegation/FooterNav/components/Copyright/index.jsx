@@ -1,4 +1,5 @@
-import { Description, Div, LinkRouter, Span } from '/src/style/tags'
+import { Description, Div, LinkRouter, Span } from '@/style/tags'
+import { Arrowicon } from '@/style/icons'
 
 const Copyright = () => {
     return (
@@ -21,6 +22,7 @@ const Copyright = () => {
                 fontSize={'14px'}
             >
                 Desenvolvedores
+                <Arrowicon />
             </LinkRouter>
         </Div>
     )
