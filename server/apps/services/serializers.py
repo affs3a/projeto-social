@@ -16,4 +16,5 @@ class ServiceSerialize(serializers.ModelSerializer):
         return instance
 
     class Meta:
+        fields = '__all__'
         model = Service
