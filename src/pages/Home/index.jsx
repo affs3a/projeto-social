@@ -6,6 +6,9 @@ const Home = () => {
     return (
         <>
             <CardHome
+                IconOne={Menuicon}
+                text={"Serviços"}
+                IconTwo={Menuicon}
             />
         </>
     )

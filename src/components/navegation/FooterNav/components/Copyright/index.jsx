@@ -20,6 +20,7 @@ const Copyright = () => {
             <LinkRouter
                 to={'/'}
                 fontSize={'14px'}
+                $flex={true}
             >
                 Desenvolvedores
                 <Arrowicon />

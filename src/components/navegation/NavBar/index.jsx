@@ -1,10 +1,10 @@
 import { styled, ThemeProvider } from "styled-components"
-import { MenuIcon } from "@/style/icons";
-import MenuMobile from "@/components/MenuMobile";
-import MenuDesktop from "@/components/MenuDesktop";
+import MenuMobile from "@/components/navegation/navbar/components/MenuMobile";
+import MenuDesktop from "@/components/navegation/navbar/components/MenuDesktop";
 import { useState } from "react";
 import { Button } from "@/components/common/Button";
 import { theme } from "@/style/config";
+import { Menuicon } from "@/style/icons";
 
 const Header = styled.header`
     width: 100%;
@@ -44,7 +44,7 @@ const NavBar = () => {
                 <ButtonMenu
                     onClick={showMenu}
                 >
-                    <MenuIcon
+                    <Menuicon
                         fontSize={"30px"}
                     />
                 </ButtonMenu>

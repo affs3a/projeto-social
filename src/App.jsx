@@ -25,6 +25,9 @@ const GlobalStyle = createGlobalStyle`
 
 const Main = styled.main`
   padding: ${({ theme }) => theme.Mobile.Main};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 const App = () => {

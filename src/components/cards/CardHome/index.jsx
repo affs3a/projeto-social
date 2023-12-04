@@ -1,16 +1,27 @@
 import { styled } from "styled-components";
 
 const Div = styled.div`
-    max-width: 90%;
+    width: 100%;
+    min-width: 250px;
     background-color: #00B64C ;
     border-radius: 8px;
     padding: 10px 8px;
+    display: grid;
+    grid-template-columns: auto 2fr auto;
+    gap: 10px;
 `
 
-const CardHome = ({ icon, text }) => {
+const Text = styled.h2`
+    font-size: 20px;
+    color: #fff;
+`
+
+const CardHome = ({ IconOne, IconTwo, text }) => {
     return (
         <Div>
-            <h2>{text}</h2>
+            <IconOne />
+            <Text>{text}</Text>
+            <IconTwo />
         </Div>
     )
 }
