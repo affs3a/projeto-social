@@ -20,8 +20,9 @@ const MenuFooter = () => {
     return (
         <Div
             as="nav"
-            $flex={true}
-            gap={'1rem'}
+            $flex
+            $row
+            gap={"1rem"}
         >
             {MenuList.map(itens => {
                 return (

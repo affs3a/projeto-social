@@ -2,14 +2,16 @@ import { styled } from "styled-components"
 import { Link } from "react-router-dom"
 
 export const Div = styled.div`
+    width: 100%;
     display: ${props => props.$flex == true ? "flex" : ""};
     gap: ${props => props.gap};
-    flex-direction: ${props => props.direction};
+    flex-direction: ${props => props.$row || "column"};
     margin-bottom: ${props => props.bottom};
     margin-top: ${props => props.top};
     justify-content: center;
     align-items: center;
-`
+    `
+
 
 export const Title = styled.h1`
     font-size: ${props => props.fontSize};

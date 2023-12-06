@@ -9,11 +9,12 @@ import { Menuicon } from "@/style/icons";
 const Header = styled.header`
     width: 100%;
     height: 72px;
-    background: #D9D9D9;
+    background-color: ${({theme}) => theme.root.white};
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: ${({ theme }) => theme.Mobile.NavBar.padding};
+    box-shadow: 0px 2px 6px 0px rgba(30, 30, 30, 0.50);
 
     @media (min-width: 991px) {
         height: 80px;

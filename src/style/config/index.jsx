@@ -8,9 +8,14 @@ export const theme = {
         NavBar: {
             padding: "0 1.5rem"
         },
-        Main: "0 .8rem"
+        Main: "1rem .8rem 2rem"
     },
     Desktop: {
         padding: "0 2rem"
+    },
+    root: {
+        blueOne: "#2C7CB2",
+        blueTwo: "#0F3C6D",
+        white: "#FFF"
     }
 }

@@ -6,6 +6,8 @@ import { theme } from "/src/style/config"
 
 const Footer = styled.footer`
     padding: ${({theme}) => theme.Mobile.Footer.padding};
+    background-color: ${({theme}) => theme.root.blueTwo};
+    color: ${({theme}) => theme.root.white};
     height: auto;
     text-align: center;
     position: absolute;
@@ -14,7 +16,6 @@ const Footer = styled.footer`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: #D9D9D9;
     width: 100%;
 `
 

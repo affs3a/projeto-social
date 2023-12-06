@@ -1,5 +1,5 @@
 import { styled } from "styled-components"
-import { ListAlt, ErrorOutline, Login, Menu, PersonAdd, Home, Close, NavigateNext }
+import { ListAlt, ErrorOutline, Login, Menu, PersonAdd, Home, Close, ArrowForward }
     from '@mui/icons-material';
 
 export const ListIcon = styled(ListAlt)`
@@ -44,7 +44,7 @@ export const ResgisterIcon = styled(PersonAdd)`
     cursor: pointer;
 `
 
-export const Arrowicon = styled(NavigateNext)`
+export const Arrowicon = styled(ArrowForward)`
     font-size: ${props => props.fontSize};
     color: ${props => props.color};
     cursor: pointer;

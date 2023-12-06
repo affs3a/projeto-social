@@ -1,14 +1,16 @@
 import { styled } from "styled-components";
+import { Link } from "react-router-dom"
 
-const Div = styled.div`
+const Div = styled(Link)`
     width: 100%;
     min-width: 250px;
-    background-color: #00B64C ;
+    background-color: ${({theme}) => theme.root.blueOne};
     border-radius: 8px;
-    padding: 10px 8px;
+    padding: 13px 8px;
     display: grid;
     grid-template-columns: auto 2fr auto;
     gap: 10px;
+    cursor: pointer;
 `
 
 const Text = styled.h2`
@@ -16,12 +18,12 @@ const Text = styled.h2`
     color: #fff;
 `
 
-const CardHome = ({ IconOne, IconTwo, text }) => {
+const CardHome = ({ IconOne, IconTwo, text, color, link }) => {
     return (
-        <Div>
-            <IconOne />
-            <Text>{text}</Text>
-            <IconTwo />
+        <Div to={link}>
+            <IconOne color={color} />
+            <Text as={"h3"}>{text}</Text>
+            <IconTwo color={color} />
         </Div>
     )
 }
