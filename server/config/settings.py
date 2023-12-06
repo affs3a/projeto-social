@@ -29,7 +29,6 @@ INSTALLED_APPS = [
 
     'apps.users.apps.UsersConfig',
     'apps.authentication.apps.AuthenticationConfig',
-    'apps.solicitations.apps.SolicitationsConfig',
     'apps.services.apps.ServicesConfig',
     'apps.categories.apps.CategoriesConfig',
     'apps.comments.apps.CommentsConfig',
