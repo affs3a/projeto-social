@@ -35,3 +35,4 @@ class SolicitationDetails(APIView):
         Solicitation = self.get_solicitation(solicitation_id)
         Solicitation.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
