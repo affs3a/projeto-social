@@ -12,7 +12,6 @@ export const Div = styled.div`
     align-items: center;
     `
 
-
 export const Title = styled.h1`
     font-size: ${props => props.fontSize};
 `

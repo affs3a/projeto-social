@@ -1,8 +1,8 @@
 import { styled, ThemeProvider } from "styled-components"
-import Logo from "/src/components/common/Logo"
-import MenuFooter from "./components/MenuFooter"
-import Copyright from "./components/Copyright"
-import { theme } from "/src/style/config"
+import Logo from "@/components/common/Logo"
+import { theme } from "@/style/config"
+import MenuFooter from "@Footer/MenuFooter"
+import Copyright from "@Footer/Copyright"
 
 const Footer = styled.footer`
     padding: ${({theme}) => theme.Mobile.Footer.padding};

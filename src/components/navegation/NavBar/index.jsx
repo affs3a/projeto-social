@@ -1,6 +1,6 @@
 import { styled, ThemeProvider } from "styled-components"
-import MenuMobile from "@/components/navegation/navbar/components/MenuMobile";
-import MenuDesktop from "@/components/navegation/navbar/components/MenuDesktop";
+import MenuMobile from "@NavBar/MenuMobile";
+import MenuDesktop from "@NavBar/MenuDesktop";
 import { useState } from "react";
 import { Button } from "@/components/common/Button";
 import { theme } from "@/style/config";

@@ -8,7 +8,6 @@ const Span = styled.span`
     align-items: center;
     border-radius: 10px;
     gap: 1rem;
-    width: 100%;
     text-align: center;
     background: #bbb7b7;
     padding: .5rem 1rem;
