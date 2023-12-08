@@ -10,7 +10,6 @@ const Footer = styled.footer`
     color: ${({theme}) => theme.root.white};
     height: auto;
     text-align: center;
-    position: absolute;
     bottom: 0;
     display: flex;
     justify-content: center;

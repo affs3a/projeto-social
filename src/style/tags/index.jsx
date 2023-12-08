@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 export const Div = styled.div`
     width: 100%;
-    display: ${props => props.$flex == true ? "flex" : ""};
+    display: ${props => props.$flex ? "flex" : ""};
     gap: ${props => props.gap};
     flex-direction: ${props => props.$row || "column"};
     margin-bottom: ${props => props.bottom};

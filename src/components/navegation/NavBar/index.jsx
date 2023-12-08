@@ -1,10 +1,10 @@
 import { styled, ThemeProvider } from "styled-components"
-import MenuMobile from "@NavBar/MenuMobile";
-import MenuDesktop from "@NavBar/MenuDesktop";
 import { useState } from "react";
 import { Button } from "@/components/common/Button";
 import { theme } from "@/style/config";
 import { Menuicon } from "@/style/icons";
+import MenuMobile from "@NavBar/MenuMobile";
+import MenuDesktop from "@NavBar/MenuDesktop";
 
 const Header = styled.header`
     width: 100%;
@@ -18,6 +18,7 @@ const Header = styled.header`
 
     @media (min-width: 991px) {
         height: 80px;
+        
     }
 `
 

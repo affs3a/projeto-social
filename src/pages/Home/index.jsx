@@ -2,11 +2,12 @@ import CardHome from "@/components/cards/CardHome"
 import { Arrowicon, ListIcon } from "@/style/icons"
 import { Div } from "@/style/tags"
 import Slide from "@/components/slide"
+import CardCategory from "@/components/cards/CardCategory"
 
 const Home = () => {
     return (
         <>
-            <Slide />
+            {/* <Slide /> */}
             <Div as={"section"} $flex gap={"10px"}>
                 <CardHome
                     link={"servicos"}
@@ -23,6 +24,7 @@ const Home = () => {
                     color={"#fff"}
                 />
             </Div>
+            {/* <CardCategory /> */}
         </>
     )
 }
