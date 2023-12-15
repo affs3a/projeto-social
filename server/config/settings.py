@@ -31,7 +31,6 @@ INSTALLED_APPS = [
     'apps.authentication.apps.AuthenticationConfig',
     'apps.services.apps.ServicesConfig',
     'apps.categories.apps.CategoriesConfig',
-    'apps.comments.apps.CommentsConfig',
 ]
 
 REST_FRAMEWORK = {
