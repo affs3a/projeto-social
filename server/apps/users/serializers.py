@@ -17,7 +17,7 @@ class UserSerialize(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         instance.name = validated_data.get('name', instance.name)
-        instance.phone = validated_data.get('phone', instance.name)
+        instance.phone = validated_data.get('phone', instance.phone)
         instance.save()
         return instance
 
