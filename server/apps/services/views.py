@@ -1,5 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import status, NotFound
 from .serializers import ServiceSerialize
 from .models import Service
@@ -20,6 +21,8 @@ class ServicesList(APIView):
 
 
 class ServiceDetails(APIView):
+    permission_classes = [IsAuthenticated]
+    
     def get_service(self, service_id):
         try:
             return Service.objects.get(pk=service_id)
