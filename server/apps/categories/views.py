@@ -1,11 +1,14 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from security.permissions import IsAdmin
 from rest_framework.exceptions import status, NotFound
 from .serializers import CategorySerialize
 from .models import Category
 
 
 class CategoryList(APIView):
+    permission_classes = [IsAdmin]
+
     def get(self, request, format=False):
         queryset = Category.objects.all()
         serializer = CategorySerialize(queryset, many=True)
@@ -20,6 +23,8 @@ class CategoryList(APIView):
 
 
 class CategoryDetails(APIView):
+    permission_classes = [IsAdmin]
+
     def get_category(self, category_id):
         try:
             return Category.objects.get(pk=category_id)

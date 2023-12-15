@@ -1,6 +1,4 @@
 from django.contrib.auth.models import BaseUserManager
-from .constants import UserRoleEnum
-
 
 class UserManager(BaseUserManager):
     def create_user(self, username, name, email, phone, role, password):
@@ -33,7 +31,7 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, username, name, email, phone, password):
-        USER_ADMIN_ROLE_CONSTANT = UserRoleEnum.ADMIN.value
+        USER_ADMIN_ROLE_CONSTANT = 2
         user = self.create_user(
             username=username,
             name=name,
