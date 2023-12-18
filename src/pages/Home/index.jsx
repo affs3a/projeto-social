@@ -1,7 +1,7 @@
 import CardHome from "@/components/cards/CardHome"
 import { Arrowicon, ListIcon } from "@/style/icons"
 import { Div } from "@/style/tags"
-import Slide from "@/components/slide"
+import Slide from "@/components/Slide"
 import CardCategory from "@/components/cards/CardCategory"
 
 const Home = () => {

@@ -6,8 +6,7 @@ export default defineConfig({
   resolve: {
     alias: [{ find: "@", replacement: "/src" },
     { find: "@Footer", replacement: "/src/components/navegation/FooterNav/components" },
-    { find: "@NavBar", replacement: "/src/components/navegation/navbar/components" }],
+    { find: "@NavBar", replacement: "/src/components/navegation/NavBar/components" }],
   },
   plugins: [react()],
 })
-

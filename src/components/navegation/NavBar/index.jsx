@@ -42,7 +42,7 @@ const NavBar = () => {
     return (
         <ThemeProvider theme={theme}>
             <Header>
-                <Logo>Serviços Araripe</Logo>
+                <Logo>ArariServiços</Logo>
                 <ButtonMenu
                     onClick={showMenu}
                 >
