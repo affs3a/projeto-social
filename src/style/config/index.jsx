@@ -14,8 +14,8 @@ export const theme = {
         padding: "0 2rem"
     },
     root: {
-        blueOne: "#2C7CB2",
-        blueTwo: "#0F3C6D",
+        blueOne: "#0043ff",
+        blueTwo: "#191e2d",
         white: "#FFF"
     }
 }

@@ -15,11 +15,12 @@ const Copyright = () => {
             <Span
                 fontSize={'14px'}
             >
-                2023 - EEEP Valter Nunes de Alencar. Todos os direitos reservados.
+                &copy;2023 - EEEP Valter Nunes de Alencar. Todos os direitos reservados.
             </Span>
             <LinkRouter
                 to={'/'}
                 fontSize={'14px'}
+                color={'#fff'}
                 $flex={true}
             >
                 Desenvolvedores

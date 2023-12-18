@@ -6,6 +6,10 @@ import { theme } from "@/style/config";
 import "@fontsource/space-grotesk"
 
 const GlobalStyle = createGlobalStyle`
+  :root {
+    --navbar-height: 72px;
+  }
+
   *, body {
     margin: 0;
     padding: 0;
@@ -30,7 +34,8 @@ const Main = styled.main`
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  height: auto;
+  margin-top: var(--navbar-height);
+  min-height: 55vh;
 `
 
 const App = () => {

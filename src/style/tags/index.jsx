@@ -32,11 +32,16 @@ export const LinkRouter = styled(Link)`
     padding: ${props => props.padding || ".3rem"};
     font-size: ${props => props.fontSize};
     border-radius: 6px;
-    color: #000;
+    color: ${props => props.color || '#000'};
     align-items: center;
     justify-content: start;
     width: auto;
     gap: .3rem;
+    transition: all 300ms;
+
+    &:hover {
+        background-color: ${props => props.hover || props.back};
+    }
 `
 
 export const Span = styled.span`

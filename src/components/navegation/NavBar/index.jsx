@@ -7,14 +7,16 @@ import MenuMobile from "@NavBar/MenuMobile";
 import MenuDesktop from "@NavBar/MenuDesktop";
 
 const Header = styled.header`
+    position: fixed;
+    top: 0;
     width: 100%;
-    height: 72px;
+    height: var(--navbar-height);
     background-color: ${({theme}) => theme.root.white};
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: ${({ theme }) => theme.Mobile.NavBar.padding};
-    box-shadow: 0px 2px 6px 0px rgba(30, 30, 30, 0.50);
+    box-shadow: 0px 0 3px rgba(30, 30, 30, 0.3);
 
     @media (min-width: 991px) {
         height: 80px;

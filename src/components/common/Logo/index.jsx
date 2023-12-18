@@ -5,7 +5,7 @@ import { Div, Title }
 import LogoImage from "/public/logo.png"
 
 const Image = styled.img`
-    width: 35px;
+    width: 46px;
     border-radius: 50%;
 `
 
@@ -17,7 +17,7 @@ const Logo = ({ bottom }) => {
             bottom={bottom}
         >
             <Image src={LogoImage} />
-            <Title as="h2" >Serviços Araripe</Title>
+            <Title as="h3" >ArariServiços</Title>
         </Div>
     )
 }
