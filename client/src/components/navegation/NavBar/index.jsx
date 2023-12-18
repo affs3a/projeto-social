@@ -16,7 +16,7 @@ const Header = styled.header`
     align-items: center;
     justify-content: space-between;
     padding: ${theme.Mobile.NavBar.padding};
-    box-shadow: 0px 0 3px rgba(30, 30, 30, 0.3);
+    box-shadow: 0 0 5px ${theme.root.shadow};
 
     @media screen and (min-width: 991px) {
         height: ${theme.Desktop.NavBar.height};
