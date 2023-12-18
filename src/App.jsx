@@ -3,13 +3,14 @@ import { Outlet } from "react-router-dom";
 import NavBar from "@/components/navegation/NavBar"
 import FooterNav from "@/components/navegation/FooterNav";
 import { theme } from "@/style/config";
+import "@fontsource/space-grotesk"
 
 const GlobalStyle = createGlobalStyle`
   *, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: "Space Grotesk", sans-serif;
     font-weight: normal;
     text-decoration: none;
   }
