@@ -14,6 +14,7 @@ export const Div = styled.div`
 
 export const Title = styled.h1`
     font-size: ${props => props.fontSize};
+    font-weight: 800;
 `
 
 export const Description = styled.p`

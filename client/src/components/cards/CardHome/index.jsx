@@ -9,12 +9,13 @@ const Div = styled(Link)`
     padding: 13px 8px;
     display: grid;
     grid-template-columns: auto 2fr auto;
-    gap: 10px;
+    gap: 8px;
     cursor: pointer;
 `
 
-const Text = styled.h2`
-    font-size: 20px;
+const Text = styled.h3`
+    font-size: 18px;
+    font-weight: 800;
     color: #fff;
 `
 
@@ -22,7 +23,7 @@ const CardHome = ({ IconOne, IconTwo, text, color, link }) => {
     return (
         <Div to={link}>
             <IconOne color={color} />
-            <Text as={"h3"}>{text}</Text>
+            <Text>{text}</Text>
             <IconTwo color={color} />
         </Div>
     )

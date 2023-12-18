@@ -46,6 +46,7 @@ const MenuNav = ({ $menuVisible, setMenuVisible }) => {
             <LinkRouter
                 to={'/'}
                 $flex={true}
+                onClick={() => setMenuVisible(!$menuVisible)}
             >
                 <HomeIcon fontSize={'27px'} />
                 <TitleLink>Home</TitleLink>
@@ -53,6 +54,7 @@ const MenuNav = ({ $menuVisible, setMenuVisible }) => {
             <LinkRouter
                 to={'servicos'}
                 $flex={true}
+                onClick={() => setMenuVisible(!$menuVisible)}
             >
                 <ListIcon fontSize={'27px'} />
                 <TitleLink>Serviços</TitleLink>
@@ -60,6 +62,7 @@ const MenuNav = ({ $menuVisible, setMenuVisible }) => {
             <LinkRouter
                 to={'sobre'}
                 $flex={true}
+                onClick={() => setMenuVisible(!$menuVisible)}
             >
                 <ErrorIcon fontSize={'27px'} />
                 <TitleLink>Sobre</TitleLink>
@@ -67,6 +70,7 @@ const MenuNav = ({ $menuVisible, setMenuVisible }) => {
             <LinkRouter
                 to={'login'}
                 $flex={true}
+                onClick={() => setMenuVisible(!$menuVisible)}
             >
                 <LoginIcon fontSize={'27px'} />
                 <TitleLink>Entrar</TitleLink>
@@ -74,6 +78,7 @@ const MenuNav = ({ $menuVisible, setMenuVisible }) => {
             <LinkRouter
                 to={'registro'}
                 $flex={true}
+                onClick={() => setMenuVisible(!$menuVisible)}
             >
                 <ResgisterIcon fontSize={'27px'} />
                 <TitleLink>Registrar</TitleLink>
