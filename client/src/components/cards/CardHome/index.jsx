@@ -6,7 +6,7 @@ const Div = styled(Link)`
     min-width: 250px;
     background-color: ${({theme}) => theme.root.blueOne};
     border-radius: 8px;
-    padding: 13px 8px;
+    padding: 16px 8px;
     display: grid;
     grid-template-columns: auto 2fr auto;
     gap: 8px;

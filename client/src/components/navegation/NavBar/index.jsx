@@ -28,6 +28,7 @@ const Logo = styled.h1`
 `
 
 const ButtonMenu = styled(Button)`
+    padding: 0;
     @media (min-width: 991px) {
         display: none;
     }

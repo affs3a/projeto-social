@@ -76,7 +76,7 @@ const MenuNav = ({ $menuVisible, setMenuVisible }) => {
                 <TitleLink>Entrar</TitleLink>
             </LinkRouter>
             <LinkRouter
-                to={'registro'}
+                to={'registrar'}
                 $flex={true}
                 onClick={() => setMenuVisible(!$menuVisible)}
             >
