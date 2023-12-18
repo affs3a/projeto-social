@@ -2,6 +2,7 @@ import { styled } from "styled-components"
 import { ListIcon, ErrorIcon, LoginIcon, ResgisterIcon, HomeIcon, CloseIcon }
     from "@/style/icons"
 import { Div, TitleLink, LinkRouter } from "@/style/tags"
+import { theme } from "@/style/config"
 
 const DivMobile = styled(Div)`
     display: flex;
@@ -12,13 +13,14 @@ const DivMobile = styled(Div)`
     height: 100vh;
     width: 70%;
     max-width: 200px;
-    background: #D9D9D9;
+    background: #fff;
+    box-shadow: 0 0 10px ${props => props.$visible ? theme.root.shadow : "transparent"};
     top: 0;
     right: 0;
     padding: .5rem 1em;
     gap: .5rem;
     transform: translateX(${props => props.$visible ? "0px" : "200px"});
-    transition: all .7s;
+    transition: all .5s;
     z-index: 10;
 
     @media (min-width: 991px) {

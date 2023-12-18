@@ -21,5 +21,6 @@ export const theme = {
         blueOne: "#0043ff",
         blueTwo: "#191e2d",
         white: "#FFF",
+        shadow: "rgba(20, 20, 20, 0.3)",
     }
 }
