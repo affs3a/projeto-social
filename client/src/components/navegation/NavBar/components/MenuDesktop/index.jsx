@@ -8,12 +8,12 @@ import { ListIcon, ErrorIcon, HomeIcon }
 
 const DivDesktop = styled(Div)`
     display: none;
-@media (min-width: 991px) {
-    gap: 1rem;
-    display: flex;
-    flex-direction: row;
-    width: auto;
 
+    @media (min-width: 991px) {
+        gap: 1rem;
+        display: flex;
+        flex-direction: row;
+        width: auto;
     }
 `
 

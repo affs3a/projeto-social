@@ -6,16 +6,6 @@ import { theme } from "@/style/config";
 import "@fontsource/space-grotesk"
 
 const GlobalStyle = createGlobalStyle`
-  :root {
-    --navbar-height: 72px;
-  }
-
-  @media (min-width: 991px) {
-    :root {
-      --navbar-height: 80px;
-    }
-  }
-
   *, body {
     margin: 0;
     padding: 0;
@@ -35,13 +25,17 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const Main = styled.main`
-  padding: ${({ theme }) => theme.Mobile.Main};
+  padding: ${theme.Mobile.Main};
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  margin-top: var(--navbar-height);
+  margin-top: ${theme.Mobile.NavBar.height};
   min-height: 100vh;
+
+  @media screen and (min-width: 991px) {
+    margin-top: ${theme.Desktop.NavBar.height}; 
+  }
 `
 
 const App = () => {

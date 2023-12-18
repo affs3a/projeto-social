@@ -31,9 +31,6 @@ const MobileCloseIcon = styled(CloseIcon)`
     align-self: self-end;
     margin: 13px 0 14px;
     border-radius: 8px;
-    background: white;
-    color: red;
-
 `
 
 
@@ -66,14 +63,14 @@ const MenuNav = ({ $menuVisible, setMenuVisible }) => {
                 <TitleLink>Sobre</TitleLink>
             </LinkRouter>
             <LinkRouter
-                to={'#'}
+                to={'login'}
                 $flex={true}
             >
                 <LoginIcon fontSize={'27px'} />
                 <TitleLink>Entrar</TitleLink>
             </LinkRouter>
             <LinkRouter
-                to={'#'}
+                to={'registro'}
                 $flex={true}
             >
                 <ResgisterIcon fontSize={'27px'} />

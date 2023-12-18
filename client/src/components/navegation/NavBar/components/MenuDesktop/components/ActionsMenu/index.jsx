@@ -1,6 +1,6 @@
 import { styled } from "styled-components"
 import { Description } from "/src/style/tags"
-import { Button } from "/src/components/common/Button"
+import { LinkBtn } from "@/components/common/LinkBtn"
 
 const Span = styled.span`
     display: flex;
@@ -19,24 +19,27 @@ const ActionsMenu = () => {
             <Description>
                 Prestador?
             </Description>
-            <Button
+            <LinkBtn
+                to={'login'}
                 fontSize="16px"
-                as="a"
                 justify={"start"}
                 back={"#f9f9f9"}
+                hover={"#e9e9e9"}
                 height={"35px"}
             >
                 Entrar
-            </Button>
-            <Button
+            </LinkBtn>
+            <LinkBtn
+                to={'registro'}
                 fontSize="16px"
                 as="a"
                 justify={"start"}
                 back={"#f9f9f9"}
+                hover={"#e9e9e9"}
                 height={"35px"}
             >
                 Registrar
-            </Button>
+            </LinkBtn>
         </Span>
     )
 }

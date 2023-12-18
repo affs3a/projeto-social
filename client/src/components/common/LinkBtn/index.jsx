@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom"
 import { styled } from "styled-components"
 
-export const Button = styled.button`
+export const LinkBtn = styled(Link)`
     //Props styled
     background: ${props => props.back || "none"};
     color: ${props => props.color || '#000'};
@@ -21,5 +22,9 @@ export const Button = styled.button`
 
     &:hover {
         background: ${props => props.hover || props.back || "none"};
+    }
+
+    &:visited {
+        color: ${props => props.color || '#000'};
     }
 `

@@ -10,13 +10,17 @@ const Header = styled.header`
     position: fixed;
     top: 0;
     width: 100%;
-    height: var(--navbar-height);
-    background-color: ${({theme}) => theme.root.white};
+    height: ${theme.Mobile.NavBar.height};
+    background-color: ${theme.root.white};
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: ${({ theme }) => theme.Mobile.NavBar.padding};
+    padding: ${theme.Mobile.NavBar.padding};
     box-shadow: 0px 0 3px rgba(30, 30, 30, 0.3);
+
+    @media screen and (min-width: 991px) {
+        height: ${theme.Desktop.NavBar.height};
+    }
 `
 
 const Logo = styled.h1`
