@@ -2,12 +2,16 @@ import { Div, Title, Form } from "@/style/tags"
 import { theme } from "@/style/config"
 import { Field } from "./components"
 import { Button } from "@/components/common/Button"
+import { LoginIcon } from "../../style/icons"
 
 const Login = () => {
     return (
         <>
             <Div as={"section"} $flex gap={"10px"}>
-                <Title>Login</Title>
+                <Div $flex $row gap={'8px'}>
+                    <LoginIcon />
+                    <Title>Login</Title>
+                </Div>
                 <Form method={'POST'}>
                     <Div $flex gap={'8px'}>
                         <Field id={'username'} label={'Usuário'} />
