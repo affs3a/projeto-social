@@ -9,6 +9,8 @@ export const Button = styled.button`
     width: ${props => props.width || "auto"};
     height: ${props => props.height || "auto"};
     justify-content: ${props => props.justify || "center"};
+    font-weight: ${props => props.$bold ? '900' : '600'};
+    margin: ${props => props.margin || "0"};
 
     border-radius: 8px;
     border: none;

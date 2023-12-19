@@ -28,7 +28,7 @@ const MenuFooter = () => {
                 return (
                     <LinkRouter
                         back={'#4661a9'}
-                        hover={'#3a4f87'}
+                        hover={'#314476'}
                         color={'#fff'}
                         padding={".5rem 1rem"}
                         to={itens.http}

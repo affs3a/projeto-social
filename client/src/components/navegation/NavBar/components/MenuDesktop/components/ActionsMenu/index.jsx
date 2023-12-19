@@ -24,7 +24,6 @@ const ActionsMenu = () => {
                 fontSize="16px"
                 justify={"start"}
                 back={"#f9f9f9"}
-                hover={"#e9e9e9"}
                 height={"35px"}
             >
                 Entrar
@@ -35,7 +34,6 @@ const ActionsMenu = () => {
                 as="a"
                 justify={"start"}
                 back={"#f9f9f9"}
-                hover={"#e9e9e9"}
                 height={"35px"}
             >
                 Registrar
