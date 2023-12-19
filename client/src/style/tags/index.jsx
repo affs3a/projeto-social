@@ -30,7 +30,7 @@ export const TitleLink = styled.h3`
 
 export const LinkRouter = styled(Link)`
     display: ${props => props.$flex == true ? "flex" : ""};
-    background: ${props => props.back};
+    background-color: ${props => props.back};
     padding: ${props => props.padding || ".3rem"};
     font-size: ${props => props.fontSize};
     border-radius: 6px;

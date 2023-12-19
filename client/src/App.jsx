@@ -31,7 +31,7 @@ const Main = styled.main`
   align-items: center;
   width: 100vw;
   margin-top: ${theme.Mobile.NavBar.height};
-  min-height: 100vh;
+  min-height: calc(100vh - ${theme.Mobile.NavBar.height});
 
   @media screen and (min-width: 991px) {
     margin-top: ${theme.Desktop.NavBar.height}; 
