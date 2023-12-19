@@ -7,6 +7,7 @@ import {
 import App from "../App";
 import Home from "@/pages/Home"
 import Login from "@/pages/Login"
+import Categorias from "@/pages/Categorias";
 
 
 export const router = createBrowserRouter([
@@ -15,10 +16,9 @@ export const router = createBrowserRouter([
         element: <App />,
         children: [
             {
-                path: "servicos",
-                element: (
-                    <h1>Serviços</h1>
-                )
+                path: "localizar",
+                element: <Categorias />
+                
             },
             {
                 path: "sobre",

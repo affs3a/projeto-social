@@ -1,8 +1,9 @@
 import { styled } from "styled-components"
-import { ListIcon, ErrorIcon, LoginIcon, ResgisterIcon, HomeIcon, CloseIcon }
+import { ListIcon, InfoIcon, LoginIcon, ResgisterIcon, HomeIcon, CloseIcon }
     from "@/style/icons"
 import { Div, TitleLink, LinkRouter } from "@/style/tags"
 import { theme } from "@/style/config"
+import { SearchCategoryIcon } from "../../../../../style/icons"
 
 const DivMobile = styled(Div)`
     display: flex;
@@ -52,19 +53,19 @@ const MenuNav = ({ $menuVisible, setMenuVisible }) => {
                 <TitleLink>Home</TitleLink>
             </LinkRouter>
             <LinkRouter
-                to={'servicos'}
+                to={'localizar'}
                 $flex={true}
                 onClick={() => setMenuVisible(!$menuVisible)}
             >
-                <ListIcon fontSize={'27px'} />
-                <TitleLink>Serviços</TitleLink>
+                <SearchCategoryIcon fontSize={'27px'} />
+                <TitleLink>Localizar</TitleLink>
             </LinkRouter>
             <LinkRouter
                 to={'sobre'}
                 $flex={true}
                 onClick={() => setMenuVisible(!$menuVisible)}
             >
-                <ErrorIcon fontSize={'27px'} />
+                <InfoIcon fontSize={'27px'} />
                 <TitleLink>Sobre</TitleLink>
             </LinkRouter>
             <LinkRouter

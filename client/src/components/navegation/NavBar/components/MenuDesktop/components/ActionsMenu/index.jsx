@@ -1,6 +1,7 @@
 import { styled } from "styled-components"
 import { Description } from "/src/style/tags"
 import { LinkBtn } from "@/components/common/LinkBtn"
+import { theme } from "@/style/config"
 
 const Span = styled.span`
     display: flex;
@@ -9,7 +10,7 @@ const Span = styled.span`
     border-radius: 10px;
     gap: 1rem;
     text-align: center;
-    background: #bbb7b7;
+    background: ${theme.root.blueFour};
     padding: .5rem 1rem;
 `
 
@@ -23,8 +24,10 @@ const ActionsMenu = () => {
                 to={'login'}
                 fontSize="16px"
                 justify={"start"}
-                back={"#f9f9f9"}
-                height={"35px"}
+                back={theme.root.blueOne}
+                hover={theme.root.blueOneHover}
+                color={theme.root.white}
+                height={"38px"}
             >
                 Entrar
             </LinkBtn>
@@ -33,8 +36,9 @@ const ActionsMenu = () => {
                 fontSize="16px"
                 as="a"
                 justify={"start"}
-                back={"#f9f9f9"}
-                height={"35px"}
+                back={theme.root.white}
+                hover={theme.root.whiteHover}
+                height={"38px"}
             >
                 Registrar
             </LinkBtn>

@@ -8,8 +8,8 @@ const MenuFooter = () => {
             http: '/'
         },
         {
-            nome: "Serviços",
-            http: 'servicos'
+            nome: "Localizar",
+            http: 'localizar'
         },
         {
             nome: "Sobre",

@@ -1,15 +1,19 @@
-import { Div, Title, Form } from "@/style/tags"
+import { Div, Title } from "@/style/tags"
+import { Form, Field } from "@/components/common/Form"
 import { theme } from "@/style/config"
-import { Field } from "./components"
 import { Button } from "@/components/common/Button"
-import { LoginIcon } from "../../style/icons"
+import { LoginIcon } from "@/style/icons"
+import Logo from "@/components/common/Logo"
 
 const Login = () => {
     return <>
         <Div as={"section"} $flex gap={"10px"} top={'auto'} bottom={'auto'}>
-            <Div $flex $row gap={'8px'}>
-                <LoginIcon />
-                <Title>Login</Title>
+            <Div>
+                <Logo pure width={'90px'} bottom={'16px'} />
+                <Div $flex $row gap={'8px'}>
+                    <LoginIcon />
+                    <Title>Login</Title>
+                </Div>
             </Div>
             <Form method={'POST'}>
                 <Div $flex gap={'8px'}>

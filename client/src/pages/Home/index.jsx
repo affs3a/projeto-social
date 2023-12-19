@@ -1,8 +1,7 @@
 import CardHome from "@/components/cards/CardHome"
-import { Arrowicon, ListIcon } from "@/style/icons"
+import { Arrowicon } from "@/style/icons"
 import { Div } from "@/style/tags"
-import Slide from "@/components/Slide"
-import CardCategory from "@/components/cards/CardCategory"
+import { SearchCategoryIcon, InfoIcon } from "@/style/icons"
 
 const Home = () => {
     return (
@@ -10,15 +9,15 @@ const Home = () => {
             {/* <Slide /> */}
             <Div as={"section"} $flex gap={"10px"}>
                 <CardHome
-                    link={"servicos"}
-                    IconOne={ListIcon}
-                    text={"Serviços"}
+                    link={"localizar"}
+                    IconOne={SearchCategoryIcon}
+                    text={"Localizar"}
                     IconTwo={Arrowicon}
                     color={"#fff"}
                 />
                 <CardHome
                     link={"sobre"}
-                    IconOne={ListIcon}
+                    IconOne={InfoIcon}
                     text={"Sobre"}
                     IconTwo={Arrowicon}
                     color={"#fff"}

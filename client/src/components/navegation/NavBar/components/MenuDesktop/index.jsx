@@ -2,7 +2,7 @@ import { styled } from "styled-components"
 import ActionsMenu from "./components/ActionsMenu"
 import { Div, TitleLink, LinkRouter } from "@/style/tags"
 
-import { ListIcon, ErrorIcon, HomeIcon }
+import { ListIcon, InfoIcon, HomeIcon }
     from "@/style/icons"
 
 
@@ -32,18 +32,18 @@ const MenuDesktop = () => {
                 </LinkRouter>
                 <LinkRouter
                     $flex={true}
-                    to={'servicos'}
+                    to={'localizar'}
                 >
                     <ListIcon fontSize={'24px'} />
                     <TitleLink as="p" fontSize={'18px'}>
-                        Serviços
+                        Localizar
                     </TitleLink>
                 </LinkRouter>
                 <LinkRouter
                     $flex={true}
                     to={'sobre'}
                 >
-                    <ErrorIcon fontSize={'24px'} />
+                    <InfoIcon fontSize={'24px'} />
                     <TitleLink as="p" fontSize={'18px'}>
                         Sobre
                     </TitleLink>

@@ -1,6 +1,5 @@
 import { styled } from "styled-components"
 import { Link } from "react-router-dom"
-import { theme } from "@/style/config"
 
 export const Div = styled.div`
     width: 100%;
@@ -50,27 +49,4 @@ export const Span = styled.span`
     font-size: ${props => props.fontSize};
     display: ${props => props.$flex == true ? "flex" : ""};
     margin: ${props => props.margin};
-`
-
-export const Form = styled.form`
-    width: ${props => props.width || '100%'};
-`
-
-export const Label = styled.label`
-    font-size: 1.15rem;
-    color: ${theme.root.textTwo};
-`
-
-export const Input = styled.input`
-    padding: 12px;
-    border: 2px solid ${theme.root.greyOne};
-    border-radius: 4px;
-    font-size: 1rem;
-    outline: none;
-    transition: all 350ms;
-
-    &:focus {
-        border: 2px solid ${theme.root.blueOne};
-        background-color: ${theme.root.blueThree};
-    }
 `

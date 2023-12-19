@@ -5,6 +5,8 @@ import { theme } from "@/style/config";
 import { Menuicon } from "@/style/icons";
 import MenuMobile from "@NavBar/MenuMobile";
 import MenuDesktop from "@NavBar/MenuDesktop";
+import LogoImage from "@public/images/icon.png"
+import LogotypeImage from "@public/images/logotype.png"
 
 const Header = styled.header`
     position: fixed;
@@ -23,8 +25,9 @@ const Header = styled.header`
     }
 `
 
-const Logo = styled.h1`
-    font-size: 16px;
+const Logo = styled.img.attrs({src: LogoImage})`
+    width: 64px;
+    object-fit: cover;
 `
 
 const ButtonMenu = styled(Button)`
@@ -44,7 +47,7 @@ const NavBar = () => {
     return (
         <ThemeProvider theme={theme}>
             <Header>
-                <Logo>ArariServiços</Logo>
+                <Logo />
                 <ButtonMenu
                     onClick={showMenu}
                 >

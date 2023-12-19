@@ -1,5 +1,5 @@
 import { styled } from "styled-components"
-import { ListAlt, ErrorOutline, Login, Menu, PersonAdd, Home, Close, ArrowForward }
+import { ListAlt, ErrorOutline, Login, Menu, PersonAddOutlined, HomeOutlined, Close, ArrowForward, Search, ManageSearch, InfoOutlined }
     from '@mui/icons-material';
 
 export const ListIcon = styled(ListAlt)`
@@ -7,7 +7,12 @@ export const ListIcon = styled(ListAlt)`
     color: ${props => props.color};
 `
 
-export const ErrorIcon = styled(ErrorOutline)`
+export const InfoIcon = styled(InfoOutlined)`
+    font-size: ${props => props.fontSize};
+    color: ${props => props.color};
+`
+
+export const ErrorInfo = styled(ErrorOutline)`
     font-size: ${props => props.fontSize};
     color: ${props => props.color};
 `
@@ -17,7 +22,7 @@ export const LoginIcon = styled(Login)`
     color: ${props => props.color};
 `
 
-export const HomeIcon = styled(Home)`
+export const HomeIcon = styled(HomeOutlined)`
     font-size: ${props => props.fontSize};
     color: ${props => props.color};
 `
@@ -38,13 +43,25 @@ export const Menuicon = styled(Menu)`
     }
 `
 
-export const ResgisterIcon = styled(PersonAdd)`
+export const ResgisterIcon = styled(PersonAddOutlined)`
     font-size: ${props => props.fontSize};
     color: ${props => props.color};
     cursor: pointer;
 `
 
 export const Arrowicon = styled(ArrowForward)`
+    font-size: ${props => props.fontSize};
+    color: ${props => props.color};
+    cursor: pointer;
+`
+
+export const SearchIcon = styled(Search)`
+    font-size: ${props => props.fontSize};
+    color: ${props => props.color};
+    cursor: pointer;
+`
+
+export const SearchCategoryIcon = styled(ManageSearch)`
     font-size: ${props => props.fontSize};
     color: ${props => props.color};
     cursor: pointer;

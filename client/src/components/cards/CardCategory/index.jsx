@@ -25,7 +25,7 @@ const Number = styled.h3`
 const CardCategory = ({ Name, number }) => {
     return (
         <Div>
-            <Image src="./public/logo.png" />
+            <Image src="./public/images/logo.png" />
             <Category>Categoria</Category>
             <Number>20</Number>
             <Title as={"h4"} >lojas cadastradas</Title>
