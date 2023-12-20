@@ -4,18 +4,30 @@ import { theme } from "@/style/config"
 import { Button } from "@/components/common/Button"
 import { LoginIcon } from "@/style/icons"
 import Logo from "@/components/common/Logo"
+import LogoSec from "@public/images/icon.png"
+import Load from "../../components/common/Load"
+import { useState } from "react"
 
 const Login = () => {
+    const [loading, setLoading] = useState(false)
+
+    const submitHandler = (e) => {
+        e.preventDefault()
+        const data  = new FormData(e.target)
+        setLoading(!loading)
+    }
+
     return <>
+        <Load visible={loading} />
         <Div as={"section"} $flex gap={"10px"} top={'auto'} bottom={'auto'}>
             <Div>
-                <Logo pure width={'90px'} bottom={'16px'} />
+                <Logo src={LogoSec} pure width={'90px'} bottom={'16px'} />
                 <Div $flex $row gap={'8px'}>
                     <LoginIcon />
                     <Title>Login</Title>
                 </Div>
             </Div>
-            <Form method={'POST'}>
+            <Form onSubmit={submitHandler} method={'POST'}>
                 <Div $flex gap={'8px'}>
                     <Field id={'username'} label={'Usuário'} />
                     <Field id={'password'} label={'Senha'} type={'password'} />

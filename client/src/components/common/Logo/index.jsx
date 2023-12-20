@@ -1,9 +1,6 @@
 import styled from "styled-components"
-
 import { Div, Title } from "/src/style/tags"
 import LogoImage from "/public/images/icon.png"
-
-
 
 const Logo = ({ pure, bottom, radius, width, src }) => {
     const Image = styled.img`

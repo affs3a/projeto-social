@@ -3,6 +3,8 @@ import Logo from "@/components/common/Logo"
 import { theme } from "@/style/config"
 import MenuFooter from "@Footer/MenuFooter"
 import Copyright from "@Footer/Copyright"
+import LogoAlt from "@public/images/iconAlt.png"
+
 
 const Footer = styled.footer`
     padding: ${({theme}) => theme.Mobile.Footer.padding};
@@ -22,7 +24,7 @@ const FooterNav = () => {
     return (
         <ThemeProvider theme={theme}>
             <Footer>
-                <Logo bottom={'1.5rem'} />
+                <Logo src={LogoAlt} width={'64px'} bottom={'1.5rem'} />
                 <MenuFooter />
                 <Copyright />
             </Footer>
