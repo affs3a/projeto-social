@@ -7,18 +7,40 @@ import Logo from "@/components/common/Logo"
 import LogoSec from "@public/images/icon.png"
 import Load from "../../components/common/Load"
 import { useState } from "react"
+import api from "../../api"
+import { useNavigate } from "react-router-dom"
 
 const Login = () => {
     const [loading, setLoading] = useState(false)
+    const navigateTo = useNavigate()
 
     const submitHandler = (e) => {
         e.preventDefault()
-        const data  = new FormData(e.target)
-        setLoading(!loading)
+        const formData = new FormData(e.target)
+
+        const credentials = {
+            username: formData.get('username'),
+            password: formData.get('password')
+        }
+
+        setLoading(true)
+        api.login(
+            credentials,
+            (object) => {
+                const { response, error } = object
+                if (response) {
+                    navigateTo('/')
+                }
+                if (error) {
+                    console.log(error)
+                }
+                setLoading(false)
+            }
+        )
     }
 
     return <>
-        <Load visible={loading} />
+        {loading && <Load />}
         <Div as={"section"} $flex gap={"10px"} top={'auto'} bottom={'auto'}>
             <Div>
                 <Logo src={LogoSec} pure width={'90px'} bottom={'16px'} />

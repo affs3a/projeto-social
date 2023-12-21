@@ -12,8 +12,6 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     transition: all 350ms;
-    visibility: ${props => props.visible ? 'visible' : 'hidden'};
-    opacity: ${props => props.visible ? '1' : '0'};
     background-color: ${theme.root.shadowTwo};
 `
 

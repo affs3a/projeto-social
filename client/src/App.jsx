@@ -1,4 +1,5 @@
 import { createGlobalStyle, styled, ThemeProvider } from "styled-components"
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Outlet } from "react-router-dom";
 import NavBar from "@/components/navegation/NavBar"
 import FooterNav from "@/components/navegation/FooterNav";
@@ -37,11 +38,11 @@ const Main = styled.main`
     margin-top: ${theme.Desktop.NavBar.height}; 
   }
 `
+const queryClient = new QueryClient()
 
 const App = () => {
-
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
         <NavBar />
@@ -50,7 +51,7 @@ const App = () => {
         </Main>
         <FooterNav />
       </ThemeProvider>
-    </>
+    </QueryClientProvider>
   )
 }
 
