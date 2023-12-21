@@ -1,27 +1,10 @@
-import { Mark } from "@/components/common/Typing"
-import { Break } from "../components/common/Typing"
-import { Div } from "@/style/tags"
-
-
 class Utils {
     makeMessage(target) {
-        if (target.isArray) {
-            return <> {
-                target.map((text, key) => (
-                    <Div key={key}>
-                        <Break />{text}
-                    </Div>
-                ))
-            } </>
-        } else if (typeof target == 'object' && !target.isArray) {
-            const [keys, values] = Object.entries(target)
-            return <> {
-                keys.forEach((item, key) => (
-                    <Div key={key}>
-                        <Mark>{item}</Mark>: {values[key]}
-                    </Div>
-                ))
-            } </>
+        if (Array.isArray(target)) {
+            return target.reduce((accumulator, text) => (accumulator += ` ${text}`), '')
+        } else if (typeof target === 'object' && !Array.isArray(target)) {
+            return Object.keys(target).reduce(
+                (accumulator, text) => (accumulator += ` ${text}: ${target[text]}`), '')
         } else {
             return target
         }

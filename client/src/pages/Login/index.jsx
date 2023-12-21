@@ -9,9 +9,12 @@ import Load from "../../components/common/Load"
 import { useState } from "react"
 import api from "../../api"
 import { useNavigate } from "react-router-dom"
+import Swal from "sweetalert2"
+import withReactContent from 'sweetalert2-react-content'
 import utils from "../../utils"
 
 const Login = () => {
+    const alert = withReactContent(Swal)
     const [loading, setLoading] = useState(false)
     const navigateTo = useNavigate()
 
@@ -25,14 +28,25 @@ const Login = () => {
         setLoading(true)
         api.login(
             credentials,
-            (object) => {
+            (object) => { 
                 const { response, error } = object
                 if (response) {
+                    alert.fire({
+                        title: 'Bem Vindo!',
+                        text: 'Login realizado com sucesso.',
+                        icon: 'success',
+                    })
                     navigateTo('/')
+
                 } else if (error) {
                     const {response: { data }} = error
-                    console.log(utils.makeMessage(data))
+                    alert.fire({
+                        title: 'Erro!',
+                        text: utils.makeMessage(data),
+                        icon: 'error',
+                    })
                 }
+
                 setLoading(false)
             }
         )

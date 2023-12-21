@@ -19,7 +19,12 @@ class API {
         this.client.post('auth/login', credentials)
             .then(response => {
                 const accessToken = response.data.access
-                Cookies.set(this.ACESS_TOKEN, accessToken)
+                Cookies.set(this.ACESS_TOKEN, accessToken, {
+                    path: '',
+                    secure: true,
+                    sameSite: 'strict',
+                    expires: (1 / 4)
+                })
                 handler({ response })
             })
             .catch(error => {
