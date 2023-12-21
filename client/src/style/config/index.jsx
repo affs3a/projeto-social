@@ -31,6 +31,7 @@ export const theme = {
         white: "#FFF",
         whiteHover: "#f3f3f3",
         shadow: "rgba(20, 20, 20, 0.3)",
-        shadowTwo: "rgba(20, 20, 20, 0.1)",
+        shadowTwo: "rgba(17, 47, 130, 0.154)",
+        shadowThree: "rgba(58, 110, 253, 0.611)",
     }
 }

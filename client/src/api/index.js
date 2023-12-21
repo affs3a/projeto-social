@@ -20,10 +20,10 @@ class API {
             .then(response => {
                 const accessToken = response.data.access
                 Cookies.set(this.ACESS_TOKEN, accessToken)
-                handler({response})
+                handler({ response })
             })
             .catch(error => {
-                handler({error})
+                handler({ error })
             })
     }
 }

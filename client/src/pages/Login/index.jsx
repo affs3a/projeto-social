@@ -9,6 +9,7 @@ import Load from "../../components/common/Load"
 import { useState } from "react"
 import api from "../../api"
 import { useNavigate } from "react-router-dom"
+import utils from "../../utils"
 
 const Login = () => {
     const [loading, setLoading] = useState(false)
@@ -17,12 +18,10 @@ const Login = () => {
     const submitHandler = (e) => {
         e.preventDefault()
         const formData = new FormData(e.target)
-
         const credentials = {
             username: formData.get('username'),
             password: formData.get('password')
         }
-
         setLoading(true)
         api.login(
             credentials,
@@ -30,9 +29,9 @@ const Login = () => {
                 const { response, error } = object
                 if (response) {
                     navigateTo('/')
-                }
-                if (error) {
-                    console.log(error)
+                } else if (error) {
+                    const {response: { data }} = error
+                    console.log(utils.makeMessage(data))
                 }
                 setLoading(false)
             }

@@ -25,11 +25,11 @@ export const Input = styled.input`
     }
 `
 
-export const Field = ({ id, label, type, place }) => {
+export const Field = ({ id, label, type, place, required }) => {
     return (
         <Div $flex gap={'4px'} align={'left'}>
             <Label htmlFor={id}>{label}</Label>
-            <Input id={id} name={id} type={type} placeholder={place ?? label}/>
+            <Input id={id} name={id} type={type} placeholder={place ?? label} required={required}/>
         </Div>
     )
 }
