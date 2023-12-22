@@ -33,7 +33,7 @@ const Login = () => {
                 if (response) {
                     alert.fire({
                         title: 'Bem Vindo!',
-                        text: 'Login realizado com sucesso.',
+                        html: 'Login realizado com sucesso.',
                         icon: 'success',
                     })
                     navigateTo('/')
@@ -42,7 +42,7 @@ const Login = () => {
                     const {response: { data }} = error
                     alert.fire({
                         title: 'Erro!',
-                        text: utils.makeMessage(data),
+                        html: utils.makeMessage(data),
                         icon: 'error',
                     })
                 }

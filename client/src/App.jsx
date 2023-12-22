@@ -23,6 +23,18 @@ const GlobalStyle = createGlobalStyle`
   a {
       cursor: pointer;
   }
+
+  strong {
+    font-weight: 1000;
+  }
+
+  code {
+    background-color: ${theme.root.blueShadow};
+    padding: 0 6px;
+    border-radius: 6px;
+    margin-right: 2px;
+    color: ${theme.root.blueOne};
+  }
 `
 
 const Main = styled.main`

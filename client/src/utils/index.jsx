@@ -1,16 +1,22 @@
 class Utils {
     makeMessage(target) {
+        let messageText = ''
         if (Array.isArray(target)) {
-            return target.reduce((accumulator, text) => (
+            messageText = target.reduce((accumulator, text) => (
                 accumulator += (accumulator != '' ? '<br>' : '') + text
             ), '')
 
         } else if (typeof target === 'object' && !Array.isArray(target)) {
-            return Object.keys(target).reduce((accumulator, text) => (
-                accumulator += (accumulator != '' ? '<br>' : '') + `${text}: ${target[text]}`
+            messageText = Object.keys(target).reduce((accumulator, text) => (
+                accumulator += (accumulator != '' ? '<br>' : '')
+                + `<strong>${text}</strong>: ${target[text]}`
             ), '')
 
-        } else return target
+        } else { 
+            messageText = target 
+        }
+        
+        return `<p>${messageText}</p>`
     }
 }
 
