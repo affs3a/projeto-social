@@ -64,8 +64,8 @@ const Login = () => {
             </Div>
             <Form onSubmit={submitHandler} method={'POST'}>
                 <Div $flex gap={'8px'}>
-                    <Field id={'username'} label={'Usuário'} />
-                    <Field id={'password'} label={'Senha'} type={'password'} />
+                    <Field id={'username'} label={'Usuário'} required />
+                    <Field id={'password'} label={'Senha'} type={'password'} required />
                     <Button
                         $bold
                         margin={'8px 0 0 0'}
