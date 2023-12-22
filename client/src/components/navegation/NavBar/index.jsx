@@ -7,6 +7,8 @@ import MenuMobile from "@NavBar/MenuMobile";
 import MenuDesktop from "@NavBar/MenuDesktop";
 import LogoImage from "@public/images/icon.png"
 import LogotypeImage from "@public/images/logotype.png"
+import { UserInfo } from "./components/UserInfo";
+import api from "@/api";
 
 const Header = styled.header`
     position: fixed;
@@ -38,8 +40,10 @@ const ButtonMenu = styled(Button)`
 `
 
 const NavBar = () => {
+    const profile = api.userProfile()
 
     const [menuVisible, setMenuVisible] = useState(false)
+
     const showMenu = () => {
         setMenuVisible(!menuVisible)
     }
@@ -55,7 +59,11 @@ const NavBar = () => {
                         fontSize={"30px"}
                     />
                 </ButtonMenu>
-                <MenuMobile $menuVisible={menuVisible} setMenuVisible={setMenuVisible} />
+                <MenuMobile
+                    logged={profile}
+                    $menuVisible={menuVisible}
+                    setMenuVisible={setMenuVisible}
+                />
                 <MenuDesktop />
             </Header>
         </ThemeProvider>

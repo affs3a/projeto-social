@@ -1,10 +1,15 @@
 import axios from "axios"
 import Cookies from "js-cookie"
+import { useQuery } from "@tanstack/react-query"
 
 class API {
     constructor() {
+        this.USER = 'user'
         this.ACESS_TOKEN = 'access_token'
         this.REFRESH_TOKEN = 'refresh_token'
+
+        this.PROVIDER = 1
+        this.ADMIN = 2
 
         this.client = axios.create({
             baseURL: 'http://127.0.0.1:8000/api/',
@@ -18,8 +23,14 @@ class API {
     login(credentials, handler) {
         this.client.post('auth/login', credentials)
             .then(response => {
-                const accessToken = response.data.access
-                Cookies.set(this.ACESS_TOKEN, accessToken, {
+                const { user, access } = response.data
+                Cookies.set(this.ACESS_TOKEN, access, {
+                    path: '',
+                    secure: true,
+                    sameSite: 'strict',
+                    expires: (1 / 4)
+                })
+                Cookies.set(this.USER, JSON.stringify(user), {
                     path: '',
                     secure: true,
                     sameSite: 'strict',
@@ -30,6 +41,11 @@ class API {
             .catch(error => {
                 handler({ error })
             })
+    }
+    
+    userProfile() {
+        const profile = JSON.parse(Cookies.get(this.USER) ?? "{}")
+        return Object.values(profile).length > 0 ? profile : null
     }
 }
 

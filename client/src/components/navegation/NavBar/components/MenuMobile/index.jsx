@@ -36,9 +36,7 @@ const MobileCloseIcon = styled(CloseIcon)`
     border-radius: 8px;
 `
 
-
-const MenuNav = ({ $menuVisible, setMenuVisible }) => {
-
+const MenuNav = ({ $menuVisible, setMenuVisible, logged }) => {
     const showMenuClose = () => setMenuVisible(!$menuVisible)
 
     return (
@@ -68,24 +66,36 @@ const MenuNav = ({ $menuVisible, setMenuVisible }) => {
                 <InfoIcon fontSize={'27px'} />
                 <TitleLink>Sobre</TitleLink>
             </LinkRouter>
-            <LinkRouter
-                to={'login'}
-                $flex={true}
-                onClick={() => setMenuVisible(!$menuVisible)}
-            >
-                <LoginIcon fontSize={'27px'} />
-                <TitleLink>Entrar</TitleLink>
-            </LinkRouter>
-            <LinkRouter
-                to={'registrar'}
-                $flex={true}
-                onClick={() => setMenuVisible(!$menuVisible)}
-            >
-                <ResgisterIcon fontSize={'27px'} />
-                <TitleLink>Registrar</TitleLink>
-            </LinkRouter>
+            {logged ? <Profile /> : <Actions />}
         </DivMobile>
     )
+}
+
+const Profile = () => {
+    return <>
+    Perfil do usuaro
+    </>
+}
+
+const Actions = () => {
+    return <>
+        <LinkRouter
+            to={'login'}
+            $flex={true}
+            onClick={() => setMenuVisible(!$menuVisible)}
+        >
+            <LoginIcon fontSize={'27px'} />
+            <TitleLink>Entrar</TitleLink>
+        </LinkRouter>
+        <LinkRouter
+            to={'registrar'}
+            $flex={true}
+            onClick={() => setMenuVisible(!$menuVisible)}
+        >
+            <ResgisterIcon fontSize={'27px'} />
+            <TitleLink>Registrar</TitleLink>
+        </LinkRouter>
+    </>
 }
 
 export default MenuNav
