@@ -51,7 +51,7 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=15),
     "ALGORITHM": "HS256",
     "SIGNING_KEY": SECRET_KEY,
-    "TOKEN_OBTAIN_SERIALIZER": "apps.authentication.serializers.TokenSerializer",
+    "TOKEN_OBTAIN_SERIALIZER": "apps.authentication.serializers.TokenObtain",
 }
 
 MIDDLEWARE = [
