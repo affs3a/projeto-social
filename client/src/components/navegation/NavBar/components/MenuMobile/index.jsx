@@ -1,12 +1,13 @@
 import { styled } from "styled-components"
-import { InfoIcon, LoginIcon, ResgisterIcon, HomeIcon, CloseIcon, ProfileIcon }
+import { InfoIcon, LoginIcon, HomeIcon, CloseIcon, ProfileIcon }
     from "@/style/icons"
 import { Div, TitleLink, LinkRouter } from "@/style/tags"
 import { theme } from "@/style/config"
 import { SearchCategoryIcon } from "@/style/icons"
-import { Button } from "@/components/common/Button"
 import api from "@/api"
 import { useState } from "react"
+import { ConfigIncon } from "@/style/icons"
+import { StoreIcon } from "@/style/icons"
 
 const DivMobile = styled(Div)`
     display: flex;
@@ -70,13 +71,13 @@ const MenuNav = ({ $menuVisible, setMenuVisible, user }) => {
                 <InfoIcon fontSize={'27px'} />
                 <TitleLink>Sobre</TitleLink>
             </LinkRouter>
-            {logged ? <Profile handler={setLogged} user={user} />
-                : <Actions handler={setMenuVisible} mutator={$menuVisible}/>}
+            {logged ? <Profile menu={[$menuVisible, setMenuVisible]} handler={setLogged} user={user} />
+                : <Actions menu={[$menuVisible, setMenuVisible]} />}
         </DivMobile>
     )
 }
 
-const Profile = ({ handler, user }) => {
+const Profile = ({handler, menu, user }) => {
     const logout = () => {
         api.logout()
         handler(false)
@@ -89,17 +90,37 @@ const Profile = ({ handler, user }) => {
             padding={"6px"}
             width={"100%"}
         >
-            <Div $flex $row bottom={'8px'}>
+            <Div $flex $row bottom={'8px'} color={theme.root.blueOne}>
                 <ProfileIcon fontSize={'27px'} />
                 <TitleLink>{user.name}</TitleLink>
             </Div>
+            <LinkRouter
+                to={'sobre'}
+                $flex={true}
+                justify={"center"}
+                onClick={() => menu[1](!menu[0])}
+                margin={"4px 0"}
+            >
+                <ConfigIncon fontSize={'27px'} />
+                <TitleLink>Admin</TitleLink>
+            </LinkRouter>
+            <LinkRouter
+                to={'sobre'}
+                $flex={true}
+                justify={"center"}
+                onClick={() => menu[1](!menu[0])}
+                margin={"4px 0"}
+            >
+                <StoreIcon fontSize={'27px'} />
+                <TitleLink>Minha Loja</TitleLink>
+            </LinkRouter>
             <LinkRouter
                 $flex
                 justify={"center"}
                 to={'/'}
                 margin={'0 0 0 auto'}
                 width={'100%'}
-                height={'32px'}
+                height={'36px'}
                 fontSize={'16px'}
                 color={theme.root.white}
                 back={theme.root.blueOne}
@@ -112,12 +133,12 @@ const Profile = ({ handler, user }) => {
     </>
 }
 
-const Actions = ({handler, mutator}) => {
+const Actions = ({menu}) => {
     return <>
         <LinkRouter
             to={'login'}
             $flex={true}
-            onClick={() => handler(!mutator)}
+            onClick={() => menu[1](!menu[0])}
         >
             <LoginIcon fontSize={'27px'} />
             <TitleLink>Entrar</TitleLink>
