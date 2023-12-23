@@ -21,11 +21,17 @@ const Text = styled.h3`
     color: #fff;
 `
 
-const CardAdmin = ({ IconOne, IconTwo, text, color, link }) => {
+const Desc = styled.p`
+    color: ${theme.root.white};
+`
+const CardAdmin = ({ IconOne, IconTwo, text, desc, color, link }) => {
     return (
         <Div to={link}>
             <IconOne color={color} fontSize={"36px"}/>
-            <Text>{text}</Text>
+            <div>
+                <Text>{text}</Text>
+                <Desc>{desc}</Desc>
+            </div>
             <IconTwo color={color} fontSize={"30px"}/>
         </Div>
     )

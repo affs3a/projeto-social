@@ -20,6 +20,7 @@ const Admin = () => {
                             link={"usuarios"}
                             IconOne={PeopleIcon}
                             text={"Usuários"}
+                            desc={"Gerenciamento de usuários."}
                             IconTwo={Arrowicon}
                             color={"#fff"}
                         />
@@ -27,6 +28,7 @@ const Admin = () => {
                             link={"servicos"}
                             IconOne={ListIcon}
                             text={"Serviços"}
+                            desc={"Gerenciamento de serviços."}
                             IconTwo={Arrowicon}
                             color={"#fff"}
                         />
@@ -34,6 +36,7 @@ const Admin = () => {
                             link={"categorias"}
                             IconOne={SearchIcon}
                             text={"Categorias"}
+                            desc={"Gerenciamento de categorias."}
                             IconTwo={Arrowicon}
                             color={"#fff"}
                         />
