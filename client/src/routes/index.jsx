@@ -8,6 +8,8 @@ import App from "../App";
 import Home from "@/pages/Home"
 import Login from "@/pages/Login"
 import Categorias from "@/pages/Categorias";
+import Admin from "@/pages/Admin";
+import Prestador from "@/pages/Prestador";
 
 
 export const router = createBrowserRouter([
@@ -18,7 +20,6 @@ export const router = createBrowserRouter([
             {
                 path: "localizar",
                 element: <Categorias />
-                
             },
             {
                 path: "sobre",
@@ -31,10 +32,13 @@ export const router = createBrowserRouter([
                 element: <Login />
             },
             {
-                path: "registrar",
-                element: (
-                   <h1>Registro</h1>
-                )
+                path: "admin",
+                element: <Admin />
+                
+            },
+            {
+                path: "prestador",
+                element: <Prestador />
             },
             {
                 path: "/",

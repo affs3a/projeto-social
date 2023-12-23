@@ -96,7 +96,7 @@ const Profile = ({ handler, menu, user }) => {
             </Div>
             {user.role == api.ROLE_ADMIN ? (
                 <LinkRouter
-                    to={'sobre'}
+                    to={'admin'}
                     $flex={true}
                     justify={"center"}
                     onClick={() => menu[1](!menu[0])}
@@ -107,7 +107,7 @@ const Profile = ({ handler, menu, user }) => {
                 </LinkRouter>
             ) : (
                 <LinkRouter
-                    to={'sobre'}
+                    to={'prestador'}
                     $flex={true}
                     justify={"center"}
                     onClick={() => menu[1](!menu[0])}
