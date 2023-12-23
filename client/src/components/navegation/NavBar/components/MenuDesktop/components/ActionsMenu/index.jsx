@@ -31,17 +31,6 @@ const ActionsMenu = () => {
             >
                 Entrar
             </LinkBtn>
-            <LinkBtn
-                to={'registro'}
-                fontSize="16px"
-                as="a"
-                justify={"start"}
-                back={theme.root.white}
-                hover={theme.root.whiteHover}
-                height={"38px"}
-            >
-                Registrar
-            </LinkBtn>
         </Span>
     )
 }

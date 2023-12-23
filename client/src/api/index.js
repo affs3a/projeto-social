@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query"
 class API {
     constructor() {
         this.USER = 'user'
-        this.ACESS_TOKEN = 'access_token'
+        this.ACCESS_TOKEN = 'access_token'
         this.REFRESH_TOKEN = 'refresh_token'
 
         this.PROVIDER = 1
@@ -24,7 +24,7 @@ class API {
         this.client.post('auth/login', credentials)
             .then(response => {
                 const { user, access } = response.data
-                Cookies.set(this.ACESS_TOKEN, access, {
+                Cookies.set(this.ACCESS_TOKEN, access, {
                     path: '',
                     secure: true,
                     sameSite: 'strict',
@@ -41,6 +41,11 @@ class API {
             .catch(error => {
                 handler({ error })
             })
+    }
+
+    logout() {
+        Cookies.remove(this.ACCESS_TOKEN)
+        Cookies.remove(this.USER)
     }
     
     userProfile() {

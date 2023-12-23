@@ -36,7 +36,7 @@ export const LinkRouter = styled(Link)`
     color: ${props => props.color || '#000'};
     align-items: center;
     justify-content: start;
-    width: auto;
+    width: ${props => props.width || "auto"};
     gap: .3rem;
     transition: all 300ms;
 

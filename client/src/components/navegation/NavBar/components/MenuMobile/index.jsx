@@ -1,9 +1,12 @@
 import { styled } from "styled-components"
-import { ListIcon, InfoIcon, LoginIcon, ResgisterIcon, HomeIcon, CloseIcon }
+import { InfoIcon, LoginIcon, ResgisterIcon, HomeIcon, CloseIcon, ProfileIcon }
     from "@/style/icons"
 import { Div, TitleLink, LinkRouter } from "@/style/tags"
 import { theme } from "@/style/config"
-import { SearchCategoryIcon } from "../../../../../style/icons"
+import { SearchCategoryIcon } from "@/style/icons"
+import { Button } from "@/components/common/Button"
+import api from "@/api"
+import { useState } from "react"
 
 const DivMobile = styled(Div)`
     display: flex;
@@ -36,7 +39,8 @@ const MobileCloseIcon = styled(CloseIcon)`
     border-radius: 8px;
 `
 
-const MenuNav = ({ $menuVisible, setMenuVisible, logged }) => {
+const MenuNav = ({ $menuVisible, setMenuVisible, user }) => {
+    const [logged, setLogged] = useState(user)
     const showMenuClose = () => setMenuVisible(!$menuVisible)
 
     return (
@@ -66,14 +70,40 @@ const MenuNav = ({ $menuVisible, setMenuVisible, logged }) => {
                 <InfoIcon fontSize={'27px'} />
                 <TitleLink>Sobre</TitleLink>
             </LinkRouter>
-            {logged ? <Profile /> : <Actions />}
+            {logged ? <Profile handler={setLogged} user={user} /> : <Actions />}
         </DivMobile>
     )
 }
 
-const Profile = () => {
+const Profile = ({ handler, user }) => {
+    const logout = () => {
+        api.logout()
+        handler(false)
+    }
     return <>
-    Perfil do usuaro
+        <LinkRouter
+            justify={"center"}
+            back={theme.root.blueShadow}
+            width={"100%"}
+        >
+            <Div $flex $row bottom={'8px'}>
+                <ProfileIcon fontSize={'27px'} />
+                <TitleLink>{user.name}</TitleLink>
+            </Div>
+            <Button
+                margin={'0 0 0 auto'}
+                width={'100%'}
+                height={'32px'}
+                fontSize={'16px'}
+                color={theme.root.white}
+                back={theme.root.blueOne}
+                hover={theme.root.blueOneHover}
+                type={'submit'}
+                onClick={() => logout()}
+            >
+                Sair
+            </Button>
+        </LinkRouter>
     </>
 }
 
@@ -86,14 +116,6 @@ const Actions = () => {
         >
             <LoginIcon fontSize={'27px'} />
             <TitleLink>Entrar</TitleLink>
-        </LinkRouter>
-        <LinkRouter
-            to={'registrar'}
-            $flex={true}
-            onClick={() => setMenuVisible(!$menuVisible)}
-        >
-            <ResgisterIcon fontSize={'27px'} />
-            <TitleLink>Registrar</TitleLink>
         </LinkRouter>
     </>
 }
