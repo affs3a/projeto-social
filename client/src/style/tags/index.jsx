@@ -3,6 +3,9 @@ import { Link } from "react-router-dom"
 
 export const Div = styled.div`
     width: 100%;
+    background-color: ${props => props.back};
+    padding: ${props => props.padding || "0"};
+    border-radius: ${props => props.radius || "0"};
     display: ${props => props.$flex ? "flex" : ""};
     gap: ${props => props.gap || 0};
     flex-direction: ${props => props.$row || "column"};
@@ -35,7 +38,7 @@ export const LinkRouter = styled(Link)`
     border-radius: 6px;
     color: ${props => props.color || '#000'};
     align-items: center;
-    justify-content: start;
+    justify-content: ${props => props.justify || "start"};
     width: ${props => props.width || "auto"};
     gap: .3rem;
     transition: all 300ms;

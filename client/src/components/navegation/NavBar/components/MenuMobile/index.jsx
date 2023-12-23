@@ -70,7 +70,8 @@ const MenuNav = ({ $menuVisible, setMenuVisible, user }) => {
                 <InfoIcon fontSize={'27px'} />
                 <TitleLink>Sobre</TitleLink>
             </LinkRouter>
-            {logged ? <Profile handler={setLogged} user={user} /> : <Actions />}
+            {logged ? <Profile handler={setLogged} user={user} />
+                : <Actions handler={setMenuVisible} mutator={$menuVisible}/>}
         </DivMobile>
     )
 }
@@ -81,16 +82,21 @@ const Profile = ({ handler, user }) => {
         handler(false)
     }
     return <>
-        <LinkRouter
+        <Div
             justify={"center"}
             back={theme.root.blueShadow}
+            radius={"6px"}
+            padding={"6px"}
             width={"100%"}
         >
             <Div $flex $row bottom={'8px'}>
                 <ProfileIcon fontSize={'27px'} />
                 <TitleLink>{user.name}</TitleLink>
             </Div>
-            <Button
+            <LinkRouter
+                $flex
+                justify={"center"}
+                to={'/'}
                 margin={'0 0 0 auto'}
                 width={'100%'}
                 height={'32px'}
@@ -98,21 +104,20 @@ const Profile = ({ handler, user }) => {
                 color={theme.root.white}
                 back={theme.root.blueOne}
                 hover={theme.root.blueOneHover}
-                type={'submit'}
                 onClick={() => logout()}
             >
                 Sair
-            </Button>
-        </LinkRouter>
+            </LinkRouter>
+        </Div>
     </>
 }
 
-const Actions = () => {
+const Actions = ({handler, mutator}) => {
     return <>
         <LinkRouter
             to={'login'}
             $flex={true}
-            onClick={() => setMenuVisible(!$menuVisible)}
+            onClick={() => handler(!mutator)}
         >
             <LoginIcon fontSize={'27px'} />
             <TitleLink>Entrar</TitleLink>
