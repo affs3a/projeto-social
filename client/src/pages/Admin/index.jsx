@@ -1,6 +1,8 @@
 import { Div, Title } from "@/style/tags"
-import { ConfigIncon, ErrorInfo } from "@/style/icons"
+import { ConfigIncon, SearchIcon, PeopleIcon, Arrowicon, ListIcon } from "@/style/icons"
 import api from "@/api"
+import CardAdmin from "../../components/cards/CardAdmin"
+
 
 const Admin = () => {
     const userProfile = api.userProfile()
@@ -9,12 +11,32 @@ const Admin = () => {
         <Div as={"section"} $flex gap={"10px"}>
             {userProfile && userProfile.role == api.ROLE_ADMIN ? (
                 <>
-                    <Div $flex $row gap={'8px'}>
+                    <Div $flex $row gap={'8px'} bottom={'12px'}>
                         <ConfigIncon />
-                        <Title>Admin</Title>
+                        <Title>Administração</Title>
                     </Div>
-                    <Div>
-                        
+                    <Div $flex gap={'8px'}>
+                        <CardAdmin
+                            link={"usuarios"}
+                            IconOne={PeopleIcon}
+                            text={"Usuários"}
+                            IconTwo={Arrowicon}
+                            color={"#fff"}
+                        />
+                        <CardAdmin
+                            link={"servicos"}
+                            IconOne={ListIcon}
+                            text={"Serviços"}
+                            IconTwo={Arrowicon}
+                            color={"#fff"}
+                        />
+                        <CardAdmin
+                            link={"categorias"}
+                            IconOne={SearchIcon}
+                            text={"Categorias"}
+                            IconTwo={Arrowicon}
+                            color={"#fff"}
+                        />
                     </Div>
                 </>
             ) : (

@@ -1,5 +1,5 @@
 import { styled } from "styled-components"
-import { ListAlt, ErrorOutline, Login, Menu, PersonAddOutlined, HomeOutlined, Close, ArrowForward, Search, ManageSearch, InfoOutlined, PersonOutline, SettingsOutlined, StoreOutlined }
+import { ListAlt, ErrorOutline, Login, Menu, PersonAddOutlined, HomeOutlined, Close, ArrowForward, Search, ManageSearch, InfoOutlined, PersonOutline, SettingsOutlined, StoreOutlined, PeopleOutline, ArrowBack }
     from '@mui/icons-material';
 
 export const ListIcon = styled(ListAlt)`
@@ -55,6 +55,12 @@ export const Arrowicon = styled(ArrowForward)`
     cursor: pointer;
 `
 
+export const ArrowLeft = styled(ArrowBack)`
+    font-size: ${props => props.fontSize};
+    color: ${props => props.color};
+    cursor: pointer;
+`
+
 export const SearchIcon = styled(Search)`
     font-size: ${props => props.fontSize};
     color: ${props => props.color};
@@ -68,6 +74,12 @@ export const SearchCategoryIcon = styled(ManageSearch)`
 `
 
 export const ProfileIcon = styled(PersonOutline)`
+    font-size: ${props => props.fontSize};
+    color: ${props => props.color};
+    cursor: pointer;
+`
+
+export const PeopleIcon = styled(PeopleOutline)`
     font-size: ${props => props.fontSize};
     color: ${props => props.color};
     cursor: pointer;
