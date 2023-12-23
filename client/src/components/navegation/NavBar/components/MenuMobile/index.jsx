@@ -77,7 +77,7 @@ const MenuNav = ({ $menuVisible, setMenuVisible, user }) => {
     )
 }
 
-const Profile = ({handler, menu, user }) => {
+const Profile = ({ handler, menu, user }) => {
     const logout = () => {
         api.logout()
         handler(false)
@@ -94,26 +94,29 @@ const Profile = ({handler, menu, user }) => {
                 <ProfileIcon fontSize={'27px'} />
                 <TitleLink>{user.name}</TitleLink>
             </Div>
-            <LinkRouter
-                to={'sobre'}
-                $flex={true}
-                justify={"center"}
-                onClick={() => menu[1](!menu[0])}
-                margin={"4px 0"}
-            >
-                <ConfigIncon fontSize={'27px'} />
-                <TitleLink>Admin</TitleLink>
-            </LinkRouter>
-            <LinkRouter
-                to={'sobre'}
-                $flex={true}
-                justify={"center"}
-                onClick={() => menu[1](!menu[0])}
-                margin={"4px 0"}
-            >
-                <StoreIcon fontSize={'27px'} />
-                <TitleLink>Minha Loja</TitleLink>
-            </LinkRouter>
+            {user.role == api.ROLE_ADMIN ? (
+                <LinkRouter
+                    to={'sobre'}
+                    $flex={true}
+                    justify={"center"}
+                    onClick={() => menu[1](!menu[0])}
+                    margin={"4px 0"}
+                >
+                    <ConfigIncon fontSize={'27px'} />
+                    <TitleLink>Admin</TitleLink>
+                </LinkRouter>
+            ) : (
+                <LinkRouter
+                    to={'sobre'}
+                    $flex={true}
+                    justify={"center"}
+                    onClick={() => menu[1](!menu[0])}
+                    margin={"4px 0"}
+                >
+                    <StoreIcon fontSize={'27px'} />
+                    <TitleLink>Minha Loja</TitleLink>
+                </LinkRouter>
+            )}
             <LinkRouter
                 $flex
                 justify={"center"}
@@ -133,7 +136,7 @@ const Profile = ({handler, menu, user }) => {
     </>
 }
 
-const Actions = ({menu}) => {
+const Actions = ({ menu }) => {
     return <>
         <LinkRouter
             to={'login'}

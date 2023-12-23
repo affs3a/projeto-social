@@ -8,8 +8,8 @@ class API {
         this.ACCESS_TOKEN = 'access_token'
         this.REFRESH_TOKEN = 'refresh_token'
 
-        this.PROVIDER = 1
-        this.ADMIN = 2
+        this.ROLE_PROVIDER = 1
+        this.ROLE_ADMIN = 2
 
         this.client = axios.create({
             baseURL: 'http://127.0.0.1:8000/api/',
