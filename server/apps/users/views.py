@@ -1,4 +1,4 @@
-from security.permissions import IsAdmin, AllMethods
+from security.permissions import IsAdmin
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import status, NotFound
@@ -7,7 +7,7 @@ from .models import User
 
 
 class UserList(APIView):
-    permission_classes = [IsAdmin & AllMethods]
+    permission_classes = [IsAdmin]
 
     def get(self, request, format=False):
         queryset = User.objects.all()
@@ -23,7 +23,7 @@ class UserList(APIView):
 
 
 class UserDetails(APIView):
-    permission_classes = [IsAdmin & AllMethods]
+    permission_classes = [IsAdmin]
 
     def get_user(self, user_id):
         try:

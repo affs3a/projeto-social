@@ -2,23 +2,26 @@ from rest_framework.permissions import BasePermission, IsAuthenticatedOrReadOnly
 
 class IsAdmin(BasePermission):
     def has_permission(self, request, view):
-        return bool(
+        print(bool(
             request.user.is_authenticated and
             request.user.role == 2 or
             request.method in SAFE_METHODS
+        ))
+        return bool(
+            request.user.is_authenticated and
+            request.user.role == 2
         )
     
 class IsProvider(BasePermission):
     def has_permission(self, request, view):
         return bool(
             request.user.is_authenticated and
-            request.user.role in (1, 2) or
-            request.method in SAFE_METHODS
+            request.user.role in (1, 2)
         )
     
-class AllMethods(BasePermission):
+class PublicView(BasePermission):
     def has_permission(self, request, view):
         return bool(
-            request.method not in SAFE_METHODS
+            request.method in SAFE_METHODS
         )
 

@@ -1,13 +1,13 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from security.permissions import IsAdmin
+from security.permissions import IsAdmin, PublicView
 from rest_framework.exceptions import status, NotFound
 from .serializers import CategorySerialize
 from .models import Category
 
 
 class CategoryList(APIView):
-    permission_classes = [IsAdmin]
+    permission_classes = [IsAdmin & PublicView]
 
     def get(self, request, format=False):
         queryset = Category.objects.all()
@@ -23,7 +23,7 @@ class CategoryList(APIView):
 
 
 class CategoryDetails(APIView):
-    permission_classes = [IsAdmin]
+    permission_classes = [IsAdmin & PublicView]
 
     def get_category(self, category_id):
         try:

@@ -1,13 +1,13 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from security.permissions import IsProvider
+from security.permissions import IsProvider, PublicView
 from rest_framework.exceptions import status, NotFound
 from .serializers import ServiceSerialize
 from .models import Service
 
 
 class ServicesList(APIView):
-    permission_classes = [IsProvider]
+    permission_classes = [IsProvider & PublicView]
 
     def get(self, request, format=False):
         queryset = Service.objects.all()
@@ -23,7 +23,7 @@ class ServicesList(APIView):
 
 
 class ServiceDetails(APIView):
-    permission_classes = [IsProvider]
+    permission_classes = [IsProvider & PublicView]
     
     def get_service(self, service_id):
         try:

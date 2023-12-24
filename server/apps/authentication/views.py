@@ -1,11 +1,11 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import status
-from security.permissions import IsAdmin, AllMethods
+from security.permissions import IsAdmin
 from .serializers import AuthSerialize
 
 class AuthList(APIView):
-    permission_classes = [IsAdmin & AllMethods]
+    permission_classes = [IsAdmin]
     
     def put(self, request, format=False):
         serializer = AuthSerialize(data=request.data)
