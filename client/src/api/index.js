@@ -25,18 +25,19 @@ class API {
             .then(response => {
                 const { user, access } = response.data
                 Cookies.set(this.ACCESS_TOKEN, access, {
-                    path: '',
+                    path: '/',
                     secure: true,
                     sameSite: 'strict',
                     expires: (1 / 4)
                 })
                 Cookies.set(this.USER, JSON.stringify(user), {
-                    path: '',
+                    path: '/',
                     secure: true,
                     sameSite: 'strict',
                     expires: (1 / 4)
                 })
                 handler({ response })
+                console.log(document.cookie)
             })
             .catch(error => {
                 handler({ error })

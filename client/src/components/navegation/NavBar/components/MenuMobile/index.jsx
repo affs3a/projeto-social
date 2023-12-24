@@ -42,6 +42,7 @@ const MobileCloseIcon = styled(CloseIcon)`
 
 const MenuNav = ({ $menuVisible, setMenuVisible, user }) => {
     const [logged, setLogged] = useState(user)
+    console.log(logged)
     const showMenuClose = () => setMenuVisible(!$menuVisible)
 
     return (
@@ -80,7 +81,7 @@ const MenuNav = ({ $menuVisible, setMenuVisible, user }) => {
 const Profile = ({ handler, menu, user }) => {
     const logout = () => {
         api.logout()
-        handler(false)
+        handler(null)
     }
     return <>
         <Div

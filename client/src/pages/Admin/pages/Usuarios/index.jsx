@@ -2,6 +2,7 @@ import { Div, Title } from "@/style/tags"
 import { PeopleIcon, ArrowLeft, PlusIcon, SearchIcon } from "@/style/icons"
 import { useNavigate } from "react-router-dom"
 import { Button } from "@/components/common/Button"
+import Unauthorized from "@/components/responses/Unauthorized"
 import Load from "@/components/common/Load"
 import { theme } from "@/style/config"
 import api from "@/api"
@@ -12,7 +13,9 @@ const Usuarios = () => {
     const navigate = useNavigate()
     const userProfile = api.userProfile()
 
-    const { data, isPending, error } = api.getUsers()
+    if (!userProfile) return <Unauthorized />
+
+    const { data, isPending, error } = userProfile ? api.getUsers() : {}
 
     if (error) {
         // TODO
@@ -30,20 +33,19 @@ const Usuarios = () => {
                             margin={'0 0 0 16px'}
                             back={theme.root.blueShadow}
                             hover={theme.root.shadow}
-                            height={"36px"}
+                            height={"34px"}
                             onClick={() => navigate('/admin')}
                         ><ArrowLeft />Voltar</Button>
                     </Div>
-                    <Div $flex $row gap={'8px'} bottom={'12px'}>
+                    <Div $flex $row gap={'4px'} bottom={'12px'}>
                         <Button
-                            margin={'0 0 0 16px'}
                             back={theme.root.blueOne}
                             hover={theme.root.blueOneHover}
                             color={theme.root.white}
                             height={"36px"}
                         ><PlusIcon />Adicionar</Button>
-                        <Form>
-                            <Div $row $flex gap={"0"}>
+                        <Form $flex maxWidth={"300px"}>
+                            <Div $row $flex justify={"right"} gap={"4px"}>
                                 <Input
                                     padding={"6px"}
                                     type={"search"}
@@ -51,7 +53,6 @@ const Usuarios = () => {
                                 />
                                 <Button
                                     type={"submit"}
-                                    margin={'0 0 0 4px'}
                                     back={theme.root.white}
                                     border={theme.root.shadow}
                                     hover={theme.root.blueShadowTwo}
@@ -67,13 +68,8 @@ const Usuarios = () => {
                     </Div>
                 </>
             ) : (
-                <>
-                    <Div $flex gap={'8px'}>
-                        <Title>Você não tem permissão para acessar esta rota!</Title>
-                    </Div>
-                </>
+                <Unauthorized />
             )}
-
         </Div>
     </>
 }

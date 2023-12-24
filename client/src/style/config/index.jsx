@@ -37,5 +37,6 @@ export const theme = {
         greenAlert: "rgb(167, 255, 214)",
         yellowAlert: "rgb(253, 255, 187)",
         redAlert: "rgb(255, 201, 199)",
+        redOne: "rgb(255, 94, 88)",
     }
 }

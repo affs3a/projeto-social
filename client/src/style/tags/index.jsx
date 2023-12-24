@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 
 export const Div = styled.div`
     width: 100%;
+    height: ${props => props.height || "auto"};
     background-color: ${props => props.back};
     color: ${props => props.color || "auto"};
     padding: ${props => props.padding || "0"};
@@ -18,12 +19,15 @@ export const Div = styled.div`
 
 export const Title = styled.h1`
     font-size: ${props => props.fontSize};
+    text-align: ${props => props.align || "left"};
     font-weight: 800;
 `
 
 export const Description = styled.p`
     font-size: ${props => props.fontSize};
-    display: ${props => props.display || ""};
+    text-align: ${props => props.align || "left"};
+    max-width: ${props => props.maxWidth || "auto"};
+    display: ${props => props.display || "auto"};
 `
 
 export const TitleLink = styled.h3`

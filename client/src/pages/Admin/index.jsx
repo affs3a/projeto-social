@@ -1,5 +1,6 @@
 import { Div, Title } from "@/style/tags"
 import { ConfigIncon, SearchIcon, PeopleIcon, Arrowicon, ListIcon } from "@/style/icons"
+import Unauthorized from "@/components/responses/Unauthorized"
 import api from "@/api"
 import CardAdmin from "../../components/cards/CardAdmin"
 
@@ -43,11 +44,7 @@ const Admin = () => {
                     </Div>
                 </>
             ) : (
-                <>
-                    <Div $flex gap={'8px'}>
-                        <Title>Você não tem permissão para acessar esta rota!</Title>
-                    </Div>
-                </>
+                <Unauthorized />
             )}
 
         </Div>

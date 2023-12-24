@@ -4,6 +4,7 @@ import { Div } from "@/style/tags"
 
 export const Form = styled.form`
     width: ${props => props.width || '100%'};
+    max-width: ${props => props.maxWidth || 'auto'};
 `
 
 export const Label = styled.label`
@@ -12,6 +13,7 @@ export const Label = styled.label`
 `
 
 export const Input = styled.input`
+    width: 100%;
     padding: ${props => props.padding || "12px"};
     border: 2px solid ${theme.root.greyOne};
     border-radius: 4px;
