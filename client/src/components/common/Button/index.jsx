@@ -11,9 +11,8 @@ export const Button = styled.button`
     justify-content: ${props => props.justify || "center"};
     font-weight: ${props => props.$bold ? '900' : '600'};
     margin: ${props => props.margin || "0"};
-
     border-radius: 8px;
-    border: none;
+    border: ${props => props.border ? "solid 2px " + props.border : "none"};
     cursor: pointer;
     align-items: center;
     justify-content: center;

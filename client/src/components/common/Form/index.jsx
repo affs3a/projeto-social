@@ -12,7 +12,7 @@ export const Label = styled.label`
 `
 
 export const Input = styled.input`
-    padding: 12px;
+    padding: ${props => props.padding || "12px"};
     border: 2px solid ${theme.root.greyOne};
     border-radius: 4px;
     font-size: 1rem;
@@ -29,7 +29,7 @@ export const Field = ({ id, label, type, place, required }) => {
     return (
         <Div $flex gap={'4px'} align={'left'}>
             <Label htmlFor={id}>{label}</Label>
-            <Input id={id} name={id} type={type} placeholder={place ?? label} required={required}/>
+            <Input id={id} name={id} type={type} placeholder={place ?? label} required={required} />
         </Div>
     )
 }

@@ -32,6 +32,7 @@ export const theme = {
         whiteHover: "#f3f3f3",
         shadow: "rgba(20, 20, 20, 0.3)",
         blueShadow: "rgba(69, 140, 255, 0.35)",
+        blueShadowTwo: "rgba(224, 236, 255, 0.349)",
         shadowThree: "rgba(58, 110, 253, 0.611)",
         greenAlert: "rgb(167, 255, 214)",
         yellowAlert: "rgb(253, 255, 187)",
