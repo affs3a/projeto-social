@@ -10,7 +10,7 @@ class UserSerialize(serializers.ModelSerializer):
 
     email = serializers.EmailField(
         validators=[UniqueValidator(queryset=User.objects.all())],
-        write_only=True)
+        write_only=False)
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
