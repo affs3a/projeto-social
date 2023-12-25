@@ -26,7 +26,7 @@ export const Title = styled.h1`
 export const Description = styled.p`
     font-size: ${props => props.fontSize};
     text-align: ${props => props.align || "left"};
-    max-width: ${props => props.maxWidth || "auto"};
+    max-width: ${props => props.maxwidth || "auto"};
     display: ${props => props.display || "auto"};
 `
 

@@ -40,21 +40,21 @@ const Text = styled.p`
 const Desc = styled.p`
     color: ${theme.root.white};
 `
-const CardUser = ({ data }) => {
+const CardUser = ({ data, onClick }) => {
     return (
-        <Div to={data.id}>
+        <Div as={"div"} to={data.id} onClick={onClick}>
             <Container margin={"0 0 4px 0"}>
                 <Horizontal>
                     <ProfileIcon fontSize={"26px"} />
-                    <Text><Bold>{data.name}</Bold></Text>
+                    <Text><Bold>{data.name ?? ""}</Bold></Text>
                 </Horizontal>
                 <Text>{api.matchProfile(data.role)}</Text>
             </Container>
-            <Text><Bold>Username:</Bold> {data.username}</Text>
+            <Text><Bold>Username:</Bold> {data.username ?? ""}</Text>
             <Container>
-                <Text><Bold>Cel.:</Bold> {data.phone}</Text>
+                <Text><Bold>Cel.:</Bold> {data.phone ?? ""}</Text>
             </Container>
-            <Text><Bold>Email:</Bold> {data.email}</Text>
+            <Text><Bold>Email:</Bold> {data.email ?? ""}</Text>
         </Div>
     )
 }

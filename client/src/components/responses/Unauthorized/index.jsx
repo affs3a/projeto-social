@@ -9,7 +9,7 @@ const Unauthorized = () => {
     return <>
         <Div $flex gap={'8px'}>
             <ErrorInfo fontSize={"72px"} color={theme.root.redOne} />
-            <Description maxWidth={"300px"} fontSize={"22px"} align={"center"}>Você não tem permissão para acessar esta rota!</Description>
+            <Description maxwidth={"300px"} fontSize={"22px"} align={"center"}>Você não tem permissão para acessar esta rota!</Description>
             <Button
                 margin={"12px 0"}
                 back={theme.root.blueOne}

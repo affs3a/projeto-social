@@ -62,6 +62,13 @@ class API {
         
     }
 
+    getProfiles() {
+        return {
+            1: "Prestador",
+            2: "Administrador",
+        }
+    }
+
     buildHeader() {
         return {
             'Authorization': `Bearer ${Cookies.get(this.ACCESS_TOKEN) ?? ''}`
@@ -74,10 +81,7 @@ class API {
     }
 
     matchProfile(role) {
-        return role ? {
-            1: "Prestador",
-            2: "Administrador"
-        }[role] : null
+        return role ? this.getProfiles()[role] : null
     }
 }
 
