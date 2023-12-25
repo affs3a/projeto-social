@@ -8,10 +8,14 @@ import { theme } from "@/style/config"
 import api from "@/api"
 import CardUser from "@/components/cards/CardUser"
 import { Form, Input } from "@/components/common/Form"
+import { useState } from "react"
+import { Field, Modal } from "../../../../components/common/Form"
 
 const Usuarios = () => {
     const navigate = useNavigate()
     const userProfile = api.userProfile()
+
+    const [modal, setModal] = useState(false)
 
     if (!userProfile) return <Unauthorized />
 
@@ -38,11 +42,17 @@ const Usuarios = () => {
                         ><ArrowLeft />Voltar</Button>
                     </Div>
                     <Div $flex $row gap={'4px'} bottom={'12px'}>
+                        <Modal $visible={modal} onClick={() => setModal(!modal)}>
+                            <Form>
+                                <Field id={"name"} label={"Nome:"} place={"Nome de identificação"}/>
+                            </Form>
+                        </Modal>
                         <Button
                             back={theme.root.blueOne}
                             hover={theme.root.blueOneHover}
                             color={theme.root.white}
                             height={"36px"}
+                            onClick={() => setModal(!modal)}
                         ><PlusIcon />Adicionar</Button>
                         <Form $flex maxWidth={"300px"}>
                             <Div $row $flex justify={"right"} gap={"4px"}>

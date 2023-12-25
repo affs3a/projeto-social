@@ -26,7 +26,7 @@ const DivMobile = styled(Div)`
     gap: .5rem;
     transform: translateX(${props => props.$visible ? "0px" : "200px"});
     transition: all .5s;
-    z-index: 10;
+    z-index: 99;
 
     @media (min-width: 991px) {
         display: none;

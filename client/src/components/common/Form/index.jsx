@@ -5,6 +5,10 @@ import { Div } from "@/style/tags"
 export const Form = styled.form`
     width: ${props => props.width || '100%'};
     max-width: ${props => props.maxWidth || 'auto'};
+    display: ${props => props.display || "auto"};
+    padding: ${props => props.padding || "0"};
+    background: ${props => props.back || "auto"};
+    z-index: ${props => props.zIndex || "auto"};
 `
 
 export const Label = styled.label`
@@ -35,3 +39,19 @@ export const Field = ({ id, label, type, place, required }) => {
         </Div>
     )
 }
+
+export const Modal = styled.div`
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${theme.root.shadow};
+    z-index: 9;
+    top: 0;
+    left: 0;
+    visibility: ${props => props.$visible ? "visible" : "hidden"};
+    opacity: ${props => props.$visible ? "1" : "0"};
+    transition: all 300ms;
+`

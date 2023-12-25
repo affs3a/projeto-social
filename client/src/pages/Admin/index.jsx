@@ -3,6 +3,7 @@ import { ConfigIncon, SearchIcon, PeopleIcon, Arrowicon, ListIcon } from "@/styl
 import Unauthorized from "@/components/responses/Unauthorized"
 import api from "@/api"
 import CardAdmin from "../../components/cards/CardAdmin"
+import { Modal } from "../../components/common/Form"
 
 
 const Admin = () => {
