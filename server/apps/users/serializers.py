@@ -18,10 +18,10 @@ class UserSerialize(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         instance.name = validated_data.get('name', instance.name)
         instance.phone = validated_data.get('phone', instance.phone)
-        instance.phone = validated_data.get('username', instance.username)
-        instance.phone = validated_data.get('password', instance.password)
-        instance.phone = validated_data.get('role', instance.role)
-        instance.phone = validated_data.get('email', instance.email)
+        instance.username = validated_data.get('username', instance.username)
+        instance.password = validated_data.get('password', instance.password)
+        instance.role = validated_data.get('role', instance.role)
+        instance.email = validated_data.get('email', instance.email)
         instance.save()
         return instance
 
