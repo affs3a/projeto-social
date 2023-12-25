@@ -1,6 +1,6 @@
 import axios from "axios"
 import Cookies from "js-cookie"
-import { useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 
 class API {
     constructor() {
@@ -11,11 +11,13 @@ class API {
         this.ROLE_PROVIDER = 1
         this.ROLE_ADMIN = 2
 
+        this.users_key = 'users'
+
         this.client = axios.create({
-            baseURL: 'http://127.0.0.1:8000/api/',
-            timeout: 1000,
+            baseURL: 'http://localhost:8000/api/',
+            timeout: 10000,
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             }
         })
     }
@@ -37,7 +39,6 @@ class API {
                     expires: (1 / 4)
                 })
                 handler({ response })
-                console.log(document.cookie)
             })
             .catch(error => {
                 handler({ error })
@@ -51,15 +52,38 @@ class API {
 
     getUsers() {
         return useQuery({
-            queryKey: ['users'],
+            queryKey: [this.users_key],
             queryFn: async () => {
-                const { data } = await this.client.get('/users', {
+                const { data } = await this.client.get('/users/', {
                     headers: this.buildHeader()
                 })
                 return data
             }
         })
         
+    }
+
+    addUser() {
+        return useMutation({
+            mutationKey: ['add_user'],
+            mutationFn: async (data) => {
+                return await this.client.put('/users/', data, {
+                    headers: this.buildHeader(),
+                })
+            }
+        })
+    }
+
+    editUser() {
+        return useMutation({
+            mutationKey: ['add_user'],
+            mutationFn: async (data) => {
+                console.log(data)
+                return await this.client.patch(`/users/${data.id ?? ''}`, data, {
+                    headers: this.buildHeader(),
+                })
+            }
+        })
     }
 
     getProfiles() {
@@ -82,6 +106,10 @@ class API {
 
     matchProfile(role) {
         return role ? this.getProfiles()[role] : null
+    }
+
+    queryClient() {
+        return useQueryClient()
     }
 }
 

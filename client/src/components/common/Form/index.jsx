@@ -39,6 +39,7 @@ export const Select = styled.select`
     font-size: 1rem;
     outline: none;
     transition: all 350ms;
+    background-color: ${theme.root.white};
 
     &:focus {
         border: 2px solid ${theme.root.blueOne};
@@ -71,6 +72,10 @@ export const SelectField = ({ children, id, label, required }) => {
             {children}
         </Select>
     </Div>
+}
+
+export const HiddenField = ({ id, value }) => {
+    return <Input type={"hidden"} name={id} id={id} value={value ?? ""} />
 }
 
 export const Modal = styled.div`

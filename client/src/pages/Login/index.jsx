@@ -39,6 +39,7 @@ const Login = () => {
                     navigateTo('/')
 
                 } else if (error) {
+                    console.log(error)
                     const {response: { data }} = error
                     alert.fire({
                         title: 'Erro!',

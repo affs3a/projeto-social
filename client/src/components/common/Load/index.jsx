@@ -5,14 +5,14 @@ const Container = styled.div`
     width: 100%;
     height: 100vh;
     position: fixed;
-    z-index: 9;
+    z-index: 999;
     top: 0;
     left: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: all 350ms;
-    background-color: ${theme.root.shadowTwo};
+    background-color: ${theme.root.blueShadowThree};
 `
 
 const Circle = styled.div`

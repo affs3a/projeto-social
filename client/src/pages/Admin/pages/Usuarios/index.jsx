@@ -9,27 +9,92 @@ import api from "@/api"
 import CardUser from "@/components/cards/CardUser"
 import { Form, Input } from "@/components/common/Form"
 import { useState } from "react"
-import { Field, Modal, Option, SelectField } from "../../../../components/common/Form"
+import { Field, Modal, Option, SelectField } from "@/components/common/Form"
+import utils from "@/utils"
+import Swal from "sweetalert2"
+import withReactContent from 'sweetalert2-react-content'
+import { HiddenField } from "../../../../components/common/Form"
 
 const Usuarios = () => {
+    const queryClient = api.queryClient()
+    const [modal, setModal] = useState(null)
+    const alert = withReactContent(Swal)
     const navigate = useNavigate()
     const roles = api.getProfiles()
     const userProfile = api.userProfile()
 
-    const [modal, setModal] = useState(null)
-
     if (!userProfile) return <Unauthorized />
 
-    const { data, isPending, error } = api.getUsers()
+    const users = api.getUsers()
+    const addUser = api.addUser()
+    const editUser = api.editUser()
 
-    if (error) {
-        // TODO
+    if (users.error) return (<h1>Erro! Recarregue a página!</h1>)
+
+    const submitHandler = (e) => {
+        const json = utils.formToObject(e.target)
+        e.preventDefault()
+        if (utils.empty(modal)) {
+            if (json.password === json.confirm) {
+                addUser.mutate(json, {
+                    onSuccess: () => {
+                        queryClient.invalidateQueries({ queryKey: [api.users_key] })
+                        alert.fire({
+                            title: 'Sucesso!',
+                            html: 'Usuário adicionado com sucesso.',
+                            icon: 'success',
+                        })
+                        setModal(null)
+                    },
+                    onError: () => {
+                        alert.fire({
+                            title: 'Erro!',
+                            html: utils.makeMessage(utils.getError(addUser)),
+                            icon: 'error',
+                        })
+                    }
+                })
+            } else {
+                alert.fire({
+                    title: 'Alerta!',
+                    html: 'Senhas não conferem!',
+                    icon: 'warning',
+                })
+            }
+        } else {
+            if (json.password === json.confirm) {
+                editUser.mutate(json, {
+                    onSuccess: () => {
+                        queryClient.invalidateQueries({ queryKey: [api.users_key] })
+                        alert.fire({
+                            title: 'Sucesso!',
+                            html: 'Usuário atualizado com sucesso.',
+                            icon: 'success',
+                        })
+                        setModal(null)
+                    },
+                    onError: () => {
+                        alert.fire({
+                            title: 'Erro!',
+                            html: utils.makeMessage(utils.getError(editUser)),
+                            icon: 'error',
+                        })
+                    }
+                })
+            } else {
+                alert.fire({
+                    title: 'Alerta!',
+                    html: 'Senhas não conferem!',
+                    icon: 'warning',
+                })
+            }
+        }
     }
 
     return <>
-        {isPending && <Load />}
+        {(users.isPending || addUser.isPending || editUser.isPending) && <Load />}
         <Div as={"section"} $flex gap={"10px"}>
-            {userProfile && userProfile.role == api.ROLE_ADMIN ? (
+            {userProfile.role == api.ROLE_ADMIN ? (
                 <>
                     <Div $flex $row gap={'8px'} bottom={'12px'}>
                         <PeopleIcon />
@@ -45,19 +110,20 @@ const Usuarios = () => {
                     <Div $flex $row gap={'4px'} bottom={'12px'}>
                         <Modal $visible={modal != null}>
                             <Div back={theme.root.white} padding={"16px"} radius={"8px"}>
-                                <Form>
+                                <Form onSubmit={submitHandler}>
                                     <Div $flex gap={"8px"}>
-                                        <Field id={"name"} label={"Nome:"} place={"Nome do usuário"} value={modal && modal.name} />
-                                        <Field id={"username"} label={"Username:"} place={"Identificação única"} value={modal && modal.username} />
-                                        <Field id={"email"} label={"Email:"} place={"Email de contato"} type={"email"} value={modal && modal.username} />
+                                        <HiddenField id={"id"} value={modal && modal.id} />
+                                        <Field id={"name"} label={"Nome:"} place={"Nome do usuário"} value={modal && modal.name} required={utils.empty(modal)} />
+                                        <Field id={"username"} label={"Username:"} place={"Identificação única"} value={modal && modal.username} required={utils.empty(modal)} />
+                                        <Field id={"email"} label={"Email:"} place={"Email de contato"} type={"email"} value={modal && modal.email} required={utils.empty(modal)} />
                                         <SelectField id={"role"} label={"Perfil:"}>
                                             {Object.keys(roles).map(item => (
                                                 <Option key={item} value={item} selected={modal && modal.role == item}>{roles[item]}</Option>
                                             ))}
                                         </SelectField>
-                                        <Field id={"password"} label={"Senha:"} type={"password"} place={"Senha da conta"} />
-                                        <Field id={"confirm"} label={"Confirm. Senha:"} type={"password"} place={"Repita a senha"} />
-                                        <Field id={"phone"} label={"Telefone:"} place={"Telefone de contato"} value={modal && modal.phone} />
+                                        <Field id={"password"} label={"Senha:"} type={"password"} place={"Senha da conta"} value={modal && modal.password} required={utils.empty(modal)} />
+                                        <Field id={"confirm"} label={"Confirm. Senha:"} type={"password"} place={"Repita a senha"} value={modal && modal.password} required={utils.empty(modal)} />
+                                        <Field id={"phone"} label={"Telefone:"} place={"Telefone de contato"} value={modal && modal.phone} required={modal == {}} />
                                         <Div $flex $row top={"8px"} gap={"8px"}>
                                             <Button
                                                 type={"button"}
@@ -73,6 +139,7 @@ const Usuarios = () => {
                                                 color={theme.root.white}
                                                 height={"40px"}
                                                 width={"100%"}
+                                                type={"submit"}
                                             ><CheckIcon />Enviar</Button>
                                         </Div>
                                     </Div>
@@ -104,7 +171,7 @@ const Usuarios = () => {
                         </Form>
                     </Div>
                     <Div $flex gap={'8px'}>
-                        {!isPending && data.map(item => (
+                        {users.isSuccess && users.data.map(item => (
                             <CardUser onClick={() => setModal(item)} key={item.id} data={item} />
                         ))}
                     </Div>

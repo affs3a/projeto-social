@@ -42,7 +42,7 @@ const MobileCloseIcon = styled(CloseIcon)`
 
 const MenuNav = ({ $menuVisible, setMenuVisible, user }) => {
     const [logged, setLogged] = useState(user)
-    console.log(logged)
+
     const showMenuClose = () => setMenuVisible(!$menuVisible)
 
     return (

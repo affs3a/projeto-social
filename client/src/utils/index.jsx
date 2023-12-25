@@ -18,6 +18,27 @@ class Utils {
         
         return `<p>${messageText}</p>`
     }
+
+    formToObject(form) {
+        const formData = new FormData(form)
+        const obj = {}
+
+        formData.forEach((v, k) => {
+            k && v != "" && (obj[k] = v)
+        })
+
+        return obj
+    }
+
+    empty(obj) {
+        return obj ? Object.keys(obj).length == 0 : true
+    }
+
+    getError(response) {
+        return response.error.response.data ??
+            response.error.message ??
+            response.error.response.data.message ?? ''
+    }
 }
 
 export default new Utils()
