@@ -27,6 +27,6 @@ class UserSerialize(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        exclude = ['last_login']
+        fields = '__all__'
         read_only_fields = ['date_joined']
         extra_kwargs = {'password': {'write_only': True}}
