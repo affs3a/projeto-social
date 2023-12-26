@@ -20,6 +20,36 @@ class Utils {
         })
     }
 
+    alertAction(msg, action, handler) {
+        this.alertClient.fire({
+            title: "Confirmação",
+            html: msg + `<br>Se sim, digite <strong>${action}</strong> no campo abaixo.`,
+            input: "text",
+            inputAttributes: {
+                autocapitalize: "off"
+            },
+            showCancelButton: true,
+            confirmButtonText: "Submeter",
+            showLoaderOnConfirm: true,
+            preConfirm: async (confirm) => {
+                return confirm === action
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+            if (result.isConfirmed) {
+                try {
+                    handler()
+                    this.alert('Operação realizada com sucesso!', 'success')
+                } catch (e) {
+                    this.alert(e, 'error')
+                }
+            } else {
+                this.alert('Operação cancelada!', 'warning')
+            }
+        });
+    }
+
+
     makeMessage(target) {
         let messageText = ''
         if (Array.isArray(target)) {
@@ -33,10 +63,10 @@ class Utils {
                 + `<strong>${text}</strong>: ${target[text]}`
             ), '')
 
-        } else { 
-            messageText = target 
+        } else {
+            messageText = target
         }
-        
+
         return `<p>${messageText}</p>`
     }
 

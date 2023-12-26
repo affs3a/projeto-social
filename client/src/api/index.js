@@ -65,7 +65,13 @@ class API {
     }
 
     async editUser(data) {
-        return await this.client.patch(`/users/${data.id ?? ''}`, data, {
+        return await this.client.patch(`/users/${data.id ?? '0'}`, data, {
+            headers: this.buildHeader(),
+        })
+    }
+
+    async deleteUser(data) {
+        return await this.client.delete(`/users/${data.id ?? '0'}`, {
             headers: this.buildHeader(),
         })
     }

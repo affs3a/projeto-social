@@ -1,5 +1,5 @@
 import { Div, Title } from "@/style/tags"
-import { PeopleIcon, ArrowLeft, PlusIcon, SearchIcon, CancelIcon, CheckIcon, EditIcon } from "@/style/icons"
+import { PeopleIcon, DeleteIcon, ArrowLeft, PlusIcon, SearchIcon, CancelIcon, CheckIcon, EditIcon } from "@/style/icons"
 import { useNavigate } from "react-router-dom"
 import { Button } from "@/components/common/Button"
 import Unauthorized from "@/components/responses/Unauthorized"
@@ -55,6 +55,19 @@ const Usuarios = () => {
         }
     })
 
+    const deleteUser = useMutation({
+        mutationKey: [api.operationKey(api.QUERY_USERS, 'edit')],
+        mutationFn: async (data) => api.deleteUser(data),
+        onSuccess: () => {
+            setModal(null)
+            queryClient.invalidateQueries({ queryKey: [api.QUERY_USERS] })
+            utils.alert('Usuário deletado com sucesso!', 'success')
+        },
+        onError: (error) => {
+            utils.alert(utils.getError(error), 'error')
+        }
+    })
+
     const submitHandler = (e) => {
         e.preventDefault()
         const json = utils.formToObject(e.target)
@@ -90,13 +103,28 @@ const Usuarios = () => {
                             <Div back={theme.root.white} padding={"16px"} radius={"8px"}>
                                 <Div $flex $row gap={'8px'} bottom={'6px'}>
                                     {utils.empty(modal)
-                                        ? (<><PlusIcon fontSize={"30px"} /></>)
-                                        : (<><EditIcon fontSize={"26px"} /></>)}
-                                    <Title align={'center'}>
-                                        {utils.empty(modal)
-                                            ? (<>Adicionar</>)
-                                            : (<>Editar</>)}
-                                    </Title>
+                                        ? <>
+                                            <PlusIcon fontSize={"30px"} />
+                                            <Title align={'center'}>Adicionar</Title>
+                                        </>
+                                        : <>
+                                            <EditIcon fontSize={"26px"} />
+                                            <Title align={'center'}>Editar</Title>
+                                            <Button
+                                                margin={'0 0 0 16px'}
+                                                back={theme.root.redOne}
+                                                hover={theme.root.redOneHover}
+                                                height={"34px"}
+                                                onClick={() => {
+                                                    utils.alertAction(
+                                                        'Tem certeza que deseja deletar?',
+                                                        'deletar',
+                                                        () => deleteUser.mutate(modal)
+                                                    )
+                                                }}
+                                            ><DeleteIcon />Deletar</Button>
+                                        </>
+                                    }
                                 </Div>
                                 <Form onSubmit={submitHandler}>
                                     <Div $flex gap={"8px"}>
@@ -109,8 +137,8 @@ const Usuarios = () => {
                                                 <Option key={item} value={item} selected={modal && modal.role == item}>{roles[item]}</Option>
                                             ))}
                                         </SelectField>
-                                        <Field id={"password"} label={"Senha:"} type={"password"} place={"Senha da conta"} value={modal && modal.password} required={utils.empty(modal)} />
-                                        <Field id={"confirm"} label={"Confirm. Senha:"} type={"password"} place={"Repita a senha"} value={modal && modal.password} required={utils.empty(modal)} />
+                                        <Field id={"password"} label={"Senha:"} type={"password"} place={"Senha da conta"} required={utils.empty(modal)} />
+                                        <Field id={"confirm"} label={"Confirm. Senha:"} type={"password"} place={"Repita a senha"} required={utils.empty(modal)} />
                                         <Field id={"phone"} label={"Telefone:"} place={"Telefone de contato"} value={modal && modal.phone} required={modal == {}} />
                                         <Div $flex $row top={"8px"} gap={"8px"}>
                                             <Button
