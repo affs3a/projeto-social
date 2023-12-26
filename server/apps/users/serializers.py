@@ -14,7 +14,7 @@ class UserSerialize(serializers.ModelSerializer):
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
-    
+
     def validate(self, attrs):
         data = self.initial_data
 
@@ -23,7 +23,7 @@ class UserSerialize(serializers.ModelSerializer):
 
         if ((password and confirm) and password != confirm):
             raise serializers.ValidationError('Senhas não conferem!')
-        
+
         return super().validate(attrs)
 
     def update(self, instance, validated_data):
