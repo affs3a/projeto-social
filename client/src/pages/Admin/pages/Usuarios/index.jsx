@@ -15,6 +15,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 
 const Usuarios = () => {
     const [modal, setModal] = useState(null)
+    const [filter, setFilter] = useState()
     const navigate = useNavigate()
     const roles = api.getProfiles()
     const queryClient = useQueryClient()
@@ -23,8 +24,8 @@ const Usuarios = () => {
     if (!userProfile) return <Unauthorized />
 
     const users = useQuery({
-        queryKey: [api.QUERY_USERS],
-        queryFn: async () => await api.getUsers(),
+        queryKey: [api.QUERY_USERS, filter],
+        queryFn: async () => await api.getUsers(filter),
     })
 
     if (users.error) return (<h1>Erro! Recarregue a página!</h1>)
@@ -80,6 +81,7 @@ const Usuarios = () => {
 
     const searchHandler = (e) => {
         e.preventDefault()
+        setFilter(utils.formToObject(e.target)['search'])
     }
 
     return <>
@@ -189,9 +191,12 @@ const Usuarios = () => {
                         </Form>
                     </Div>
                     <Div $flex gap={'8px'}>
-                        {users.isSuccess && users.data.map(item => (
-                            <CardUser onClick={() => setModal(item)} key={item.id} data={item} />
-                        ))}
+                        {users.isSuccess && users.data.length > 0
+                            ? users.data.map(item => (
+                                <CardUser onClick={() => setModal(item)} key={item.id} data={item} />
+                            ))
+                            : <h1>Nenhum usuário para mostrar!</h1>
+                        }
                     </Div>
                 </>
             ) : (
