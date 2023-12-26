@@ -40,7 +40,7 @@ class UserDetails(APIView):
         user = self.get_user(user_id)
         serializer = UserSerialize(user, data=request.data, partial=True)
         if not serializer.is_valid():
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'erro': {'senhas não conferem'}}, status=status.HTTP_400_BAD_REQUEST)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
 
