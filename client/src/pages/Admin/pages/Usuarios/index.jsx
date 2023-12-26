@@ -1,5 +1,5 @@
 import { Div, Title } from "@/style/tags"
-import { PeopleIcon, ArrowLeft, PlusIcon, SearchIcon, CancelIcon, CheckIcon } from "@/style/icons"
+import { PeopleIcon, ArrowLeft, PlusIcon, SearchIcon, CancelIcon, CheckIcon, EditIcon } from "@/style/icons"
 import { useNavigate } from "react-router-dom"
 import { Button } from "@/components/common/Button"
 import Unauthorized from "@/components/responses/Unauthorized"
@@ -7,17 +7,16 @@ import Load from "@/components/common/Load"
 import { theme } from "@/style/config"
 import api from "@/api"
 import CardUser from "@/components/cards/CardUser"
-import { Form, Input } from "@/components/common/Form"
+import { Form, Input, HiddenField } from "@/components/common/Form"
 import { useState } from "react"
 import { Field, Modal, Option, SelectField } from "@/components/common/Form"
 import utils from "@/utils"
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
-import { HiddenField } from "../../../../components/common/Form"
 
 const Usuarios = () => {
-    const queryClient = api.queryClient()
     const [modal, setModal] = useState(null)
+    const queryClient = api.queryClient()
     const alert = withReactContent(Swal)
     const navigate = useNavigate()
     const roles = api.getProfiles()
@@ -110,6 +109,16 @@ const Usuarios = () => {
                     <Div $flex $row gap={'4px'} bottom={'12px'}>
                         <Modal $visible={modal != null}>
                             <Div back={theme.root.white} padding={"16px"} radius={"8px"}>
+                                <Div $flex $row gap={'8px'} bottom={'6px'}>
+                                    {utils.empty(modal)
+                                        ? (<><PlusIcon fontSize={"30px"} /></>)
+                                        : (<><EditIcon fontSize={"26px"} /></>)}
+                                    <Title align={'center'}>
+                                        {utils.empty(modal)
+                                            ? (<>Adicionar</>)
+                                            : (<>Editar</>)}
+                                    </Title>
+                                </Div>
                                 <Form onSubmit={submitHandler}>
                                     <Div $flex gap={"8px"}>
                                         <HiddenField id={"id"} value={modal && modal.id} />

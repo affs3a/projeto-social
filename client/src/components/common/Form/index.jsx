@@ -84,6 +84,7 @@ export const Modal = styled.div`
     padding: 12px;
     position: fixed;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: ${theme.root.shadow};
@@ -92,5 +93,5 @@ export const Modal = styled.div`
     left: 0;
     visibility: ${props => props.$visible ? "visible" : "hidden"};
     opacity: ${props => props.$visible ? "1" : "0"};
-    transition: all 300ms;
+    transition: all 200ms;
 `
