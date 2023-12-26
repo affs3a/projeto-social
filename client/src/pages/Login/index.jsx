@@ -9,48 +9,32 @@ import Load from "../../components/common/Load"
 import { useState } from "react"
 import api from "../../api"
 import { useNavigate } from "react-router-dom"
-import Swal from "sweetalert2"
-import withReactContent from 'sweetalert2-react-content'
 import utils from "../../utils"
 
+
 const Login = () => {
-    const alert = withReactContent(Swal)
-    const [loading, setLoading] = useState(false)
     const navigateTo = useNavigate()
+    const [loading, setLoading] = useState(false)
 
     const submitHandler = (e) => {
         e.preventDefault()
-        const formData = new FormData(e.target)
-        const credentials = {
-            username: formData.get('username'),
-            password: formData.get('password')
-        }
         setLoading(true)
+
+        const credentials = utils.formToObject(e.target)
+
         api.login(
             credentials,
-            (object) => { 
+            (object) => {
                 const { response, error } = object
                 if (response) {
-                    alert.fire({
-                        title: 'Bem Vindo!',
-                        html: 'Login realizado com sucesso.',
-                        icon: 'success',
-                    })
+                    utils.alert('Login realizado com sucesso!', 'success')
                     navigateTo('/')
-
                 } else if (error) {
-                    console.log(error)
-                    const {response: { data }} = error
-                    alert.fire({
-                        title: 'Erro!',
-                        html: utils.makeMessage(data),
-                        icon: 'error',
-                    })
+                    utils.alert(utils.getError(error), 'success')
                 }
-
-                setLoading(false)
             }
         )
+        setLoading(false)
     }
 
     return <>

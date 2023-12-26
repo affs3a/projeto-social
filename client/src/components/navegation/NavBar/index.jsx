@@ -1,5 +1,5 @@
 import { styled, ThemeProvider } from "styled-components"
-import { useState } from "react";
+import { useState, createContext, useMemo } from "react";
 import { Button } from "@/components/common/Button";
 import { theme } from "@/style/config";
 import { Menuicon } from "@/style/icons";
@@ -25,7 +25,7 @@ const Header = styled.header`
     }
 `
 
-const Logo = styled.img.attrs({src: LogoImage})`
+const Logo = styled.img.attrs({ src: LogoImage })`
     width: 64px;
     object-fit: cover;
 `
@@ -38,9 +38,8 @@ const ButtonMenu = styled(Button)`
 `
 
 const NavBar = () => {
-    const profile = api.userProfile()
-
     const [menuVisible, setMenuVisible] = useState(false)
+    const profile = api.userProfile()
 
     const showMenu = () => {
         setMenuVisible(!menuVisible)

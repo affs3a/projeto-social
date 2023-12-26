@@ -93,5 +93,4 @@ export const Modal = styled.div`
     left: 0;
     visibility: ${props => props.$visible ? "visible" : "hidden"};
     opacity: ${props => props.$visible ? "1" : "0"};
-    transition: all 200ms;
 `

@@ -1,6 +1,5 @@
 import axios from "axios"
 import Cookies from "js-cookie"
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 
 class API {
     constructor() {
@@ -11,7 +10,7 @@ class API {
         this.ROLE_PROVIDER = 1
         this.ROLE_ADMIN = 2
 
-        this.users_key = 'users'
+        this.QUERY_USERS = 'users'
 
         this.client = axios.create({
             baseURL: 'http://localhost:8000/api/',
@@ -50,39 +49,24 @@ class API {
         Cookies.remove(this.USER)
     }
 
-    getUsers() {
-        return useQuery({
-            queryKey: [this.users_key],
-            queryFn: async () => {
-                const { data } = await this.client.get('/users/', {
-                    headers: this.buildHeader()
-                })
-                return data
-            }
+    async getUsers(search = null) {
+        const { data } = await this.client.get('/users/', {
+            params: search && { search },
+            headers: this.buildHeader(),
         })
-        
+
+        return data
     }
 
-    addUser() {
-        return useMutation({
-            mutationKey: ['add_user'],
-            mutationFn: async (data) => {
-                return await this.client.put('/users/', data, {
-                    headers: this.buildHeader(),
-                })
-            }
+    async addUser(data) {
+        return await this.client.put('/users/', data, {
+            headers: this.buildHeader()
         })
     }
 
-    editUser() {
-        return useMutation({
-            mutationKey: ['add_user'],
-            mutationFn: async (data) => {
-                console.log(data)
-                return await this.client.patch(`/users/${data.id ?? ''}`, data, {
-                    headers: this.buildHeader(),
-                })
-            }
+    async editUser(data) {
+        return await this.client.patch(`/users/${data.id ?? ''}`, data, {
+            headers: this.buildHeader(),
         })
     }
 
@@ -98,7 +82,7 @@ class API {
             'Authorization': `Bearer ${Cookies.get(this.ACCESS_TOKEN) ?? ''}`
         }
     }
-    
+
     userProfile() {
         const profile = JSON.parse(Cookies.get(this.USER) ?? "{}")
         return Object.values(profile).length > 0 ? profile : null
@@ -110,6 +94,10 @@ class API {
 
     queryClient() {
         return useQueryClient()
+    }
+
+    operationKey(key, operation) {
+        return key + (operation ? `_${operation}` : '')
     }
 }
 

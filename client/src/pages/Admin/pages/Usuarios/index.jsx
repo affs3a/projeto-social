@@ -11,83 +11,62 @@ import { Form, Input, HiddenField } from "@/components/common/Form"
 import { useState } from "react"
 import { Field, Modal, Option, SelectField } from "@/components/common/Form"
 import utils from "@/utils"
-import Swal from "sweetalert2"
-import withReactContent from 'sweetalert2-react-content'
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 
 const Usuarios = () => {
     const [modal, setModal] = useState(null)
-    const queryClient = api.queryClient()
-    const alert = withReactContent(Swal)
     const navigate = useNavigate()
     const roles = api.getProfiles()
+    const queryClient = useQueryClient()
     const userProfile = api.userProfile()
 
     if (!userProfile) return <Unauthorized />
 
-    const users = api.getUsers()
-    const addUser = api.addUser()
-    const editUser = api.editUser()
+    const users = useQuery({
+        queryKey: [api.QUERY_USERS],
+        queryFn: async () => await api.getUsers(),
+    })
 
     if (users.error) return (<h1>Erro! Recarregue a página!</h1>)
+
+    const addUser = useMutation({
+        mutationKey: [api.operationKey(api.QUERY_USERS, 'add')],
+        mutationFn: async (data) => api.addUser(data),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: [api.QUERY_USERS] })
+            utils.alert('Usuário criado com sucesso!', 'success')
+            setModal(null)
+        },
+        onError: () => {
+            utils.alert(utils.getError(addUser), 'error')
+        }
+    })
+
+    const editUser = useMutation({
+        mutationKey: [api.operationKey(api.QUERY_USERS, 'edit')],
+        mutationFn: async (data) => api.editUser(data),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: [api.QUERY_USERS] })
+            utils.alert('Usuário editado com sucesso!', 'success')
+            setModal(null)
+        },
+        onError: () => {
+            utils.alert(utils.getError(editUser), 'error')
+        }
+    })
 
     const submitHandler = (e) => {
         const json = utils.formToObject(e.target)
         e.preventDefault()
         if (utils.empty(modal)) {
-            if (json.password === json.confirm) {
-                addUser.mutate(json, {
-                    onSuccess: () => {
-                        queryClient.invalidateQueries({ queryKey: [api.users_key] })
-                        alert.fire({
-                            title: 'Sucesso!',
-                            html: 'Usuário adicionado com sucesso.',
-                            icon: 'success',
-                        })
-                        setModal(null)
-                    },
-                    onError: () => {
-                        alert.fire({
-                            title: 'Erro!',
-                            html: utils.makeMessage(utils.getError(addUser)),
-                            icon: 'error',
-                        })
-                    }
-                })
-            } else {
-                alert.fire({
-                    title: 'Alerta!',
-                    html: 'Senhas não conferem!',
-                    icon: 'warning',
-                })
-            }
+            addUser.mutate(json)
         } else {
-            if (json.password === json.confirm) {
-                editUser.mutate(json, {
-                    onSuccess: () => {
-                        queryClient.invalidateQueries({ queryKey: [api.users_key] })
-                        alert.fire({
-                            title: 'Sucesso!',
-                            html: 'Usuário atualizado com sucesso.',
-                            icon: 'success',
-                        })
-                        setModal(null)
-                    },
-                    onError: () => {
-                        alert.fire({
-                            title: 'Erro!',
-                            html: utils.makeMessage(utils.getError(editUser)),
-                            icon: 'error',
-                        })
-                    }
-                })
-            } else {
-                alert.fire({
-                    title: 'Alerta!',
-                    html: 'Senhas não conferem!',
-                    icon: 'warning',
-                })
-            }
+            editUser.mutate(json)
         }
+    }
+
+    const searchHandler = (e) => {
+        e.preventDefault()
     }
 
     return <>
@@ -162,11 +141,13 @@ const Usuarios = () => {
                             height={"36px"}
                             onClick={() => setModal({})}
                         ><PlusIcon />Adicionar</Button>
-                        <Form $flex maxwidth={"300px"}>
+                        <Form onSubmit={searchHandler} $flex maxwidth={"300px"}>
                             <Div $row $flex justify={"right"} gap={"4px"}>
                                 <Input
                                     padding={"6px"}
                                     type={"search"}
+                                    name={"search"}
+                                    id={"search"}
                                     placeholder={"Localizar"}
                                 />
                                 <Button

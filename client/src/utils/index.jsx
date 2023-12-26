@@ -1,4 +1,25 @@
+import Swal from "sweetalert2"
+import withReactContent from 'sweetalert2-react-content'
+
 class Utils {
+    constructor() {
+        this.alertClient = withReactContent(Swal)
+    }
+
+    alert(msg, status, opts = {}) {
+        return this.alertClient.fire({
+            title: {
+                'success': 'Sucesso!',
+                'error': 'Erro!',
+                'warning': 'Alerta!',
+                'question': 'Confirmação',
+            }[status],
+            html: this.makeMessage(msg),
+            icon: status,
+            ...opts,
+        })
+    }
+
     makeMessage(target) {
         let messageText = ''
         if (Array.isArray(target)) {
@@ -37,7 +58,8 @@ class Utils {
     getError(response) {
         return response.error.response.data ??
             response.error.message ??
-            response.error.response.data.message ?? ''
+            response.error.response.data.message ?? 
+            response.data ?? ''
     }
 }
 
