@@ -55,11 +55,9 @@ class Utils {
         return obj ? Object.keys(obj).length == 0 : true
     }
 
-    getError(response) {
-        return response.error.response.data ??
-            response.error.message ??
-            response.error.response.data.message ?? 
-            response.data ?? ''
+    getError(error) {
+        return error.response.data ||
+            error.data || ''
     }
 }
 

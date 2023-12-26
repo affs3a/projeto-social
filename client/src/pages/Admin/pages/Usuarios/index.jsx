@@ -33,12 +33,12 @@ const Usuarios = () => {
         mutationKey: [api.operationKey(api.QUERY_USERS, 'add')],
         mutationFn: async (data) => api.addUser(data),
         onSuccess: () => {
+            setModal(null)
             queryClient.invalidateQueries({ queryKey: [api.QUERY_USERS] })
             utils.alert('Usuário criado com sucesso!', 'success')
-            setModal(null)
         },
-        onError: () => {
-            utils.alert(utils.getError(addUser), 'error')
+        onError: (error) => {
+            utils.alert(utils.getError(error), 'error')
         }
     })
 
@@ -46,18 +46,18 @@ const Usuarios = () => {
         mutationKey: [api.operationKey(api.QUERY_USERS, 'edit')],
         mutationFn: async (data) => api.editUser(data),
         onSuccess: () => {
+            setModal(null)
             queryClient.invalidateQueries({ queryKey: [api.QUERY_USERS] })
             utils.alert('Usuário editado com sucesso!', 'success')
-            setModal(null)
         },
-        onError: () => {
-            utils.alert(utils.getError(editUser), 'error')
+        onError: (error) => {
+            utils.alert(utils.getError(error), 'error')
         }
     })
 
     const submitHandler = (e) => {
-        const json = utils.formToObject(e.target)
         e.preventDefault()
+        const json = utils.formToObject(e.target)
         if (utils.empty(modal)) {
             addUser.mutate(json)
         } else {
