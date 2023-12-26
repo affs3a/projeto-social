@@ -2,16 +2,23 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from security.permissions import IsAdmin, PublicView
 from rest_framework.exceptions import status, NotFound
+from rest_framework.generics import GenericAPIView
+from rest_framework.filters import SearchFilter
 from .serializers import CategorySerialize
 from .models import Category
 
 
-class CategoryList(APIView):
+class CategoryList(GenericAPIView):
     permission_classes = [IsAdmin & PublicView]
 
+    serializer_class = CategorySerialize
+
+    search_fields=['name', 'tags']
+    filter_backends=[SearchFilter]
+
     def get(self, request, format=False):
-        queryset = Category.objects.all()
-        serializer = CategorySerialize(queryset, many=True)
+        queryset = self.filter_queryset(Category.objects.all())
+        serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, format=False):

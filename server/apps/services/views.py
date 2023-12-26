@@ -2,20 +2,26 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from security.permissions import IsProvider, PublicView
 from rest_framework.exceptions import status, NotFound
+from rest_framework.generics import GenericAPIView
+from rest_framework.filters import SearchFilter
 from .serializers import ServiceSerialize
 from .models import Service
 
 
-class ServicesList(APIView):
+class ServicesList(GenericAPIView):
     permission_classes = [IsProvider & PublicView]
+    serializer_class = ServiceSerialize
+
+    search_fields=['name', 'category__name']
+    filter_backends=[SearchFilter]
 
     def get(self, request, format=False):
-        queryset = Service.objects.all()
-        serializer = ServiceSerialize(queryset, many=True)
+        queryset = self.filter_queryset(Service.objects.all())
+        serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, format=False):
-        serializer = ServiceSerialize(data=request.data)
+        serializer = self.get_serializer(data=request.data)
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         serializer.save()
