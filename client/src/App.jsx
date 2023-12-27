@@ -45,6 +45,8 @@ const Main = styled.main`
   width: 100vw;
   margin-top: ${theme.Mobile.NavBar.height};
   min-height: calc(100vh - ${theme.Mobile.NavBar.height});
+  position: relative;
+  z-index: 1;
 
   @media screen and (min-width: 991px) {
     margin-top: ${theme.Desktop.NavBar.height}; 
