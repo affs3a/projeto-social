@@ -1,8 +1,6 @@
 import { Div, Title } from "@/style/tags"
-import { Form, Field } from "@/components/common/Form"
-import { theme } from "@/style/config"
-import { Button } from "@/components/common/Button"
-import { SearchIcon } from "../../style/icons"
+import { SearchIcon } from "@/style/icons"
+import CardCategory from "@/components/cards/CardCategory"
 
 const Categorias = () => {
     return <>
@@ -11,6 +9,7 @@ const Categorias = () => {
                 <SearchIcon />
                 <Title>Categorias</Title>
             </Div>
+            <CardCategory />
         </Div>
     </>
 }
