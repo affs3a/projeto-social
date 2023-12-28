@@ -30,7 +30,7 @@ const Image = styled.img`
     grid-area: image;
     grid-column: image;
     align-self: center;
-
+    justify-self: center;
 
 `
 const Category = styled.h2`
