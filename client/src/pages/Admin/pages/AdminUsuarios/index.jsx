@@ -13,7 +13,7 @@ import { Field, Modal, Option, SelectField } from "@/components/common/Form"
 import utils from "@/utils"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 
-const Usuarios = () => {
+const AdminUsuarios = () => {
     const [modal, setModal] = useState(null)
     const [filter, setFilter] = useState()
     const navigate = useNavigate()
@@ -206,4 +206,4 @@ const Usuarios = () => {
     </>
 }
 
-export default Usuarios
+export default AdminUsuarios

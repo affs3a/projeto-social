@@ -10,7 +10,7 @@ COPY . .
 # Instale as dependências
 RUN pip install --no-cache-dir -r requirements.txt
 RUN python manage.py migrate
-RUN python devscript.py
+
 # Exponha a porta em que a aplicação vai rodar
 EXPOSE 8000
 

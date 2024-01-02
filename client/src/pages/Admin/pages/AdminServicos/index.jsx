@@ -5,7 +5,7 @@ import { Button } from "@/components/common/Button"
 import { theme } from "@/style/config"
 import api from "@/api"
 
-const Servicos = () => {
+const AdminServicos = () => {
     const navigate = useNavigate()
     const userProfile = api.userProfile()
 
@@ -40,4 +40,4 @@ const Servicos = () => {
     </>
 }
 
-export default Servicos
+export default AdminServicos

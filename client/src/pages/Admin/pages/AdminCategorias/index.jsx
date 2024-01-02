@@ -5,7 +5,7 @@ import { Button } from "@/components/common/Button"
 import { theme } from "@/style/config"
 import api from "@/api"
 
-const Categorias = () => {
+const AdminCategorias = () => {
     const navigate = useNavigate()
     const userProfile = api.userProfile()
 
@@ -40,4 +40,4 @@ const Categorias = () => {
     </>
 }
 
-export default Categorias
+export default AdminCategorias

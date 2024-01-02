@@ -9,9 +9,10 @@ import Login from "@/pages/Login"
 import Categorias from "@/pages/Categorias";
 import Admin from "@/pages/Admin";
 import Prestador from "@/pages/Prestador";
-import Usuarios from "@/pages/Admin/pages/Usuarios";
-import Servicos from "@/pages/Admin/pages/Servicos";
-import AdminCategorias from "@/pages/Admin/pages/Categorias";
+import Servicos from "@/pages/Servicos";
+import AdminUsuarios from "@/pages/Admin/pages/AdminUsuarios";
+import AdminServicos from "@/pages/Admin/pages/AdminServicos";
+import AdminCategorias from "@/pages/Admin/pages/AdminCategorias";
 
 
 export const router = createBrowserRouter([
@@ -20,8 +21,16 @@ export const router = createBrowserRouter([
         element: <App />,
         children: [
             {
+                path: "/",
+                element: <Home />,
+            },
+            {
                 path: "localizar",
                 element: <Categorias />
+            },
+            {
+                path: "servicos/:id",
+                element: <Servicos />
             },
             {
                 path: "sobre",
@@ -39,11 +48,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'admin/usuarios',
-                element: <Usuarios />
+                element: <AdminUsuarios />
             },
             {
                 path: 'admin/servicos',
-                element: <Servicos />
+                element: <AdminServicos />
             },
             {
                 path: 'admin/categorias',
@@ -53,10 +62,6 @@ export const router = createBrowserRouter([
                 path: "prestador",
                 element: <Prestador />
             },
-            {
-                path: "/",
-                element: <Home />,
-            }
         ]
     }
 ])
