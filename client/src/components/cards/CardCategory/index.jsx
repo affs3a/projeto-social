@@ -33,7 +33,7 @@ const Image = styled.img`
 
 `
 const Category = styled.h2`
-    font-size: 20px;
+    font-size: 22px;
     grid-area: category;
     align-self: end;
     justify-self: center;
@@ -61,7 +61,7 @@ const Mark = styled.div`
 
 const CardCategory = ({ data }) => {
     return (
-        <Div to={'/servicos/:id'}>
+        <Div to={`/localizar/${data.id}`}>
             <Image src={data.image} />
             <Category>Categoria</Category>
             <Number>
