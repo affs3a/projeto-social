@@ -1,0 +1,25 @@
+.swiper {
+    width: 100vw;
+    height: 300px;
+}
+
+.slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.swiper .swiper-button-prev, .swiper .swiper-button-next {
+    color: #191e2d;
+    font-size: 10px;
+}
+
+.swiper .swiper-button-prev::after, .swiper .swiper-button-next::after {
+    color: #191e2d;
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.swiper .swiper-pagination span {
+    background-color: #f1f4ff;
+}

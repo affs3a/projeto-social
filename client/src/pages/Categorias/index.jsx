@@ -1,18 +1,24 @@
 import { Div, Title } from "@/style/tags"
-import { Form, Field } from "@/components/common/Form"
-import { theme } from "@/style/config"
-import { Button } from "@/components/common/Button"
-import { SearchIcon } from "../../style/icons"
+import { SearchIcon } from "@/style/icons"
+import CardCategory from "@/components/cards/CardCategory"
 
 const Categorias = () => {
-    return <>
-        <Div as={"section"} $flex>
-            <Div $flex $row gap={'8px'}>
-                <SearchIcon />
-                <Title>Categorias</Title>
+    return (
+        <>
+            <Div as={"section"} $flex>
+                <Div $flex $row gap={'8px'}>
+                    <SearchIcon />
+                    <Title>Categorias</Title>
+                </Div>
+                <Div $flex top={"2rem"} gap={"1rem"}>
+                    <CardCategory />
+                    <CardCategory />
+                    <CardCategory />
+                </Div>
             </Div>
-        </Div>
-    </>
+        </>
+    )
+
 }
 
 export default Categorias

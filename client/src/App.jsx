@@ -16,6 +16,12 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
+  h1, h2, h3, h4 {
+    margin: 0;
+    padding: 0;
+    margin-block: 0;
+  }
+
   body {
     overflow-x: hidden;
   }
@@ -45,6 +51,8 @@ const Main = styled.main`
   width: 100vw;
   margin-top: ${theme.Mobile.NavBar.height};
   min-height: calc(100vh - ${theme.Mobile.NavBar.height});
+  position: relative;
+  z-index: 1;
 
   @media screen and (min-width: 991px) {
     margin-top: ${theme.Desktop.NavBar.height}; 
