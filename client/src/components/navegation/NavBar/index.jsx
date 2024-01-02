@@ -19,7 +19,7 @@ const Header = styled.header`
     justify-content: space-between;
     padding: ${theme.Mobile.NavBar.padding};
     box-shadow: 0 0 5px ${theme.root.shadow};
-    z-index: 10;
+    z-index: 9;
 
     @media screen and (min-width: 991px) {
         height: ${theme.Desktop.NavBar.height};
