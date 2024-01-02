@@ -1,5 +1,4 @@
 import { styled } from "styled-components"
-import image from "@public/images/icon2.png"
 import { Link } from "react-router-dom"
 
 const Div = styled(Link)`
@@ -30,7 +29,7 @@ const Image = styled.img`
     grid-area: image;
     grid-column: image;
     align-self: center;
-    justify-self: center;
+    justify-self: left;
 
 `
 const Category = styled.h2`
@@ -43,19 +42,32 @@ const Category = styled.h2`
 `
 
 const Number = styled.h3`
-    /* background: ${({theme}) => theme.root.blueFive}; */
     grid-area: number;
     font-size: 16px;
     align-self: center;
     text-align: center;
 `
 
-const CardCategory = ({ Name, number, endereco }) => {
+const Mark = styled.div`
+    display: inline;
+    margin-right: 6px;
+    padding: 0 4px;
+    font-size: 15px;
+    color: white;
+    font-weight: 900;
+    border-radius: 4px;
+    background: ${({theme}) => theme.root.blueOne};
+`
+
+const CardCategory = ({ data }) => {
     return (
-        <Div to={'/sobre'}>
-            <Image src={image} />
+        <Div to={'/servicos/:id'}>
+            <Image src={data.image} />
             <Category>Categoria</Category>
-            <Number>20 lojas cadastradas</Number>
+            <Number>
+                <Mark>20</Mark>
+                lojas cadastradas
+            </Number>
         </Div>
     )
 }

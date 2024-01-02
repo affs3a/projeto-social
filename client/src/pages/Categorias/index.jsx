@@ -1,8 +1,15 @@
 import { Div, Title } from "@/style/tags"
 import { SearchIcon } from "@/style/icons"
+import image from "@public/images/icon2.png"
 import CardCategory from "@/components/cards/CardCategory"
 
 const Categorias = () => {
+    const  example = {
+        id: 1,
+        image: image,
+        name: "Rachadores",
+        quantity: 5,
+    }
     return (
         <>
             <Div as={"section"} $flex>
@@ -11,9 +18,9 @@ const Categorias = () => {
                     <Title>Categorias</Title>
                 </Div>
                 <Div $flex top={"2rem"} gap={"1rem"}>
-                    <CardCategory />
-                    <CardCategory />
-                    <CardCategory />
+                    <CardCategory data={example} />
+                    <CardCategory data={example} />
+                    <CardCategory data={example} />
                 </Div>
             </Div>
         </>

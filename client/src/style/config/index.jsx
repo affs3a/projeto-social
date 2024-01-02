@@ -41,5 +41,7 @@ export const theme = {
         redAlert: "rgb(255, 201, 199)",
         redOne: "rgb(255, 127, 122)",
         redOneHover: "rgb(243, 132, 128)",
+        orangeOne: '#ffbd2f',
+        orangeTwo: '#ffe4a9',
     }
 }
