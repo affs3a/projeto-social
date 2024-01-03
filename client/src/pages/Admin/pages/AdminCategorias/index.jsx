@@ -118,7 +118,7 @@ const AdminCategorias = () => {
                                             utils.alertAction(
                                                 'Tem certeza que deseja deletar?',
                                                 'deletar',
-                                                () => deleteUser.mutate(modal)
+                                                () => deleteCategory.mutate(modal)
                                             )
                                         }}
                                     ><DeleteIcon />Deletar</Button>
