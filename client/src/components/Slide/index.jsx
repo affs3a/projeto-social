@@ -1,17 +1,26 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './slide.css'
-import logo from "@public/images/teste.jpg"
 
 import 'swiper/css';
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
-const imagesSlide = [
-    logo,
-    logo, 
-    logo,
-    logo
+
+const inforSlide = [
+    {
+        title: "Serviços Araripe",
+        description: "Encontre o serviço ideal para você em Araripe-CE"
+    },
+    {
+        title: "Facil e intuitivo",
+        description: "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI"
+    },
+    {
+        title: "Direto ao ponto.",
+        description: "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI"
+    }
+
 ]
 
 const Slide = () => {
@@ -20,19 +29,19 @@ const Slide = () => {
             className='swiper'
             slidesPerView={1}
             modules={[Navigation, Pagination, Autoplay]}
-            navigation={true}
+            navigation={false}
             pagination={{ clickable: true }}
             autoplay={{
                 delay: 3000
             }}
         >
-            {imagesSlide.map((e) => {
+            {inforSlide.map((e) => {
                 return (
                     <SwiperSlide className='swiper-slide'>
-                        <img
-                            className='slide-image'
-                            src={e}
-                        />
+                        <div className='swiper-slide-div'>
+                            <h2 className='swiper-slide-title'>{e.title}</h2>
+                            <p className='swiper-slide-description'>{e.description}</p>
+                        </div>
                     </SwiperSlide>
                 )
             })}
