@@ -33,7 +33,7 @@ const Categorias = () => {
                     <SearchIcon />
                     <Title>Localizar</Title>
                 </Div>
-                <Form onSubmit={searchHandler} $flex maxwidth={"300px"}>
+                <Form onSubmit={searchHandler} $flex maxwidth={"330px"}>
                     <Div $row $flex justify={"right"} gap={"4px"}>
                         <Input
                             padding={"6px"}
