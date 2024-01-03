@@ -26,10 +26,9 @@ const Categorias = () => {
         setFilter(utils.formToObject(e.target)['search'])
     }
 
-    return (
-        <>
-            {categories.isLoading && <Load />}
-            {!categories.isError ? (
+    return <>
+        {categories.isLoading && <Load />}
+        {!categories.isError ? (
             <Div as={"section"} $flex>
                 <Div $flex $row gap={'8px'} bottom={"12px"}>
                     <SearchIcon />
@@ -62,12 +61,10 @@ const Categorias = () => {
                     }
                 </Div>
             </Div>
-            ) : (
-                <Error />
-            )}
-        </>
-    )
-
+        ) : (
+            <Error />
+        )}
+    </>
 }
 
 export default Categorias
