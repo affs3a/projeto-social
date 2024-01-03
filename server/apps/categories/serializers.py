@@ -7,7 +7,7 @@ class CategorySerialize(serializers.ModelSerializer):
         return Category.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        instance.tags = validated_data.get('name', instance.name)
+        instance.name = validated_data.get('name', instance.name)
         instance.tags = validated_data.get('tags', instance.tags)
         instance.save()
         return instance
