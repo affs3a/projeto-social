@@ -11,6 +11,8 @@ class API {
         this.ROLE_ADMIN = 2
 
         this.QUERY_USERS = 'users'
+        this.QUERY_CATEGORIES = 'categories'
+        this.QUERY_SERVICES = 'services'
 
         this.client = axios.create({
             baseURL: 'http://localhost:8000/api/',
@@ -76,6 +78,33 @@ class API {
         })
     }
 
+    async getCategories(search = null) {
+        const { data } = await this.client.get('/categories/', {
+            params: search && { search },
+            headers: this.buildHeader(),
+        })
+
+        return data
+    }
+
+    async addCategory(data) {
+        return await this.client.put('/categories/', data, {
+            headers: this.buildHeader()
+        })
+    }
+
+    async editCategory(data) {
+        return await this.client.patch(`/categories/${data.id ?? '0'}`, data, {
+            headers: this.buildHeader(),
+        })
+    }
+
+    async deleteCategory(data) {
+        return await this.client.delete(`/categories/${data.id ?? '0'}`, {
+            headers: this.buildHeader(),
+        })
+    }
+
     getProfiles() {
         return {
             1: "Prestador",
@@ -100,10 +129,6 @@ class API {
 
     queryClient() {
         return useQueryClient()
-    }
-
-    operationKey(key, operation) {
-        return key + (operation ? `_${operation}` : '')
     }
 }
 

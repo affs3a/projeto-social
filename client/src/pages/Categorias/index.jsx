@@ -1,12 +1,12 @@
 import { Div, Title } from "@/style/tags"
 import { SearchIcon } from "@/style/icons"
-import image from "@public/images/icon2.png"
+import image from "@public/images/tools.svg"
 import CardCategory from "@/components/cards/CardCategory"
 
 const Categorias = () => {
     const  example = {
         id: 1,
-        image: image,
+        icon: image,
         name: "Rachadores",
         quantity: 5,
     }

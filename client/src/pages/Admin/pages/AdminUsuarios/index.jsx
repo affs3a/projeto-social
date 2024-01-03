@@ -21,7 +21,7 @@ const AdminUsuarios = () => {
     const queryClient = useQueryClient()
     const userProfile = api.userProfile()
 
-    if (!userProfile) return <Unauthorized />
+    if (!userProfile || userProfile.role != api.ROLE_ADMIN) return <Unauthorized />
 
     const users = useQuery({
         queryKey: [api.QUERY_USERS, filter],
@@ -31,7 +31,7 @@ const AdminUsuarios = () => {
     if (users.error) return (<h1>Erro! Recarregue a página!</h1>)
 
     const addUser = useMutation({
-        mutationKey: [api.operationKey(api.QUERY_USERS, 'add')],
+        mutationKey: [api.QUERY_USERS, 'add'],
         mutationFn: async (data) => api.addUser(data),
         onSuccess: () => {
             setModal(null)
@@ -44,7 +44,7 @@ const AdminUsuarios = () => {
     })
 
     const editUser = useMutation({
-        mutationKey: [api.operationKey(api.QUERY_USERS, 'edit')],
+        mutationKey: [api.QUERY_USERS, 'edit'],
         mutationFn: async (data) => api.editUser(data),
         onSuccess: () => {
             setModal(null)
@@ -57,7 +57,7 @@ const AdminUsuarios = () => {
     })
 
     const deleteUser = useMutation({
-        mutationKey: [api.operationKey(api.QUERY_USERS, 'edit')],
+        mutationKey: [api.QUERY_USERS, 'delete'],
         mutationFn: async (data) => api.deleteUser(data),
         onSuccess: () => {
             setModal(null)
@@ -87,121 +87,116 @@ const AdminUsuarios = () => {
     return <>
         {(users.isPending || addUser.isPending || editUser.isPending) && <Load />}
         <Div as={"section"} $flex gap={"10px"}>
-            {userProfile.role == api.ROLE_ADMIN ? (
-                <>
-                    <Div $flex $row gap={'8px'} bottom={'12px'}>
-                        <PeopleIcon />
-                        <Title>Usuários</Title>
-                        <Button
-                            margin={'0 0 0 16px'}
-                            back={theme.root.blueShadow}
-                            hover={theme.root.shadow}
-                            height={"34px"}
-                            onClick={() => navigate('/admin')}
-                        ><ArrowLeft />Voltar</Button>
-                    </Div>
-                    <Div $flex $row gap={'4px'} bottom={'12px'}>
-                        <Modal $visible={modal != null}>
-                            <Div padding={"16px"}>
-                                <Div $flex $row gap={'8px'} bottom={'6px'}>
-                                    {utils.empty(modal)
-                                        ? <>
-                                            <PlusIcon fontSize={"30px"} />
-                                            <Title align={'center'}>Adicionar</Title>
-                                        </>
-                                        : <>
-                                            <EditIcon fontSize={"26px"} />
-                                            <Title align={'center'}>Editar</Title>
-                                            <Button
-                                                margin={'0 0 0 16px'}
-                                                back={theme.root.redOne}
-                                                hover={theme.root.redOneHover}
-                                                height={"34px"}
-                                                onClick={() => {
-                                                    utils.alertAction(
-                                                        'Tem certeza que deseja deletar?',
-                                                        'deletar',
-                                                        () => deleteUser.mutate(modal)
-                                                    )
-                                                }}
-                                            ><DeleteIcon />Deletar</Button>
-                                        </>
-                                    }
+
+            <Div $flex $row gap={'8px'} bottom={'12px'}>
+                <PeopleIcon />
+                <Title>Usuários</Title>
+                <Button
+                    margin={'0 0 0 16px'}
+                    back={theme.root.blueShadow}
+                    hover={theme.root.shadow}
+                    height={"34px"}
+                    onClick={() => navigate('/admin')}
+                ><ArrowLeft />Voltar</Button>
+            </Div>
+            <Div $flex $row gap={'4px'} bottom={'12px'}>
+                <Modal $visible={modal != null}>
+                    <Div padding={"16px"}>
+                        <Div $flex $row gap={'8px'} bottom={'6px'}>
+                            {utils.empty(modal)
+                                ? <>
+                                    <PlusIcon fontSize={"30px"} />
+                                    <Title align={'center'}>Adicionar</Title>
+                                </>
+                                : <>
+                                    <EditIcon fontSize={"26px"} />
+                                    <Title align={'center'}>Editar</Title>
+                                    <Button
+                                        margin={'0 0 0 16px'}
+                                        back={theme.root.redOne}
+                                        hover={theme.root.redOneHover}
+                                        height={"34px"}
+                                        onClick={() => {
+                                            utils.alertAction(
+                                                'Tem certeza que deseja deletar?',
+                                                'deletar',
+                                                () => deleteUser.mutate(modal)
+                                            )
+                                        }}
+                                    ><DeleteIcon />Deletar</Button>
+                                </>
+                            }
+                        </Div>
+                        <Form onSubmit={submitHandler}>
+                            <Div $flex gap={"8px"}>
+                                <HiddenField id={"id"} value={modal && modal.id} />
+                                <Field id={"name"} label={"Nome:"} place={"Nome do usuário"} value={modal && modal.name} required={utils.empty(modal)} />
+                                <Field id={"username"} label={"Username:"} place={"Identificação única"} value={modal && modal.username} required={utils.empty(modal)} />
+                                <Field id={"email"} label={"Email:"} place={"Email de contato"} type={"email"} value={modal && modal.email} required={utils.empty(modal)} />
+                                <SelectField id={"role"} label={"Perfil:"}>
+                                    {Object.keys(roles).map(item => (
+                                        <Option key={item} value={item} selected={modal && modal.role == item}>{roles[item]}</Option>
+                                    ))}
+                                </SelectField>
+                                <Field id={"password"} label={"Senha:"} type={"password"} place={"Senha da conta"} required={utils.empty(modal)} />
+                                <Field id={"confirm"} label={"Confirm. Senha:"} type={"password"} place={"Repita a senha"} required={utils.empty(modal)} />
+                                <Field id={"phone"} label={"Telefone:"} place={"Telefone de contato"} value={modal && modal.phone} required={modal == {}} />
+                                <Div $flex $row top={"8px"} gap={"8px"}>
+                                    <Button
+                                        type={"button"}
+                                        back={theme.root.blueShadow}
+                                        hover={theme.root.shadow}
+                                        height={"40px"}
+                                        width={"100%"}
+                                        onClick={() => setModal(null)}
+                                    ><CancelIcon />Cancelar</Button>
+                                    <Button
+                                        back={theme.root.blueOne}
+                                        hover={theme.root.blueOneHover}
+                                        color={theme.root.white}
+                                        height={"40px"}
+                                        width={"100%"}
+                                        type={"submit"}
+                                    ><CheckIcon />Enviar</Button>
                                 </Div>
-                                <Form onSubmit={submitHandler}>
-                                    <Div $flex gap={"8px"}>
-                                        <HiddenField id={"id"} value={modal && modal.id} />
-                                        <Field id={"name"} label={"Nome:"} place={"Nome do usuário"} value={modal && modal.name} required={utils.empty(modal)} />
-                                        <Field id={"username"} label={"Username:"} place={"Identificação única"} value={modal && modal.username} required={utils.empty(modal)} />
-                                        <Field id={"email"} label={"Email:"} place={"Email de contato"} type={"email"} value={modal && modal.email} required={utils.empty(modal)} />
-                                        <SelectField id={"role"} label={"Perfil:"}>
-                                            {Object.keys(roles).map(item => (
-                                                <Option key={item} value={item} selected={modal && modal.role == item}>{roles[item]}</Option>
-                                            ))}
-                                        </SelectField>
-                                        <Field id={"password"} label={"Senha:"} type={"password"} place={"Senha da conta"} required={utils.empty(modal)} />
-                                        <Field id={"confirm"} label={"Confirm. Senha:"} type={"password"} place={"Repita a senha"} required={utils.empty(modal)} />
-                                        <Field id={"phone"} label={"Telefone:"} place={"Telefone de contato"} value={modal && modal.phone} required={modal == {}} />
-                                        <Div $flex $row top={"8px"} gap={"8px"}>
-                                            <Button
-                                                type={"button"}
-                                                back={theme.root.blueShadow}
-                                                hover={theme.root.shadow}
-                                                height={"40px"}
-                                                width={"100%"}
-                                                onClick={() => setModal(null)}
-                                            ><CancelIcon />Cancelar</Button>
-                                            <Button
-                                                back={theme.root.blueOne}
-                                                hover={theme.root.blueOneHover}
-                                                color={theme.root.white}
-                                                height={"40px"}
-                                                width={"100%"}
-                                                type={"submit"}
-                                            ><CheckIcon />Enviar</Button>
-                                        </Div>
-                                    </Div>
-                                </Form>
-                            </Div>
-                        </Modal>
-                        <Button
-                            back={theme.root.blueOne}
-                            hover={theme.root.blueOneHover}
-                            color={theme.root.white}
-                            height={"36px"}
-                            onClick={() => setModal({})}
-                        ><PlusIcon />Adicionar</Button>
-                        <Form onSubmit={searchHandler} $flex maxwidth={"300px"}>
-                            <Div $row $flex justify={"right"} gap={"4px"}>
-                                <Input
-                                    padding={"6px"}
-                                    type={"search"}
-                                    name={"search"}
-                                    id={"search"}
-                                    placeholder={"Localizar"}
-                                />
-                                <Button
-                                    type={"submit"}
-                                    back={theme.root.white}
-                                    border={theme.root.shadow}
-                                    hover={theme.root.blueShadowTwo}
-                                    height={"38px"}
-                                ><SearchIcon /></Button>
                             </Div>
                         </Form>
                     </Div>
-                    <Div $flex gap={'8px'}>
-                        {users.isSuccess && users.data.length > 0
-                            ? users.data.map(item => (
-                                <CardUser onClick={() => setModal(item)} key={item.id} data={item} />
-                            ))
-                            : <h1>Nenhum usuário para mostrar!</h1>
-                        }
+                </Modal>
+                <Button
+                    back={theme.root.blueOne}
+                    hover={theme.root.blueOneHover}
+                    color={theme.root.white}
+                    height={"36px"}
+                    onClick={() => setModal({})}
+                ><PlusIcon />Adicionar</Button>
+                <Form onSubmit={searchHandler} $flex maxwidth={"300px"}>
+                    <Div $row $flex justify={"right"} gap={"4px"}>
+                        <Input
+                            padding={"6px"}
+                            type={"search"}
+                            name={"search"}
+                            id={"search"}
+                            placeholder={"Localizar"}
+                        />
+                        <Button
+                            type={"submit"}
+                            back={theme.root.white}
+                            border={theme.root.shadow}
+                            hover={theme.root.blueShadowTwo}
+                            height={"38px"}
+                        ><SearchIcon /></Button>
                     </Div>
-                </>
-            ) : (
-                <Unauthorized />
-            )}
+                </Form>
+            </Div>
+            <Div $flex gap={'8px'}>
+                {users.isSuccess && users.data.length > 0
+                    ? users.data.map(item => (
+                        <CardUser onClick={() => setModal(item)} key={item.id} data={item} />
+                    ))
+                    : <h1>Nenhum usuário para mostrar!</h1>
+                }
+            </Div>
         </Div>
     </>
 }

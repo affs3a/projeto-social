@@ -1,5 +1,7 @@
 import { styled } from "styled-components"
 import { Link } from "react-router-dom"
+import placeholder from "@public/images/icon2.png"
+import { theme } from "@/style/config"
 
 const Div = styled(Link)`
     width: 100%;
@@ -25,12 +27,13 @@ const Div = styled(Link)`
 const Image = styled.img`
     width: 76px;
     height: 72px;
+    padding: 16px;
     border-radius: 8px;
     grid-area: image;
     grid-column: image;
     align-self: center;
     justify-self: left;
-
+    background-color: ${theme.root.blueShadow};
 `
 const Category = styled.h2`
     font-size: 22px;
@@ -56,13 +59,13 @@ const Mark = styled.div`
     color: white;
     font-weight: 900;
     border-radius: 4px;
-    background: ${({theme}) => theme.root.blueOne};
+    background: ${({ theme }) => theme.root.blueOne};
 `
 
 const CardCategory = ({ data }) => {
     return (
         <Div to={`/localizar/${data.id}`}>
-            <Image src={data.image} />
+            <Image src={data.icon ?? placeholder}></Image>
             <Category>Categoria</Category>
             <Number>
                 <Mark>20</Mark>
