@@ -47,6 +47,22 @@ export const Select = styled.select`
     }
 `
 
+export const TextArea = styled.textarea`
+    font-size: 1rem;
+    resize: vertical;
+    padding: ${props => props.padding || "12px"};
+    border: 2px solid ${theme.root.greyOne};
+    min-height: 60px;
+    border-radius: 4px;
+    outline: none;
+
+    &:focus {
+        border: 2px solid ${theme.root.blueOne};
+        background-color: ${theme.root.blueThree};
+    }
+`
+
+
 export const Option = styled.option`
 
 `
@@ -71,6 +87,13 @@ export const SelectField = ({ children, id, label, required }) => {
         <Select id={id} name={id} required={required}>
             {children}
         </Select>
+    </Div>
+}
+
+export const TextField = ({ value, id, label, required }) => {
+    return <Div $flex gap={'4px'} align={'left'}>
+        <Label htmlFor={id}>{label}</Label>
+        <TextArea id={id} name={id} required={required}>{value}</TextArea>
     </Div>
 }
 

@@ -105,6 +105,33 @@ class API {
         })
     }
 
+    async getServices(search = null) {
+        const { data } = await this.client.get('/services/', {
+            params: search && { search },
+            headers: this.buildHeader(),
+        })
+
+        return data
+    }
+
+    async addService(data) {
+        return await this.client.put('/services/', data, {
+            headers: this.buildHeader()
+        })
+    }
+
+    async editService(data) {
+        return await this.client.patch(`/services/${data.id ?? '0'}`, data, {
+            headers: this.buildHeader(),
+        })
+    }
+
+    async deleteService(data) {
+        return await this.client.delete(`/services/${data.id ?? '0'}`, {
+            headers: this.buildHeader(),
+        })
+    }
+
     getProfiles() {
         return {
             1: "Prestador",

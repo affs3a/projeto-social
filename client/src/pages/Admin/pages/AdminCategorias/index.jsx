@@ -36,7 +36,7 @@ const AdminCategorias = () => {
         onSuccess: () => {
             setModal(null)
             queryClient.invalidateQueries({ queryKey: [api.QUERY_CATEGORIES] })
-            utils.alert('Usuário criado com sucesso!', 'success')
+            utils.alert('Categoria criado com sucesso!', 'success')
         },
         onError: (error) => {
             utils.alert(utils.getError(error), 'error')
@@ -49,7 +49,7 @@ const AdminCategorias = () => {
         onSuccess: () => {
             setModal(null)
             queryClient.invalidateQueries({ queryKey: [api.QUERY_CATEGORIES] })
-            utils.alert('Usuário editado com sucesso!', 'success')
+            utils.alert('Categoria editado com sucesso!', 'success')
         },
         onError: (error) => {
             utils.alert(utils.getError(error), 'error')
@@ -62,7 +62,7 @@ const AdminCategorias = () => {
         onSuccess: () => {
             setModal(null)
             queryClient.invalidateQueries({ queryKey: [api.QUERY_CATEGORIES] })
-            utils.alert('Usuário deletado com sucesso!', 'success')
+            utils.alert('Categoria deletado com sucesso!', 'success')
         },
         onError: (error) => {
             utils.alert(utils.getError(error), 'error')
