@@ -7,7 +7,8 @@ export const theme = {
         },
         NavBar: {
             padding: "0 1.5rem",
-            height: "72px"
+            height: "72px",
+            minHeight: "150px"
         },
         Main: "1rem .8rem 2rem",
     },
