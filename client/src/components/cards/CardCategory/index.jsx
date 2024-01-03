@@ -9,7 +9,7 @@ const Div = styled(Link)`
     height: auto;
     border-radius: 10px;
     display: grid;
-    padding: .7rem;
+    padding: 1.25rem;
     color: ${({ theme }) => theme.root.blueTwo};
     border-radius: 6px;
     border: 1px solid rgba(30, 30, 30, 0.22);
@@ -36,7 +36,7 @@ const Image = styled.img`
     background-color: ${theme.root.blueShadow};
 `
 const Category = styled.h2`
-    font-size: 22px;
+    font-size: 1.3rem;
     grid-area: category;
     align-self: end;
     justify-self: center;

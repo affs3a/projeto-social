@@ -33,7 +33,7 @@ class CategoryList(GenericAPIView):
 
 
 class CategoryDetails(APIView):
-    permission_classes = [IsAdmin & PublicView]
+    permission_classes = [IsAdmin | PublicView]
 
     def get_category(self, category_id):
         try:

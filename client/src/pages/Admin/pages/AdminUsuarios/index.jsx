@@ -6,12 +6,12 @@ import Unauthorized from "@/components/responses/Unauthorized"
 import Load from "@/components/common/Load"
 import { theme } from "@/style/config"
 import api from "@/api"
-import CardUser from "@/components/cards/CardUser"
 import { Form, Input, HiddenField } from "@/components/common/Form"
 import { useState } from "react"
 import { Field, Modal, Option, SelectField } from "@/components/common/Form"
 import utils from "@/utils"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import CardUser from "../../components/CardUser"
 
 const AdminUsuarios = () => {
     const [modal, setModal] = useState(null)

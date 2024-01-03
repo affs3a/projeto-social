@@ -29,7 +29,7 @@ class ServicesList(GenericAPIView):
 
 
 class ServiceDetails(APIView):
-    permission_classes = [IsProvider & PublicView]
+    permission_classes = [IsProvider | PublicView]
     
     def get_service(self, service_id):
         try:

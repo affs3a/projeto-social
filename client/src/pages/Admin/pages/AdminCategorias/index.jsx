@@ -6,12 +6,12 @@ import Unauthorized from "@/components/responses/Unauthorized"
 import Load from "@/components/common/Load"
 import { theme } from "@/style/config"
 import api from "@/api"
-import CardUser from "@/components/cards/CardUser"
 import { Form, Input, HiddenField } from "@/components/common/Form"
 import { useState } from "react"
 import { Field, Modal } from "@/components/common/Form"
 import utils from "@/utils"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import CardCategory from "../../components/CardCategory"
 
 const AdminCategorias = () => {
     const [modal, setModal] = useState(null)
@@ -86,7 +86,6 @@ const AdminCategorias = () => {
     return <>
         {(categories.isPending || addCategory.isPending || editCategory.isPending) && <Load />}
         <Div as={"section"} $flex gap={"10px"}>
-
             <Div $flex $row gap={'8px'} bottom={'12px'}>
                 <SearchIcon />
                 <Title>Categorias</Title>
@@ -128,7 +127,7 @@ const AdminCategorias = () => {
                         </Div>
                         <Form onSubmit={submitHandler}>
                             <Div $flex gap={"8px"}>
-                            <HiddenField id={"id"} value={modal && modal.id} />
+                                <HiddenField id={"id"} value={modal && modal.id} />
                                 <Field id={"name"} label={"Nome:"} place={"Nome da categoria"} value={modal && modal.name} required={utils.empty(modal)} />
                                 <Field id={"tags"} label={"Tags:"} place={"Sep. por vírgula Ex.: moda, roupas, loja..."} value={modal && modal.tags} required={utils.empty(modal)} />
                                 <Div $flex $row top={"8px"} gap={"8px"}>
@@ -182,7 +181,7 @@ const AdminCategorias = () => {
             <Div $flex gap={'8px'}>
                 {categories.isSuccess && categories.data.length > 0
                     ? categories.data.map(item => (
-                        <CardUser onClick={() => setModal(item)} key={item.id} data={item} />
+                        <CardCategory onClick={() => setModal(item)} key={item.id} data={item} />
                     ))
                     : <h1>Nenhuma categoria para mostrar!</h1>
                 }
