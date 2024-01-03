@@ -4,8 +4,10 @@ import CardCategory from "@/components/cards/CardCategory"
 import { useQuery } from "@tanstack/react-query"
 import { Form, Input } from "@/components/common/Form"
 import Empty from "@/components/responses/Empty"
+import Error from "@/components/responses/Error"
 import { theme } from "@/style/config"
 import { Button } from "@/components/common/Button"
+import Load from "@/components/common/Load"
 import { useState } from "react"
 import utils from "@/utils"
 import api from "@/api"
@@ -19,8 +21,6 @@ const Categorias = () => {
         queryFn: async () => await api.getCategories(filter),
     })
 
-    if (categories.error) return (<h1>Erro! Recarregue a página!</h1>)
-
     const searchHandler = (e) => {
         e.preventDefault()
         setFilter(utils.formToObject(e.target)['search'])
@@ -28,6 +28,8 @@ const Categorias = () => {
 
     return (
         <>
+            {categories.isLoading && <Load />}
+            {!categories.isError ? (
             <Div as={"section"} $flex>
                 <Div $flex $row gap={'8px'} bottom={"12px"}>
                     <SearchIcon />
@@ -60,6 +62,9 @@ const Categorias = () => {
                     }
                 </Div>
             </Div>
+            ) : (
+                <Error />
+            )}
         </>
     )
 

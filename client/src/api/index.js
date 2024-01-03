@@ -140,8 +140,9 @@ class API {
     }
 
     buildHeader() {
-        return {
-            'Authorization': `Bearer ${Cookies.get(this.ACCESS_TOKEN) ?? ''}`
+        const profile = Cookies.get(this.ACCESS_TOKEN)
+        return profile && {
+            'Authorization': `Bearer ${profile}`
         }
     }
 
