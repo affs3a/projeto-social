@@ -1,6 +1,5 @@
 import { styled } from "styled-components"
 import { Link } from "react-router-dom"
-import placeholder from "@public/images/icon2.png"
 import { theme } from "@/style/config"
 
 const Div = styled(Link)`
@@ -14,12 +13,13 @@ const Div = styled(Link)`
     color: ${({ theme }) => theme.root.blueTwo};
     border-radius: 6px;
     border: 1px solid rgba(30, 30, 30, 0.22);
-    box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas: 
-        "image category category"
-        "image number number"
+        "category category category"
+        "number number number"
     ;
+    gap: 6px;
     justify-content: center;
     flex-wrap: wrap;
 `
@@ -32,7 +32,7 @@ const Image = styled.img`
     grid-area: image;
     grid-column: image;
     align-self: center;
-    justify-self: left;
+    justify-self: center;
     background-color: ${theme.root.blueShadow};
 `
 const Category = styled.h2`
@@ -56,19 +56,18 @@ const Mark = styled.div`
     margin-right: 6px;
     padding: 0 4px;
     font-size: 15px;
-    color: white;
+    color: ${({theme}) => theme.root.blueTwo};
     font-weight: 900;
-    border-radius: 4px;
-    background: ${({ theme }) => theme.root.blueOne};
+    border-radius: 2px;
+    background: ${({ theme }) => theme.root.blueShadow};
 `
 
 const CardCategory = ({ data }) => {
     return (
         <Div to={`/localizar/${data.id}`}>
-            <Image src={data.icon ?? placeholder}></Image>
-            <Category>Categoria</Category>
+            <Category>{data.name}</Category>
             <Number>
-                <Mark>20</Mark>
+                <Mark>{data.quantity}</Mark>
                 lojas cadastradas
             </Number>
         </Div>
