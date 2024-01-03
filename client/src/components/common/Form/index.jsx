@@ -54,7 +54,9 @@ export const TextArea = styled.textarea`
     border: 2px solid ${theme.root.greyOne};
     min-height: 60px;
     border-radius: 4px;
+    background-color: ${theme.root.white};
     outline: none;
+    transition: all 350ms;
 
     &:focus {
         border: 2px solid ${theme.root.blueOne};

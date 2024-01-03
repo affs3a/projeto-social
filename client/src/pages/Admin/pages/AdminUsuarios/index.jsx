@@ -13,6 +13,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import CardUser from "../../components/CardUser"
 import Unauthorized from "@/components/responses/Unauthorized"
 import Empty from "@/components/responses/Empty"
+import Error from "@/components/responses/Error"
 
 const AdminUsuarios = () => {
     const [modal, setModal] = useState(null)
@@ -28,8 +29,6 @@ const AdminUsuarios = () => {
         queryKey: [api.QUERY_USERS, filter],
         queryFn: async () => await api.getUsers(filter),
     })
-
-    if (users.error) return (<h1>Erro! Recarregue a página!</h1>)
 
     const addUser = useMutation({
         mutationKey: [api.QUERY_USERS, 'add'],
@@ -87,8 +86,8 @@ const AdminUsuarios = () => {
 
     return <>
         {(users.isPending || addUser.isPending || editUser.isPending) && <Load />}
-        <Div as={"section"} $flex gap={"10px"}>
-
+        {!users.error ? (<>
+            <Div as={"section"} $flex gap={"10px"}>
             <Div $flex $row gap={'8px'} bottom={'12px'}>
                 <PeopleIcon />
                 <Title>Usuários</Title>
@@ -199,6 +198,7 @@ const AdminUsuarios = () => {
                 }
             </Div>
         </Div>
+        </>) : (<Error />)}
     </>
 }
 
