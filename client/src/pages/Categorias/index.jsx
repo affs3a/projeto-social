@@ -1,9 +1,9 @@
 import { Div, Title } from "@/style/tags"
 import { SearchIcon } from "@/style/icons"
 import CardCategory from "@/components/cards/CardCategory"
-import { useQueryClient, useQuery } from "@tanstack/react-query"
-import { useNavigate } from "react-router-dom"
-import { Form, Input, HiddenField } from "@/components/common/Form"
+import { useQuery } from "@tanstack/react-query"
+import { Form, Input } from "@/components/common/Form"
+import Empty from "@/components/responses/Empty"
 import { theme } from "@/style/config"
 import { Button } from "@/components/common/Button"
 import { useState } from "react"
@@ -56,7 +56,7 @@ const Categorias = () => {
                         ? categories.data.map(item => (
                             <CardCategory data={item} />
                         ))
-                        : <h1>Nenhuma categoria para mostrar!</h1>
+                        : <Empty />
                     }
                 </Div>
             </Div>

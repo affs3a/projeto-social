@@ -2,7 +2,6 @@ import { Div, Title } from "@/style/tags"
 import { PeopleIcon, DeleteIcon, ArrowLeft, PlusIcon, SearchIcon, CancelIcon, CheckIcon, EditIcon } from "@/style/icons"
 import { useNavigate } from "react-router-dom"
 import { Button } from "@/components/common/Button"
-import Unauthorized from "@/components/responses/Unauthorized"
 import Load from "@/components/common/Load"
 import { theme } from "@/style/config"
 import api from "@/api"
@@ -12,6 +11,8 @@ import { Field, Modal, Option, SelectField } from "@/components/common/Form"
 import utils from "@/utils"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import CardUser from "../../components/CardUser"
+import Unauthorized from "@/components/responses/Unauthorized"
+import Empty from "@/components/responses/Empty"
 
 const AdminUsuarios = () => {
     const [modal, setModal] = useState(null)
@@ -194,7 +195,7 @@ const AdminUsuarios = () => {
                     ? users.data.map(item => (
                         <CardUser onClick={() => setModal(item)} key={item.id} data={item} />
                     ))
-                    : <h1>Nenhum usuário para mostrar!</h1>
+                    : <Empty />
                 }
             </Div>
         </Div>

@@ -1,8 +1,7 @@
 import { Div, Title } from "@/style/tags"
-import { PeopleIcon, DeleteIcon, ArrowLeft, PlusIcon, SearchIcon, CancelIcon, CheckIcon, EditIcon } from "@/style/icons"
+import { DeleteIcon, ArrowLeft, PlusIcon, SearchIcon, CancelIcon, CheckIcon, EditIcon } from "@/style/icons"
 import { useNavigate } from "react-router-dom"
 import { Button } from "@/components/common/Button"
-import Unauthorized from "@/components/responses/Unauthorized"
 import Load from "@/components/common/Load"
 import { theme } from "@/style/config"
 import api from "@/api"
@@ -12,6 +11,8 @@ import { Field, Modal } from "@/components/common/Form"
 import utils from "@/utils"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import CardCategory from "../../components/CardCategory"
+import Unauthorized from "@/components/responses/Unauthorized"
+import Empty from "@/components/responses/Empty"
 
 const AdminCategorias = () => {
     const [modal, setModal] = useState(null)
@@ -183,7 +184,7 @@ const AdminCategorias = () => {
                     ? categories.data.map(item => (
                         <CardCategory onClick={() => setModal(item)} key={item.id} data={item} />
                     ))
-                    : <h1>Nenhuma categoria para mostrar!</h1>
+                    : <Empty />
                 }
             </Div>
         </Div>
