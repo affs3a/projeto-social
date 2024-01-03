@@ -9,7 +9,7 @@ from .models import Service
 
 
 class ServicesList(GenericAPIView):
-    permission_classes = [IsProvider & PublicView]
+    permission_classes = [IsProvider | PublicView]
     serializer_class = ServiceSerialize
 
     search_fields=['name', 'category__name']

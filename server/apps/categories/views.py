@@ -6,10 +6,11 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.filters import SearchFilter
 from .serializers import CategorySerialize
 from .models import Category
+from ..services.models import Service
 
 
 class CategoryList(GenericAPIView):
-    permission_classes = [IsAdmin & PublicView]
+    permission_classes = [IsAdmin | PublicView]
 
     serializer_class = CategorySerialize
 
@@ -19,6 +20,8 @@ class CategoryList(GenericAPIView):
     def get(self, request, format=False):
         queryset = self.filter_queryset(Category.objects.all())
         serializer = self.get_serializer(queryset, many=True)
+        for item in serializer.data:
+            item['quantity'] = Service.objects.filter(category__id=item.get('id')).count()
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, format=False):
