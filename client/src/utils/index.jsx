@@ -70,12 +70,38 @@ class Utils {
         return `<p>${messageText}</p>`
     }
 
-    formToObject(form) {
-        const formData = new FormData(form)
+    formToObject(form, options = {}) {
+        const formData = new FormData(form);
+
+        [...form].forEach(it => {
+            if (it.type == "file" && it.multiple) {
+                formData.delete(it.name);
+                [...it.files].forEach(file => {
+                    formData.append(it.name, file, file.name)
+                })
+            }
+        })
+
         const obj = {}
 
+
+        const encode = {
+            default: (value) => {
+                return value
+            },
+            base64: (value) => {
+                return value
+            }
+        }[options.filesEncoding ?? 'default']
+
+
         formData.forEach((v, k) => {
-            k && v != "" && (obj[k] = v)
+            if (v instanceof File) v = encode(v)
+            if (k && v != "") obj[k]
+                ? obj[k] = Array.isArray(obj[k])
+                    ? [...obj[k], v]
+                    : [obj[k], v]
+                : obj[k] = v
         })
 
         return obj

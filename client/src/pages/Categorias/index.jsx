@@ -54,8 +54,8 @@ const Categorias = () => {
                 </Form>
                 <Div $flex top={"2rem"} gap={"1rem"}>
                     {categories.isSuccess && categories.data.length > 0
-                        ? categories.data.map(item => (
-                            <CardCategory data={item} />
+                        ? categories.data.map((item, key) => (
+                            <CardCategory key={key} data={item} />
                         ))
                         : <Empty />
                     }
