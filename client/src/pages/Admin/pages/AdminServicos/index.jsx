@@ -82,12 +82,13 @@ const AdminServicos = () => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        const json = utils.formToObject(e.target)
-        if (utils.empty(modal)) {
-            addService.mutate(json)
-        } else {
-            editService.mutate(json)
-        }
+        const json = utils.formToObject(e.target, { filesEncode: 'base64' })
+        console.log(json)
+        // if (utils.empty(modal)) {
+        //     addService.mutate(json)
+        // } else {
+        //     editService.mutate(json)
+        // }
     }
 
     const searchHandler = (e) => {
@@ -146,7 +147,7 @@ const AdminServicos = () => {
                                     <TextField id={"description"} label={"Descrição:"} place={"Informações do serviço"} value={modal && modal.description} required={utils.empty(modal)} />
                                     <Field id={"whatsapp"} label={"Whatsapp:"} place={"Número do celular"} value={modal && modal.whatsapp} />
                                     <Field id={"instagram"} label={"Instagram:"} place={"Instagram do serviço"} value={modal && modal.instagram} />
-                                    <FileField id={"images"} label={"Fotos (até 3):"} mimes={["application/pdf"]} multiple/>
+                                    <FileField id={"images"} label={"Fotos (até 3):"} max={3} mimes={utils.imageMimes()} multiple />
                                     <SelectField id={"categoria"} label={"Categoria:"}>
                                         {categories.isSuccess && categories.data.map(item => (
                                             <Option key={item.id} value={item.id} selected={modal && modal.category}>{item.name}</Option>
@@ -207,8 +208,8 @@ const AdminServicos = () => {
                 </Div>
                 <Div $flex gap={'8px'}>
                     {services.isSuccess && services.data.length > 0
-                        ? services.data.map(item => (
-                            <CardCategory onClick={() => setModal(item)} key={item.id} data={item} />
+                        ? services.data.map((item, key) => (
+                            <CardCategory onClick={() => setModal(item)} key={key} data={item} />
                         ))
                         : <Empty />
                     }

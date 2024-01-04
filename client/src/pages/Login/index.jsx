@@ -11,7 +11,6 @@ import api from "../../api"
 import { useNavigate } from "react-router-dom"
 import utils from "../../utils"
 
-
 const Login = () => {
     const navigateTo = useNavigate()
     const [loading, setLoading] = useState(false)
