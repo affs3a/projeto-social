@@ -191,8 +191,8 @@ const AdminUsuarios = () => {
             </Div>
             <Div $flex gap={'8px'}>
                 {users.isSuccess && users.data.length > 0
-                    ? users.data.map(item => (
-                        <CardUser onClick={() => setModal(item)} key={item.id} data={item} />
+                    ? users.data.map((item, key)=> (
+                        <CardUser onClick={() => setModal(item)} key={key} data={item} />
                     ))
                     : <Empty />
                 }

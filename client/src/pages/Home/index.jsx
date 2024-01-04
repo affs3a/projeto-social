@@ -37,23 +37,6 @@ const Home = () => {
                     color={"#fff"}
                 />
             </Div>
-            <Div $flex gap={'1.5rem'}>
-                <InforHome
-                    title={"Serviços Araripe"}
-                    description={"Encontre o serviço ideal para você em Araripe-CE"}
-                    image={Image1}
-                />
-                <InforHome
-                    title={"Facil e intuitivo"}
-                    description={"Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI"}
-                    image={Image1}
-                />
-                <InforHome
-                    title={"Direto ao ponto."}
-                    description={"Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI"}
-                    image={Image1}
-                />
-            </Div>
         </>
     )
 }

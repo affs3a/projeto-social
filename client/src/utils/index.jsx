@@ -70,12 +70,27 @@ class Utils {
         return `<p>${messageText}</p>`
     }
 
-    formToObject(form) {
+    formToObject(form, options = {}) {
         const formData = new FormData(form)
         const obj = {}
 
+        const filesEncs = {
+            'default': (value) => {
+                return value
+            },
+            'base64': (value) => {
+                if (Array.isArray(value)) {
+                    value.forEach(it => {
+                        console.log(it)
+                    })
+                }
+                return value
+            }
+        }[options.filesEncode ?? 'default']
+
         formData.forEach((v, k) => {
-            k && v != "" && (obj[k] = v)
+            if (v instanceof File || v instanceof FileList) v = filesEncs(v)
+            k && (v != "") && (obj[k] = v)
         })
 
         return obj

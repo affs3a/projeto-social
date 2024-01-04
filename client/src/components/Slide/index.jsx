@@ -35,9 +35,9 @@ const Slide = () => {
                 delay: 3000
             }}
         >
-            {inforSlide.map((e) => {
+            {inforSlide.map((e, key) => {
                 return (
-                    <SwiperSlide className='swiper-slide'>
+                    <SwiperSlide className='swiper-slide' key={key}>
                         <div className='swiper-slide-div'>
                             <h2 className='swiper-slide-title'>{e.title}</h2>
                             <p className='swiper-slide-description'>{e.description}</p>

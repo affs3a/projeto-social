@@ -8,7 +8,8 @@ class ServiceSerialize(serializers.ModelSerializer):
         validators=[UniqueValidator(queryset=Service.objects.all())],
         write_only=False)
     def create(self, validated_data):
-        return Service.objects.create(**validated_data)
+        print(validated_data)
+        # return Service.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
         instance.name = validated_data.get('name', instance.name)
