@@ -3,18 +3,40 @@
     height: 300px;
 }
 
-.slide-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.swiper-slide {
+    background-color: #0043ff;
 }
 
-.swiper .swiper-button-prev, .swiper .swiper-button-next {
+.swiper-slide-div {
+    width: 100%;
+    height: 100%;
+    padding:0 .3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .7rem;
+    color: #FFF;
+}
+
+.swiper-slide-title {
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.swiper-slide-description {
+    text-align: center;
+    font-size: 1rem;
+}
+
+.swiper .swiper-button-prev,
+.swiper .swiper-button-next {
     color: #191e2d;
     font-size: 10px;
 }
 
-.swiper .swiper-button-prev::after, .swiper .swiper-button-next::after {
+.swiper .swiper-button-prev::after,
+.swiper .swiper-button-next::after {
     color: #191e2d;
     font-size: 2rem;
     font-weight: 800;
