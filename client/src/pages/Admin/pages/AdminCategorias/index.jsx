@@ -182,7 +182,7 @@ const AdminCategorias = () => {
                     </Form>
                 </Div>
                 <Div $flex gap={'8px'}>
-                    {categories.data.length > 0
+                    {categories.isSuccess && categories.data.length > 0
                         ? categories.data.map(item => (
                             <CardCategory onClick={() => setModal(item)} key={item.id} data={item} />
                         ))
