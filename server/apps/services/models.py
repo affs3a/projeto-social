@@ -1,14 +1,22 @@
 from django.db import models
 from ..categories.models import Category
+from ..users.models import User
 
 
 class Service(models.Model):
     name = models.CharField(max_length=255)
     identifier = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
+    description = models.CharField(max_length=255, null=True)
     images = models.TextField(null=True)
-    rating = models.DecimalField(default=0, decimal_places=1, max_digits=2)
-    social = models.TextField()
+    whatsapp = models.CharField(max_length=255, null=True)
+    instagram = models.CharField(max_length=255, null=True)
+    rating = models.IntegerField(null=True)
+    owner = models.ForeignKey(
+        User,
+        null=True,
+        on_delete=models.SET_DEFAULT,
+        default=None
+    )
     category = models.ForeignKey(
         Category,
         null=True,

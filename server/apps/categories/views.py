@@ -11,14 +11,15 @@ from ..services.models import Service
 
 class CategoryList(GenericAPIView):
     permission_classes = [IsAdmin | PublicView]
-
     serializer_class = CategorySerialize
 
-    search_fields=['name', 'tags']
-    filter_backends=[SearchFilter]
+    search_fields = ['name', 'tags']
+    filter_backends = [SearchFilter]
 
+    queryset = Category.objects.all()
+  
     def get(self, request, format=False):
-        queryset = self.filter_queryset(Category.objects.all())
+        queryset = self.filter_queryset(self.get_queryset())
         serializer = self.get_serializer(queryset, many=True)
         for item in serializer.data:
             item['quantity'] = Service.objects.filter(category__id=item.get('id')).count()

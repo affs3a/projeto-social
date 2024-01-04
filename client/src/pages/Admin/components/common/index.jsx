@@ -1,8 +1,7 @@
 import { styled } from "styled-components";
-import { Link } from "react-router-dom"
 import { theme } from "@/style/config"
 
-export const Div = styled(Link)`
+export const Div = styled.div`
     width: 100%;
     min-width: 250px;
     background-color: ${theme.root.blueShadowTwo};

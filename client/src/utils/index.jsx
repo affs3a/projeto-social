@@ -86,8 +86,18 @@ class Utils {
     }
 
     getError(error) {
-        return error.response.data ||
-            error.data || ''
+        return error.response.data
+            || error.data
+            || ''
+    }
+
+    imageMimes() {
+        return [
+            'image/png',
+            'image/jpeg',
+            'image/jpg',
+            'image/svg+xml',
+        ]
     }
 }
 
