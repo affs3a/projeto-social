@@ -142,8 +142,6 @@ export const FileField = ({ id, label, required, multiple, mimes, max }) => {
             'image/svg+xml',
         ]
 
-        console.log(e.target.files)
-
         if (e.target.files.length > maxCount) {
             utils.alert(`<strong>${maxCount}</strong> arquivo(s) no máximo!`, 'warning')
             e.target.files = null
