@@ -19,7 +19,7 @@ export const theme = {
     },
     root: {
         blueOne: "#0043ff",
-        blueOneHover: "#0036cb",
+        blueOneHover: "#0031b9",
         blueTwo: "#191e2d",
         greyOne: "#aaaaaa",
         blueThree: "#f1f4ff",

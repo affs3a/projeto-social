@@ -1,5 +1,5 @@
 import { styled } from "styled-components"
-import { ListAlt, ErrorOutline, Login, Menu, PersonAddOutlined, HomeOutlined, Close, ArrowForward, Search, ManageSearch, InfoOutlined, PersonOutline, SettingsOutlined, StoreOutlined, PeopleOutline, ArrowBack, Add, CancelOutlined, CheckOutlined, EditOutlined, CloseOutlined }
+import { ListAlt, ErrorOutline, Login, Menu, PersonAddOutlined, HomeOutlined, Close, ArrowForward, Search, ManageSearch, InfoOutlined, PersonOutline, SettingsOutlined, StoreOutlined, PeopleOutline, ArrowBack, Add, CancelOutlined, CheckOutlined, EditOutlined, CloseOutlined, FileUploadOutlined }
     from '@mui/icons-material';
 
 export const ListIcon = styled(ListAlt)`
@@ -122,6 +122,12 @@ export const EditIcon = styled(EditOutlined)`
 `
 
 export const DeleteIcon = styled(CloseOutlined)`
+    font-size: ${props => props.fontSize};
+    color: ${props => props.color};
+    cursor: pointer;
+`
+
+export const FileIcon = styled(FileUploadOutlined)`
     font-size: ${props => props.fontSize};
     color: ${props => props.color};
     cursor: pointer;

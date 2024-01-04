@@ -1,6 +1,9 @@
 import { styled } from "styled-components"
 import { theme } from "@/style/config"
+import * as Icons from "@/style/icons"
 import { Div } from "@/style/tags"
+import { useState } from "react"
+import utils from "@/utils"
 
 export const Form = styled.form`
     width: ${props => props.width || '100%'};
@@ -64,9 +67,36 @@ export const TextArea = styled.textarea`
     }
 `
 
-
 export const Option = styled.option`
 
+`
+
+export const DivFile = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    padding: 12px;
+    color: ${theme.root.white};
+    background-color: ${theme.root.blueOne};
+    border-radius: 4px;
+    transition: 300ms;
+
+    &:hover {
+        background-color: ${theme.root.blueOneHover};
+    }
+`
+
+export const LabelFile = styled.p`
+    margin-bottom: 6px;
+    font-size: 1.15rem;
+    color: ${theme.root.textTwo};
+`
+
+
+export const InputFile = styled.input.attrs({ type: 'file' })`
+    display: none;
 `
 
 export const Field = ({ id, label, type, place, value, required }) => {
@@ -92,10 +122,54 @@ export const SelectField = ({ children, id, label, required }) => {
     </Div>
 }
 
-export const TextField = ({ value, id, label, required }) => {
+export const TextField = ({ value, id, label, place, required }) => {
     return <Div $flex gap={'4px'} align={'left'}>
         <Label htmlFor={id}>{label}</Label>
-        <TextArea id={id} name={id} required={required}>{value}</TextArea>
+        <TextArea id={id} name={id} required={required} placeholder={place ?? label}>{value}</TextArea>
+    </Div>
+}
+
+export const FileField = ({ id, label, required, multiple, mimes, max }) => {
+    let [count, setCount] = useState(0)
+    const changeHandler = (e) => {
+        let error = false
+        let maxCount = max ?? 3
+        let mimesList = mimes ?? [
+            'application/pdf',
+            'application/zip',
+            'image/png',
+            'image/jpeg',
+            'image/svg+xml',
+        ]
+
+        if (e.target.files.length > maxCount) {
+            utils.alert(`<strong>${maxCount}</strong> arquivo(s) no máximo!`, 'warning')
+            e.target.files = null
+            error = true
+        }
+
+        mimes && [].slice.call(e.target.files).forEach(it => {
+            if (!mimesList.includes(it.type)) {
+                utils.alert(`<strong>${it.name}:</strong> Tipo de arquivo não permitido!`, 'warning')
+                e.target.files = null
+                error = true
+            }
+        })
+
+        setCount(!error && e.target.files.length)
+    }
+    return <Div $flex gap={'4px'} align={'left'}>
+        <Label htmlFor={id}>
+            <LabelFile>{label}</LabelFile>
+            <DivFile>
+                <Icons.FileIcon />
+                {count > 0
+                    ? <>{count} Arquivo(s) selecionado(s) </>
+                    : <>Selecionar Arquivos</>}
+            </DivFile>
+        </Label>
+
+        <InputFile onChange={changeHandler} id={id} name={id} required={required} multiple={multiple} />
     </Div>
 }
 
