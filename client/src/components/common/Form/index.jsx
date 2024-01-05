@@ -139,6 +139,7 @@ export const FileField = ({ id, label, required, multiple, mimes, max }) => {
             'application/zip',
             'image/png',
             'image/jpeg',
+            'image/jpg',
             'image/svg+xml',
         ]
 
