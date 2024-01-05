@@ -1,6 +1,8 @@
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
 
+import "./index.css"
+
 class Utils {
     constructor() {
         this.alertClient = withReactContent(Swal)
@@ -84,24 +86,38 @@ class Utils {
 
         const obj = {}
 
+        const callback = (obj, key, value) => {
+            if (value != "") obj[key]
+            ? obj[key] = Array.isArray(obj[key])
+                ? [...obj[key], value]
+                : [obj[key], value]
+            : obj[key] = value
+        }
 
         const encode = {
-            default: (value) => {
-                return value
+            default: (obj, key, value) => {
+                callback(obj, key, value)
             },
-            base64: (value) => {
-                return value
+            base64: (obj, key, value) => {
+                const reader = new FileReader();
+                const aux = {}
+
+                reader.readAsDataURL(value)
+                reader.onloadend = () => {
+                    aux.name = value.name
+                    aux.url = reader.result
+                    if (obj[key] && typeof obj[key] == "string") {
+                        obj[key] = JSON.parse(obj[key])
+                    }
+                    callback(obj, key, aux)
+                    obj[key] = JSON.stringify(obj[key])
+                }
             }
         }[options.filesEncoding ?? 'default']
 
-
-        formData.forEach((v, k) => {
-            if (v instanceof File) v = encode(v)
-            if (k && v != "") obj[k]
-                ? obj[k] = Array.isArray(obj[k])
-                    ? [...obj[k], v]
-                    : [obj[k], v]
-                : obj[k] = v
+        formData.forEach((value, key) => {
+            if (value instanceof File) encode(obj, key, value)
+            else callback(obj, key, value)
         })
 
         return obj

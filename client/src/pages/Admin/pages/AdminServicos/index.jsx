@@ -82,7 +82,7 @@ const AdminServicos = () => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        const json = utils.formToObject(e.target, { filesEncode: 'base64' })
+        const json = utils.formToObject(e.target, { filesEncoding: 'base64' })
         console.log(json)
         // if (utils.empty(modal)) {
         //     addService.mutate(json)

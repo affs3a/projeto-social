@@ -7,22 +7,6 @@ import 'swiper/css/pagination'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 
-// const inforSlide = [
-//     {
-//         title: "Serviços Araripe",
-//         description: "Encontre o serviço ideal para você em Araripe-CE"
-//     },
-//     {
-//         title: "Facil e intuitivo",
-//         description: "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI",
-//     },
-//     {
-//         title: "Direto ao ponto.",
-//         description: "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI"
-//     }
-
-// ]
-
 
 //Imagens
 import image from "@public/images/slide.jpg"
