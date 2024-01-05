@@ -6,7 +6,7 @@ from ..users.models import User
 class Service(models.Model):
     name = models.CharField(max_length=255)
     identifier = models.CharField(max_length=255)
-    description = models.CharField(max_length=255, null=True)
+    description = models.TextField(null=True)
     images = models.TextField(null=True)
     whatsapp = models.CharField(max_length=255, null=True)
     instagram = models.CharField(max_length=255, null=True)

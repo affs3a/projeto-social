@@ -7,6 +7,7 @@ class ServiceSerialize(serializers.ModelSerializer):
     identifier = serializers.CharField(
         validators=[UniqueValidator(queryset=Service.objects.all())],
         write_only=False)
+    
     def create(self, validated_data):
         print(validated_data)
         # return Service.objects.create(**validated_data)
