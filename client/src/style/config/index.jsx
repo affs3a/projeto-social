@@ -10,7 +10,7 @@ export const theme = {
             height: "72px",
             minHeight: "150px"
         },
-        Main: "1rem .8rem 2rem",
+        Main: "1rem .8rem 3rem",
     },
     Desktop: {
         padding: "0 2rem",
@@ -36,6 +36,8 @@ export const theme = {
         blueShadow: "rgba(69, 140, 255, 0.35)",
         blueShadowTwo: "rgba(224, 236, 255, 0.349)",
         blueShadowThree: "rgba(2, 26, 60, 0.305)",
+        boxShadowStyle: "5px 5px 7px 1px rgba(0,0,0,0.3)",
+        boxShadowStyleTwo: "3px 3px 7px rgba(0,0,0,0.5)",
         shadowThree: "rgba(58, 110, 253, 0.611)",
         greenAlert: "rgb(167, 255, 214)",
         yellowAlert: "rgb(253, 255, 187)",

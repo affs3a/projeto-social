@@ -3,8 +3,10 @@
     height: 300px;
 }
 
-.swiper-slide {
-    background-color: #0043ff;
+.swiper-image {
+    object-fit: cover;
+    width: 100vw;
+    height: 100%;
 }
 
 .swiper-slide-div {

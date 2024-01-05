@@ -1,21 +1,32 @@
 import styled from "styled-components"
-import { Div, Title, Description } from "@/style/tags"
+import { Div, Description } from "@/style/tags"
 
 const Image = styled.img`
     width: 100%;
-    height: 200px;
+    max-width: 360px;
+    height: 220px;
     border-radius: 8px;
+    background-image: url(${props => props.src});
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    box-shadow: ${({theme}) => theme.root.boxShadowStyleTwo};
+    margin-top: .3rem;
 `
 
+const TitleInfor = styled.h2`
+    font-size: 1.7rem;
+    font-weight: 800;
+`
 
-const InforHome = ({ title, titleAzul, description, image }) => {
+const InforHome = ({ title, description, image }) => {
     return (
         <Div $flex gap={".5rem"}>
-            <Title as={"h2"} fontSize={"1.7rem"}>{title}</Title>
+            <TitleInfor>{title}</TitleInfor>
             <Description align={"center"}>
                 {description}
             </Description>
-            <Image
+            <Image as={"div"}
                 src={image}
             />
         </Div>

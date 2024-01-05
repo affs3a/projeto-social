@@ -7,21 +7,32 @@ import 'swiper/css/pagination'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 
-const inforSlide = [
-    {
-        title: "Serviços Araripe",
-        description: "Encontre o serviço ideal para você em Araripe-CE"
-    },
-    {
-        title: "Facil e intuitivo",
-        description: "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI"
-    },
-    {
-        title: "Direto ao ponto.",
-        description: "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI"
-    }
+// const inforSlide = [
+//     {
+//         title: "Serviços Araripe",
+//         description: "Encontre o serviço ideal para você em Araripe-CE"
+//     },
+//     {
+//         title: "Facil e intuitivo",
+//         description: "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI",
+//     },
+//     {
+//         title: "Direto ao ponto.",
+//         description: "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI"
+//     }
 
+// ]
+
+
+//Imagens
+import image from "@public/images/slide.jpg"
+
+const imagesSlide = [
+    image,
+    image,
+    image
 ]
+
 
 const Slide = () => {
     return (
@@ -35,13 +46,10 @@ const Slide = () => {
                 delay: 3000
             }}
         >
-            {inforSlide.map((e, key) => {
+            {imagesSlide.map((image, key) => {
                 return (
                     <SwiperSlide className='swiper-slide' key={key}>
-                        <div className='swiper-slide-div'>
-                            <h2 className='swiper-slide-title'>{e.title}</h2>
-                            <p className='swiper-slide-description'>{e.description}</p>
-                        </div>
+                        <img src={image} className='swiper-image' />
                     </SwiperSlide>
                 )
             })}

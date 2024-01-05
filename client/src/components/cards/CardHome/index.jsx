@@ -4,13 +4,14 @@ import { Link } from "react-router-dom"
 const Div = styled(Link)`
     width: 100%;
     min-width: 250px;
-    background-color: ${({theme}) => theme.root.blueOne};
+    background-color: ${({theme}) => theme.root.blueFive};
     border-radius: 8px;
     padding: 16px 8px;
     display: grid;
     grid-template-columns: auto 2fr auto;
     gap: 8px;
     cursor: pointer;
+    box-shadow: ${({theme}) => theme.root.boxShadowStyleTwo};
 `
 
 const Text = styled.h3`
