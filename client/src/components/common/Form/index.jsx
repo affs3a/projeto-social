@@ -180,8 +180,7 @@ export const HiddenField = ({ id, value }) => {
 
 export const Modal = styled.div`
     width: 100%;
-    min-height: calc(100vh - ${theme.Mobile.NavBar.height});
-    position: fixed;
+    /* position: fixed; */
     display: flex;
     flex-direction: column;
     justify-content: center;

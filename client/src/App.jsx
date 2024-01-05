@@ -50,7 +50,7 @@ const Main = styled.main`
   align-items: center;
   width: 100vw;
   margin-top: ${theme.Mobile.NavBar.height};
-  min-height: calc(100vh - ${theme.Mobile.NavBar.height});
+  min-height: calc(100vh - ${theme.Mobile.NavBar.minHeight});
   position: relative;
   z-index: 1;
 

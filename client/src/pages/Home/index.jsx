@@ -3,7 +3,6 @@ import { Arrowicon } from "@/style/icons"
 import { SearchCategoryIcon, InfoIcon } from "@/style/icons"
 import { Div } from "@/style/tags"
 import Slide from '@/components/Slide'
-import InforHome from "@/components/common/InforHome"
 import CardHome from "@/components/cards/CardHome"
 
 // Imagens
