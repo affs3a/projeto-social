@@ -180,15 +180,15 @@ export const HiddenField = ({ id, value }) => {
 
 export const Modal = styled.div`
     width: 100%;
-    /* position: fixed; */
+    height: 100vh;
+    position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: ${theme.root.white};
     z-index: 999;
-    top: ${theme.Mobile.NavBar.height};
+    top: 0;
     left: 0;
-    visibility: ${props => props.$visible ? "visible" : "hidden"};
-    opacity: ${props => props.$visible ? "1" : "0"};
+    display: ${props => props.$visible ? "flex" : "none"};
 `

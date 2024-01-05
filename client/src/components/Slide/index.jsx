@@ -6,10 +6,9 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
-
 const inforSlide = [
     {
-        title: "Serviços Araripe",
+        title: "ArariServiços",
         description: "Encontre o serviço ideal para você em Araripe-CE"
     },
     {
@@ -39,7 +38,7 @@ const Slide = () => {
                 return (
                     <SwiperSlide className='swiper-slide' key={key}>
                         <div className='swiper-slide-div'>
-                            <h2 className='swiper-slide-title'>{e.title}</h2>
+                            <h2 style={{fontWeight: 900}} className='swiper-slide-title'>{e.title}</h2>
                             <p className='swiper-slide-description'>{e.description}</p>
                         </div>
                     </SwiperSlide>

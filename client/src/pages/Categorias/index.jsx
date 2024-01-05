@@ -52,7 +52,7 @@ const Categorias = () => {
                         ><SearchIcon /></Button>
                     </Div>
                 </Form>
-                <Div $flex top={"2rem"} gap={"1rem"}>
+                <Div $flex top={"2rem"} gap={".5rem"}>
                     {categories.isSuccess && categories.data.length > 0
                         ? categories.data.map((item, key) => (
                             <CardCategory key={key} data={item} />
