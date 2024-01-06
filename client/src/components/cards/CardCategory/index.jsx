@@ -59,7 +59,7 @@ const Number = styled.h3`
 const Mark = styled.div`
     display: inline;
     margin-right: 6px;
-    padding: 2px 4px;
+    padding: 0 5px;
     font-size: 15px;
     color: ${({theme}) => theme.root.blueTwo};
     font-weight: 900;
