@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom"
 import Empty from "@/components/responses/Empty"
 import { useState } from "react"
 import utils from "@/utils"
+import CardLoja from "@/components/cards/CardLoja"
 
 const Servicos = () => {
     const navigate = useNavigate();
@@ -52,6 +53,9 @@ const Servicos = () => {
             </Form>
             <Div $flex top={"2rem"} gap={"1rem"}>
                 {/* IMPL */}
+                <CardLoja />
+                <CardLoja />
+                <CardLoja />
             </Div>
         </Div>
     </>

@@ -1,6 +1,9 @@
 import { styled } from "styled-components"
-import { ListAlt, ErrorOutline, Login, Menu, PersonAddOutlined, HomeOutlined, Close, ArrowForward, Search, ManageSearch, InfoOutlined, PersonOutline, SettingsOutlined, StoreOutlined, PeopleOutline, ArrowBack, Add, CancelOutlined, CheckOutlined, EditOutlined, CloseOutlined, FileUploadOutlined }
-    from '@mui/icons-material';
+import {
+    ListAlt, ErrorOutline, Login, Menu, PersonAddOutlined, HomeOutlined, Close, ArrowForward,
+    Search, ManageSearch, InfoOutlined, PersonOutline, SettingsOutlined, StoreOutlined, PeopleOutline,
+    ArrowBack, Add, CancelOutlined, CheckOutlined, EditOutlined, CloseOutlined, FileUploadOutlined, WhatsApp
+} from '@mui/icons-material';
 
 export const ListIcon = styled(ListAlt)`
     font-size: ${props => props.fontSize};
@@ -128,6 +131,12 @@ export const DeleteIcon = styled(CloseOutlined)`
 `
 
 export const FileIcon = styled(FileUploadOutlined)`
+    font-size: ${props => props.fontSize};
+    color: ${props => props.color};
+    cursor: pointer;
+`
+
+export const WhatsIcon = styled(WhatsApp)`
     font-size: ${props => props.fontSize};
     color: ${props => props.color};
     cursor: pointer;
