@@ -12,7 +12,7 @@ class ServiceSerialize(serializers.ModelSerializer):
     
     def create(self, validated_data):
         if (validated_data.get('images')):
-            filenames = uploads.upload(validated_data.get('images'))
+            filenames = uploads.upload(validated_data.get('images'), to='images')
             validated_data['images'] = json.dumps(filenames)
 
         return Service.objects.create(**validated_data)
@@ -26,7 +26,7 @@ class ServiceSerialize(serializers.ModelSerializer):
         instance.intagram = validated_data.get('instagram', instance.instagram)
         instance.category = validated_data.get('category', instance.category)
         if (validated_data.get('images')):
-            instance.images = json.dumps(uploads.upload(validated_data.get('images')))
+            instance.images = json.dumps(uploads.upload(validated_data.get('images'), to='images'))
         instance.save()
         return instance
 
