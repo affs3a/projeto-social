@@ -25,6 +25,7 @@ class ServiceSerialize(serializers.ModelSerializer):
         instance.whatsapp = validated_data.get('whatsapp', instance.whatsapp)
         instance.intagram = validated_data.get('instagram', instance.instagram)
         instance.category = validated_data.get('category', instance.category)
+        instance.owner = validated_data.get('owner', instance.owner)
         if (validated_data.get('images')):
             instance.images = json.dumps(uploads.upload(validated_data.get('images'), to='images'))
         instance.save()

@@ -122,10 +122,10 @@ export const SelectField = ({ children, id, label, required }) => {
     </Div>
 }
 
-export const TextField = ({ value, id, label, place, required }) => {
+export const TextField = ({ text, id, label, place, required }) => {
     return <Div $flex gap={'4px'} align={'left'}>
         <Label htmlFor={id}>{label}</Label>
-        <TextArea id={id} name={id} required={required} placeholder={place ?? label}>{value}</TextArea>
+        <TextArea id={id} name={id} required={required} placeholder={place ?? label} defaultValue={text} />
     </Div>
 }
 

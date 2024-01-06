@@ -9,11 +9,12 @@ import { useState } from "react"
 import { Field, Modal, SelectField, TextField } from "@/components/common/Form"
 import utils from "@/utils"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import CardCategory from "@/pages/Admin/components/CardCategory"
+import CardService from "@/pages/Admin/components/CardService"
 import Unauthorized from "@/components/responses/Unauthorized"
 import Empty from "@/components/responses/Empty"
 import api from "@/api"
 import { FileField } from "@/components/common/Form"
+import { TextArea } from "../../../../components/common/Form"
 
 const AdminServicos = () => {
     const [modal, setModal] = useState(null)
@@ -85,8 +86,6 @@ const AdminServicos = () => {
         const fileData = utils.formWithFilesToObject(e.target, "images")
         const json = utils.formToObject(await Promise.resolve(fileData), true)
 
-        console.log(json.images)
-        
         if (utils.empty(modal)) {
             addService.mutate(json)
         } else {
@@ -147,18 +146,18 @@ const AdminServicos = () => {
                                     <HiddenField id={"id"} value={modal && modal.id} />
                                     <Field id={"name"} label={"Nome:"} place={"Nome do serviço"} value={modal && modal.name} required={utils.empty(modal)} />
                                     <Field id={"identifier"} label={"Identificador:"} place={"Identificador único"} value={modal && modal.identifier} required={utils.empty(modal)} />
-                                    <TextField id={"description"} label={"Descrição:"} place={"Informações do serviço"} value={modal && modal.description} required={utils.empty(modal)} />
+                                    <TextField id={"description"} label={"Descrição:"} place={"Informações do serviço"} text={modal && modal.description} required={utils.empty(modal)} />
                                     <Field id={"whatsapp"} label={"Whatsapp:"} place={"Número do celular"} value={modal && modal.whatsapp} />
                                     <Field id={"instagram"} label={"Instagram:"} place={"Instagram do serviço"} value={modal && modal.instagram} />
                                     <FileField id={"images"} label={"Fotos (até 3):"} max={3} mimes={utils.imageMimes()} multiple />
                                     <SelectField id={"category"} label={"Categoria:"}>
                                         {categories.isSuccess && categories.data.map(item => (
-                                            <Option key={item.id} value={item.id} selected={modal && modal.category}>{item.name}</Option>
+                                            <Option key={item.id} value={item.id} selected={modal && modal.category == item.id}>{item.name}</Option>
                                         ))}
                                     </SelectField>
                                     <SelectField id={"owner"} label={"Usuário Possuidor:"}>
                                         {users.isSuccess && users.data.map(item => (
-                                            <Option key={item.id} value={item.id} selected={modal && modal.owner}>@{item.username}</Option>
+                                            <Option key={item.id} value={item.id} selected={modal && modal.owner == item.id}>{item.username}</Option>
                                         ))}
                                     </SelectField>
                                     <Div $flex $row top={"8px"} gap={"8px"}>
@@ -210,9 +209,15 @@ const AdminServicos = () => {
                     </Form>
                 </Div>
                 <Div $flex gap={'8px'}>
-                    {services.isSuccess && services.data.length > 0
+                    {services.isSuccess && users.isSuccess && categories.isSuccess && services.data.length > 0
                         ? services.data.map((item, key) => (
-                            <CardCategory onClick={() => setModal(item)} key={key} data={item} />
+                            <CardService onClick={() => setModal(item)}
+                            key={key}
+                            data={item}
+                            dataset={{
+                                owner: users.data.find(user=>user.id===item.owner),
+                                category: categories.data.find(categ=>categ.id===item.category)
+                            }}/>
                         ))
                         : <Empty />
                     }
