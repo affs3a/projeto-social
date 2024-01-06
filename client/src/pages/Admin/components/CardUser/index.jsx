@@ -10,8 +10,8 @@ const CardUser = ({ data, onClick }) => {
                     <ProfileIcon fontSize={"26px"} />
                     <Cp.Text><Cp.Bold>{data.name ?? ""}</Cp.Bold></Cp.Text>
                 </Cp.Horizontal>
-                <Cp.Text>{api.matchProfile(data.role)}</Cp.Text>
             </Cp.Container>
+            <Cp.Text><Cp.Bold>Perfil:</Cp.Bold> {api.matchProfile(data.role)}</Cp.Text>
             <Cp.Text><Cp.Bold>Username:</Cp.Bold> {data.username ?? ""}</Cp.Text>
             <Cp.Container>
                 <Cp.Text><Cp.Bold>Cel.:</Cp.Bold> {data.phone ?? ""}</Cp.Text>

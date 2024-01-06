@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework import exceptions
 from rest_framework.validators import UniqueValidator
 from utils import uploads
 import json
@@ -13,6 +14,7 @@ class ServiceSerialize(serializers.ModelSerializer):
     def create(self, validated_data):
         if (validated_data.get('images')):
             filenames = uploads.upload(validated_data.get('images'), to=uploads.IMAGES)
+            if (filenames == None): raise serializers.ValidationError('Imagem muito grande!')
             validated_data['images'] = json.dumps(filenames)
 
         return Service.objects.create(**validated_data)
@@ -28,7 +30,9 @@ class ServiceSerialize(serializers.ModelSerializer):
         instance.owner = validated_data.get('owner', instance.owner)
         if (validated_data.get('images')):
             uploads.delete(json.loads(instance.images))
-            instance.images = json.dumps(uploads.upload(validated_data.get('images'), to='images'))
+            filenames = uploads.upload(validated_data.get('images'), to='images')
+            if (filenames == None): raise serializers.ValidationError('Imagem muito grande!')
+            instance.images = json.dumps(filenames)
         instance.save()
         return instance
     

@@ -108,8 +108,6 @@ class Utils {
         return obj
     }
 
-
-
     empty(obj) {
         return obj ? Object.keys(obj).length == 0 : true
     }

@@ -8,11 +8,16 @@ import os
     
 FS = FileSystemStorage()
 IMAGES = 'images'
+MAX_SIZE = 1024 * 1024 * 3
 
-def upload(files_json, to=''):
+def upload(files_json, to='', maxsize=MAX_SIZE):
     files = json.loads(files_json)
 
     filenames = []
+
+    for file in files:
+        if (file.get('size')) > maxsize:
+            return None
 
     for file in files:
         extension = file.get('name').split('.')[-1]
