@@ -6,6 +6,8 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.filters import SearchFilter
 from .serializers import ServiceSerialize
 from .models import Service
+from utils import uploads
+import json
 
 
 class ServicesList(GenericAPIView):
@@ -55,5 +57,6 @@ class ServiceDetails(APIView):
 
     def delete(self, request, service_id, format=False):
         service = self.get_service(service_id)
+        uploads.delete(json.loads(service.images))
         service.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

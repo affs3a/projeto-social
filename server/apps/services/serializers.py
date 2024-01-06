@@ -12,7 +12,7 @@ class ServiceSerialize(serializers.ModelSerializer):
     
     def create(self, validated_data):
         if (validated_data.get('images')):
-            filenames = uploads.upload(validated_data.get('images'), to='images')
+            filenames = uploads.upload(validated_data.get('images'), to=uploads.IMAGES)
             validated_data['images'] = json.dumps(filenames)
 
         return Service.objects.create(**validated_data)
@@ -27,10 +27,11 @@ class ServiceSerialize(serializers.ModelSerializer):
         instance.category = validated_data.get('category', instance.category)
         instance.owner = validated_data.get('owner', instance.owner)
         if (validated_data.get('images')):
+            uploads.delete(json.loads(instance.images))
             instance.images = json.dumps(uploads.upload(validated_data.get('images'), to='images'))
         instance.save()
         return instance
-
+    
     class Meta:
         fields = '__all__'
         model = Service
