@@ -1,4 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
+import styled from 'styled-components';
 import './slide.css'
 
 import 'swiper/css';
@@ -6,19 +7,12 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
+const Image = styled.img`
+    border-radius: ${props => props.radius};
+`
 
-
-//Imagens
-import image from "@public/images/slide.jpg"
-
-const imagesSlide = [
-    image,
-    image,
-    image
-]
-
-
-const Slide = () => {
+const Slide = ({ imagesSlide, border }) => {
+    console.log(border)
     return (
         <Swiper
             className='swiper'
@@ -33,7 +27,11 @@ const Slide = () => {
             {imagesSlide.map((image, key) => {
                 return (
                     <SwiperSlide className='swiper-slide' key={key}>
-                        <img src={image} className='swiper-image' />
+                        <Image
+                            src={image}
+                            className='swiper-image'
+                            radius={border}
+                        />
                     </SwiperSlide>
                 )
             })}
