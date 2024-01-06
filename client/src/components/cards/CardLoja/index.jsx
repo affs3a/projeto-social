@@ -11,7 +11,9 @@ const Div = styled.div`
     background-size: cover;
     /* background-image: url(${props => props.image}); */
     border-radius: 10px;
-    box-shadow: 0px -70px 30px 0px rgba(0, 0, 0, 0.57) inset;
+    box-shadow: 0px -70px 30px 0px rgba(0, 0, 0, 0.57) inset,
+    5px 5px 7px 1px rgba(0,0,0,0.3) 
+    ;
     color: ${({ theme }) => theme.root.white};
     padding: 1rem;
     display: grid;
@@ -19,6 +21,7 @@ const Div = styled.div`
     grid-template-areas: 
         "nome whatsapp"
     ;
+
 `
 const Nome = styled.h3`
     font-size: 1.2rem;
