@@ -53,9 +53,6 @@ const Servicos = () => {
             </Form>
             <Div $flex top={"2rem"} gap={"1rem"}>
                 {/* IMPL */}
-                <CardLoja />
-                <CardLoja />
-                <CardLoja />
             </Div>
         </Div>
     </>
