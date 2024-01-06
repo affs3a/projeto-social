@@ -3,17 +3,31 @@ import { SearchIcon, ArrowLeft } from "@/style/icons"
 import { Form, Input } from "@/components/common/Form"
 import { Button } from "@/components/common/Button"
 import { theme } from "@/style/config"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import Empty from "@/components/responses/Empty"
+import Error from "@/components/responses/Error"
+import Load from "@/components/common/Load"
 import { useState } from "react"
 import utils from "@/utils"
+import { useQuery } from "@tanstack/react-query"
 import CardLoja from "@/components/cards/CardLoja"
+import api from "@/api"
+import { Mark } from "../../components/common/Typing"
 
 const Servicos = () => {
-    const navigate = useNavigate();
     const [filter, setFilter] = useState()
+    const params = useParams()
+    const navigate = useNavigate();
 
-    //IMPL
+    const category = useQuery({
+        queryKey: [api.QUERY_CATEGORIES, 'one'],
+        queryFn: async () => await api.getCategory(params.id),
+    })
+
+    const services = useQuery({
+        queryKey: [api.QUERY_SERVICES, filter],
+        queryFn: async () => await api.getServices(filter, params.id),
+    })
 
     const searchHandler = (e) => {
         e.preventDefault()
@@ -21,40 +35,53 @@ const Servicos = () => {
     }
 
     return <>
-        <Div as={"section"} $flex>
-            <Div $flex $row gap={'8px'} bottom={'12px'}>
-                <SearchIcon />
-                <Title>Serviços</Title>
-                <Button
-                    margin={'0 0 0 16px'}
-                    back={theme.root.blueShadow}
-                    hover={theme.root.shadow}
-                    height={"34px"}
-                    onClick={() => navigate('/localizar')}
-                ><ArrowLeft />Voltar</Button>
-            </Div>
-            <Form onSubmit={searchHandler} $flex maxwidth={"330px"}>
-                <Div $row $flex justify={"right"} gap={"4px"}>
-                    <Input
-                        padding={"6px"}
-                        type={"search"}
-                        name={"search"}
-                        id={"search"}
-                        placeholder={"Localizar"}
-                    />
+        {(services.isLoading || category.isLoading) && <Load />}
+        {!services.isError ? (
+            <Div as={"section"} $flex>
+                <Div $flex $row gap={'8px'} bottom={'12px'}>
+                    <SearchIcon />
+                    <Title>Serviços</Title>
                     <Button
-                        type={"submit"}
-                        back={theme.root.white}
-                        border={theme.root.shadow}
-                        hover={theme.root.blueShadowTwo}
-                        height={"38px"}
-                    ><SearchIcon /></Button>
+                        margin={'0 0 0 16px'}
+                        back={theme.root.blueShadow}
+                        hover={theme.root.shadow}
+                        height={"34px"}
+                        onClick={() => navigate('/localizar')}
+                    ><ArrowLeft />Voltar</Button>
                 </Div>
-            </Form>
-            <Div $flex top={"2rem"} gap={"1rem"}>
-                {/* IMPL */}
+                <Form onSubmit={searchHandler} $flex maxwidth={"330px"}>
+                    <Div $row $flex justify={"right"} gap={"4px"}>
+                        <Input
+                            padding={"6px"}
+                            type={"search"}
+                            name={"search"}
+                            id={"search"}
+                            placeholder={"Localizar"}
+                        />
+                        <Button
+                            type={"submit"}
+                            back={theme.root.white}
+                            border={theme.root.shadow}
+                            hover={theme.root.blueShadowTwo}
+                            height={"38px"}
+                        ><SearchIcon /></Button>
+                    </Div>
+                </Form>
+                {category.isSuccess && (
+                    <Div top={"1rem"} $flex>
+                        <Mark padding={"4px 10px"}>{category.data.name}</Mark>
+                    </Div>
+                )}
+                <Div $flex top={"1rem"} gap={"1rem"}>
+                    {services.isSuccess && services.data.length > 0
+                        ? services.data.map((item, key) => (
+                            <CardLoja data={item} key={key} />
+                        ))
+                        : <Empty />
+                    }
+                </Div>
             </Div>
-        </Div>
+        ) : <Error />}
     </>
 }
 

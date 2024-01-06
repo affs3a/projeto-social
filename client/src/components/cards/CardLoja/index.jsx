@@ -1,19 +1,17 @@
 import styled from "styled-components"
-import { WhatsIcon } from "@/style/icons"
-import { Link } from "react-router-dom"
-// import image from "@public/images/inforhome1.jpg"
+import { WhatsIcon, ArrowRight } from "@/style/icons"
+import api from "@/api"
+import { theme } from "@/style/config"
 
 const Div = styled.div`
     width: 100%;
     height: 210px;
-    background-image: url("/public/images/inforhome3.jpg") ;
     background-repeat: no-repeat;
     background-size: cover;
-    /* background-image: url(${props => props.image}); */
+    background-image: url(${props => props.image || "linear-gradient(35deg, #999, #444)"});
     border-radius: 10px;
-    box-shadow: 0px -70px 30px 0px rgba(0, 0, 0, 0.57) inset,
-    5px 5px 7px 1px rgba(0,0,0,0.3) 
-    ;
+    box-shadow: 0px -70px 50px 0px rgba(0, 0, 0, 0.47) inset,
+    5px 5px 7px 1px rgba(0,0,0,0.3) ;
     color: ${({ theme }) => theme.root.white};
     padding: 1rem;
     display: grid;
@@ -25,12 +23,12 @@ const Div = styled.div`
 `
 const Nome = styled.h3`
     font-size: 1.2rem;
-    font-weight: 800;
+    font-weight: 900;
     grid-area: nome;
     align-self: self-end;
 `
 
-const Span = styled(Link)`
+const Span = styled.a`
     display: flex;
     width: 100%;
     grid-area: whatsapp;
@@ -40,17 +38,28 @@ const Span = styled(Link)`
     color: ${({ theme }) => theme.root.white};
 `
 
+const Container = styled.div`
+    display: flex;
+    align-items: center;
+    background: ${theme.root.shadow};
+    padding: 4px 8px;
+    border-radius: 30px;
+`
 
-const CardLoja = ({ nome, link, whatsapp, image }) => {
+
+const CardLoja = ({ data }) => {
+    const images = data.images ? JSON.parse(data.images) : null
     return (
-        <Div /*image={image}*/>
-            <Nome>Nome da Loja</Nome>
+        <Div image={images && (api.media_path + images[0])}>
+            <Nome>{data.name}</Nome>
             <Span
-                to={''}
+                href={`${api.whats_client}${data.whatsapp}`}
                 target="_blank"
             >
-                <WhatsIcon />
-                <Nome>Whatsapp</Nome>
+                <Container>
+                    <WhatsIcon fontSize={"27px"} />
+                    <ArrowRight fontSize={"24px"} />
+                </Container>
             </Span>
         </Div>
     )

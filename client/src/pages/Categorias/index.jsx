@@ -27,7 +27,7 @@ const Categorias = () => {
     }
 
     return <>
-        {categories.isLoading && <Load />}
+        {categories.isPending && <Load />}
         {!categories.isError ? (
             <Div as={"section"} $flex>
                 <Div $flex $row gap={'8px'} bottom={"12px"}>
