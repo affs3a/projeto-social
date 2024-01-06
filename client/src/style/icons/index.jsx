@@ -64,6 +64,12 @@ export const ArrowLeft = styled(ArrowBack)`
     cursor: pointer;
 `
 
+export const ArrowRight = styled(ArrowForward)`
+    font-size: ${props => props.fontSize};
+    color: ${props => props.color};
+    cursor: pointer;
+`
+
 export const SearchIcon = styled(Search)`
     font-size: ${props => props.fontSize};
     color: ${props => props.color};

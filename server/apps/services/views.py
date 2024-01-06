@@ -20,8 +20,10 @@ class ServicesList(GenericAPIView):
     queryset=Service.objects.all()
 
     def get(self, request, format=False):
-        queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
+        queryset = self.get_queryset()
+        if(category_id := request.query_params.get('category')):
+            queryset = Service.objects.filter(category__id=category_id).all()
+        serializer = self.get_serializer(self.filter_queryset(queryset), many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, format=False):

@@ -6,14 +6,14 @@ class API {
         this.USER = 'user'
         this.ACCESS_TOKEN = 'access_token'
         this.REFRESH_TOKEN = 'refresh_token'
-
+        
         this.ROLE_PROVIDER = 1
         this.ROLE_ADMIN = 2
-
+        
         this.QUERY_USERS = 'users'
         this.QUERY_CATEGORIES = 'categories'
         this.QUERY_SERVICES = 'services'
-
+        
         this.client = axios.create({
             baseURL: 'http://localhost:8000/api/',
             timeout: 10000,
@@ -21,6 +21,9 @@ class API {
                 'Content-Type': 'application/json',
             }
         })
+
+        this.media_path = 'http://localhost:8000/'
+        this.whats_client = 'https://api.whatsapp.com/send?phone=55'
     }
 
     login(credentials, handler) {
@@ -87,6 +90,14 @@ class API {
         return data
     }
 
+    async getCategory(id) {
+        const { data } = await this.client.get(`/categories/${id}`, {
+            headers: this.buildHeader(),
+        })
+
+        return data
+    }
+
     async addCategory(data) {
         return await this.client.put('/categories/', data, {
             headers: this.buildHeader()
@@ -105,9 +116,14 @@ class API {
         })
     }
 
-    async getServices(search = null) {
+    async getServices(search = null, category = null) {
+        const params = {}
+
+        search && (params.search = search)
+        category && (params.category = category)
+
         const { data } = await this.client.get('/services/', {
-            params: search && { search },
+            params: params,
             headers: this.buildHeader(),
         })
 
