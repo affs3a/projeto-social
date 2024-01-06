@@ -24,7 +24,7 @@ class ServiceSerialize(serializers.ModelSerializer):
         instance.description = validated_data.get('description', instance.description)
         instance.social = validated_data.get('social', instance.social)
         instance.category = validated_data.get('category', instance.category)
-        instance.images = validated_data.get('images', instance.images)
+        instance.images = validated_data.get('images', uploads.upload(instance.images))
         instance.save()
         return instance
 
