@@ -22,9 +22,11 @@ class ServiceSerialize(serializers.ModelSerializer):
         instance.name = validated_data.get('name', instance.name)
         instance.identifier = validated_data.get('identifier', instance.identifier)
         instance.description = validated_data.get('description', instance.description)
-        instance.social = validated_data.get('social', instance.social)
+        instance.whatsapp = validated_data.get('whatsapp', instance.whatsapp)
+        instance.intagram = validated_data.get('instagram', instance.instagram)
         instance.category = validated_data.get('category', instance.category)
-        instance.images = validated_data.get('images', uploads.upload(instance.images))
+        if (validated_data.get('images')):
+            instance.images = json.dumps(uploads.upload(validated_data.get('images')))
         instance.save()
         return instance
 
