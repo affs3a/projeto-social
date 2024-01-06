@@ -1,8 +1,6 @@
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
 
-import "./index.css"
-
 class Utils {
     constructor() {
         this.alertClient = withReactContent(Swal)
@@ -72,56 +70,45 @@ class Utils {
         return `<p>${messageText}</p>`
     }
 
-    formToObject(form, options = {}) {
-        const formData = new FormData(form);
+    async formWithFilesToObject(form, inputName) {
+        const formData = new FormData(form)
 
-        [...form].forEach(it => {
-            if (it.type == "file" && it.multiple) {
-                formData.delete(it.name);
-                [...it.files].forEach(file => {
-                    formData.append(it.name, file, file.name)
-                })
-            }
+        const input = [...form].find(input => input.name === inputName);
+        const files = [...input.files];
+
+        const convertedFiles = await Promise.all(
+            files.map(file => this.convertToBase64(file)))
+
+        formData.set(inputName, JSON.stringify(convertedFiles))
+
+        return formData
+    }
+
+    async convertToBase64(file) {
+        return new Promise((resolve, reject) => {
+            const fr = new FileReader();
+            fr.onloadend = () => resolve({
+                file: fr.result,
+                name: file.name,
+                type: file.type,
+                size: file.size
+            })
+            fr.readAsDataURL(file)
         })
+    }
 
+    formToObject(form, isFormData = false) {
+        const formData = isFormData ? form : new FormData(form);
         const obj = {}
 
-        const callback = (obj, key, value) => {
-            if (value != "") obj[key]
-            ? obj[key] = Array.isArray(obj[key])
-                ? [...obj[key], value]
-                : [obj[key], value]
-            : obj[key] = value
-        }
-
-        const encode = {
-            default: (obj, key, value) => {
-                callback(obj, key, value)
-            },
-            base64: (obj, key, value) => {
-                const reader = new FileReader();
-                const aux = {}
-
-                reader.readAsDataURL(value)
-                reader.onloadend = () => {
-                    aux.name = value.name
-                    aux.url = reader.result
-                    if (obj[key] && typeof obj[key] == "string") {
-                        obj[key] = JSON.parse(obj[key])
-                    }
-                    callback(obj, key, aux)
-                    obj[key] = JSON.stringify(obj[key])
-                }
-            }
-        }[options.filesEncoding ?? 'default']
-
         formData.forEach((value, key) => {
-            if (value instanceof File) encode(obj, key, value)
-            else callback(obj, key, value)
+            if (value != "") obj[key] = value
         })
 
         return obj
     }
+
+
 
     empty(obj) {
         return obj ? Object.keys(obj).length == 0 : true

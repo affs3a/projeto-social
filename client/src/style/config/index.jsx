@@ -1,3 +1,4 @@
+import "../lib"
 
 export const theme = {
     Mobile: {

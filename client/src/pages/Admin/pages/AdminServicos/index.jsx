@@ -9,11 +9,11 @@ import { useState } from "react"
 import { Field, Modal, SelectField, TextField } from "@/components/common/Form"
 import utils from "@/utils"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import CardCategory from "../../components/CardCategory"
+import CardCategory from "@/pages/Admin/components/CardCategory"
 import Unauthorized from "@/components/responses/Unauthorized"
 import Empty from "@/components/responses/Empty"
 import api from "@/api"
-import { FileField } from "../../../../components/common/Form"
+import { FileField } from "@/components/common/Form"
 
 const AdminServicos = () => {
     const [modal, setModal] = useState(null)
@@ -80,15 +80,16 @@ const AdminServicos = () => {
         }
     })
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault()
-        const json = utils.formToObject(e.target, { filesEncoding: 'base64' })
-        console.log(json)
-        // if (utils.empty(modal)) {
-        //     addService.mutate(json)
-        // } else {
-        //     editService.mutate(json)
-        // }
+        const fileData = utils.formWithFilesToObject(e.target, "images")
+        const json = utils.formToObject(await Promise.resolve(fileData), true)
+        
+        if (utils.empty(modal)) {
+            addService.mutate(json)
+        } else {
+            editService.mutate(json)
+        }
     }
 
     const searchHandler = (e) => {
@@ -148,7 +149,7 @@ const AdminServicos = () => {
                                     <Field id={"whatsapp"} label={"Whatsapp:"} place={"Número do celular"} value={modal && modal.whatsapp} />
                                     <Field id={"instagram"} label={"Instagram:"} place={"Instagram do serviço"} value={modal && modal.instagram} />
                                     <FileField id={"images"} label={"Fotos (até 3):"} max={3} mimes={utils.imageMimes()} multiple />
-                                    <SelectField id={"categoria"} label={"Categoria:"}>
+                                    <SelectField id={"category"} label={"Categoria:"}>
                                         {categories.isSuccess && categories.data.map(item => (
                                             <Option key={item.id} value={item.id} selected={modal && modal.category}>{item.name}</Option>
                                         ))}
