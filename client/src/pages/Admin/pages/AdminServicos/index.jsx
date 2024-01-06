@@ -84,6 +84,8 @@ const AdminServicos = () => {
         e.preventDefault()
         const fileData = utils.formWithFilesToObject(e.target, "images")
         const json = utils.formToObject(await Promise.resolve(fileData), true)
+
+        console.log(json.images)
         
         if (utils.empty(modal)) {
             addService.mutate(json)

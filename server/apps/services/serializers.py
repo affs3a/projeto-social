@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
+from utils import uploads
+import json
 from .models import Service
 
 
@@ -9,8 +11,12 @@ class ServiceSerialize(serializers.ModelSerializer):
         write_only=False)
     
     def create(self, validated_data):
-        print(validated_data)
-        # return Service.objects.create(**validated_data)
+        if (validated_data.get('images')):
+            filenames = uploads.upload(validated_data.get('images'))
+            validated_data['images'] = json.dumps(filenames)
+
+        return Service.objects.create(**validated_data)
+
 
     def update(self, instance, validated_data):
         instance.name = validated_data.get('name', instance.name)
