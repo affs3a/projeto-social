@@ -1,6 +1,7 @@
 import { styled } from "styled-components"
 import { Link } from "react-router-dom"
 import { theme } from "@/style/config"
+import { ListIcon } from "@/style/icons"
 
 const Div = styled(Link)`
     width: 100%;
@@ -36,10 +37,13 @@ const Image = styled.img`
     background-color: ${theme.root.blueShadow};
 `
 const Category = styled.h2`
+    display: flex;
+    gap: 4px;
+    align-items: center;
     font-size: 1.3rem;
     grid-area: category;
     align-self: end;
-    justify-self: center;
+    justify-self: left;
     font-weight: 700;
 
 `
@@ -47,8 +51,9 @@ const Category = styled.h2`
 const Number = styled.h3`
     grid-area: number;
     font-size: 16px;
+    margin-left: 4px;
     align-self: center;
-    text-align: center;
+    text-align: left;
 `
 
 const Mark = styled.div`
@@ -65,7 +70,7 @@ const Mark = styled.div`
 const CardCategory = ({ data }) => {
     return (
         <Div to={`/localizar/${data.id}`}>
-            <Category>{data.name}</Category>
+            <Category><ListIcon fontSize={"27px"} />{data.name}</Category>
             <Number>
                 <Mark>{data.quantity}</Mark>
                 lojas cadastradas
