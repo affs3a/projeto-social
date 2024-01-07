@@ -3,7 +3,7 @@ import { SearchIcon, ArrowLeft } from "@/style/icons"
 import { Form, Input } from "@/components/common/Form"
 import { Button } from "@/components/common/Button"
 import { theme } from "@/style/config"
-import { useNavigate, useParams } from "react-router-dom"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 import Empty from "@/components/responses/Empty"
 import Error from "@/components/responses/Error"
 import Load from "@/components/common/Load"
@@ -12,17 +12,13 @@ import utils from "@/utils"
 import { useQuery } from "@tanstack/react-query"
 import CardLoja from "@/components/cards/CardLoja"
 import api from "@/api"
-import { Mark } from "../../components/common/Typing"
+import { Mark } from "@/components/common/Typing"
 
 const Servicos = () => {
     const [filter, setFilter] = useState()
     const params = useParams()
     const navigate = useNavigate();
-
-    const category = useQuery({
-        queryKey: [api.QUERY_CATEGORIES, 'one'],
-        queryFn: async () => await api.getCategory(params.id),
-    })
+    const { state } = useLocation();
 
     const services = useQuery({
         queryKey: [api.QUERY_SERVICES, filter],
@@ -35,7 +31,7 @@ const Servicos = () => {
     }
 
     return <>
-        {(services.isLoading || category.isLoading) && <Load />}
+        {(services.isLoading) && <Load />}
         {!services.isError ? (
             <Div as={"section"} $flex>
                 <Div $flex $row gap={'8px'} bottom={'12px'}>
@@ -67,11 +63,9 @@ const Servicos = () => {
                         ><SearchIcon /></Button>
                     </Div>
                 </Form>
-                {category.isSuccess && (
-                    <Div top={"1rem"} $flex>
-                        <Mark padding={"4px 10px"}>{category.data.name}</Mark>
-                    </Div>
-                )}
+                <Div top={"1rem"} $flex>
+                    <Mark padding={"4px 10px"}>{state.category}</Mark>
+                </Div>
                 <Div $flex top={"1rem"} gap={"1rem"}>
                     {services.isSuccess && services.data.length > 0
                         ? services.data.map((item, key) => (

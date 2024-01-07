@@ -2,16 +2,18 @@ import styled from "styled-components"
 import { WhatsIcon, ArrowRight } from "@/style/icons"
 import api from "@/api"
 import { theme } from "@/style/config"
+import { Link } from "react-router-dom"
 
-const Div = styled.div`
+const Div = styled(Link)`
     width: 100%;
-    height: 210px;
+    height: 220px;
     background-repeat: no-repeat;
     background-size: cover;
     background-image: url(${props => props.image || "linear-gradient(35deg, #999, #444)"});
     border-radius: 10px;
     box-shadow: 0px -70px 50px 0px rgba(0, 0, 0, 0.47) inset,
-    5px 5px 7px 1px rgba(0,0,0,0.3) ;
+    2px 2px 8px 1px rgba(0,0,0,0.3) ;
+    border: 1px solid #aaa;
     color: ${({ theme }) => theme.root.white};
     padding: 1rem;
     display: grid;
@@ -30,7 +32,8 @@ const Nome = styled.h3`
 
 const Span = styled.a`
     display: flex;
-    width: 100%;
+    margin-left: auto;
+    width: fit-content;
     grid-area: whatsapp;
     align-self: self-end;
     justify-content: right;
@@ -46,11 +49,10 @@ const Container = styled.div`
     border-radius: 30px;
 `
 
-
 const CardLoja = ({ data }) => {
     const images = data.images ? JSON.parse(data.images) : null
     return (
-        <Div image={images && (api.media_path + images[0])}>
+        <Div to={`/servico/${data.id}`} image={images && (api.media_path + images[0])}>
             <Nome>{data.name}</Nome>
             <Span
                 href={`${api.whats_client}${data.whatsapp}`}

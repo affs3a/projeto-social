@@ -69,7 +69,7 @@ const Mark = styled.div`
 
 const CardCategory = ({ data }) => {
     return (
-        <Div to={`/localizar/${data.id}`}>
+        <Div to={`/localizar/${data.id}`} state={{ category: data.name }}>
             <Category><ListIcon fontSize={"27px"} />{data.name}</Category>
             <Number>
                 <Mark>{data.quantity}</Mark>
