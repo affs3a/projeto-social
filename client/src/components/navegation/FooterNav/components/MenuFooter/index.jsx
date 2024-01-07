@@ -27,8 +27,8 @@ const MenuFooter = () => {
             {MenuList.map(itens => {
                 return (
                     <LinkRouter
-                        back={'#4661a9'}
-                        hover={'#314476'}
+                        back={'#444'}
+                        hover={'#333'}
                         color={'#fff'}
                         padding={".5rem 1rem"}
                         to={itens.http}

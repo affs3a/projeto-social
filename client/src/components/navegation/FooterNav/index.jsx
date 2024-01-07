@@ -8,7 +8,7 @@ import LogoAlt from "@public/images/iconAlt.png"
 
 const Footer = styled.footer`
     padding: ${({theme}) => theme.Mobile.Footer.padding};
-    background-color: ${({theme}) => theme.root.blueTwo};
+    background-color: #111;
     color: ${({theme}) => theme.root.white};
     height: auto;
     text-align: center;
