@@ -93,7 +93,7 @@ const Profile = ({ handler, menu, user }) => {
         >
             <Div $flex $row bottom={'8px'} color={theme.root.blueOne}>
                 <ProfileIcon fontSize={'27px'} />
-                <TitleLink>{user.name}</TitleLink>
+                <TitleLink>{user.name.split(' ')[0]}</TitleLink>
             </Div>
             {user.role == api.ROLE_ADMIN ? (
                 <LinkRouter
