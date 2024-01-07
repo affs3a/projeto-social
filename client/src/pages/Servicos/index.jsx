@@ -35,7 +35,7 @@ const Servicos = () => {
     }
 
     return <>
-        {(services.isLoading || category.isLoading) && <Load />}
+        {(services.isPending || category.isPending) && <Load />}
         {!services.isError ? (
             <Div as={"section"} $flex>
                 <Div $flex $row gap={'8px'} bottom={'12px'}>
