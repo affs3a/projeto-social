@@ -24,6 +24,7 @@ class API {
 
         this.media_path = 'http://localhost:8000/'
         this.whats_client = 'https://api.whatsapp.com/send?phone=55'
+        this.insta_client = 'https://www.instagram.com/'
     }
 
     login(credentials, handler) {
@@ -124,6 +125,14 @@ class API {
 
         const { data } = await this.client.get('/services/', {
             params: params,
+            headers: this.buildHeader(),
+        })
+
+        return data
+    }
+    
+    async getService(id) {
+        const { data } = await this.client.get(`/services/${id}`, {
             headers: this.buildHeader(),
         })
 

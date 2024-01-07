@@ -1,5 +1,6 @@
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
+import api from "@/api"
 
 class Utils {
     constructor() {
@@ -125,6 +126,13 @@ class Utils {
             'image/jpg',
             'image/svg+xml',
         ]
+    }
+
+    parseImages(jsonEncoded) {
+        const images = JSON.parse(jsonEncoded)
+            .map(image => api.media_path + image);
+
+        return images
     }
 }
 

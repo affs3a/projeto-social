@@ -48,5 +48,7 @@ export const theme = {
         orangeOne: '#ffce2f',
         orangeShadow: '#ffd3438d',
         orangeTwo: '#744f00',
+        gradientGreen: 'linear-gradient(35deg, #008622, #00c096)',
+        gradientPurple: 'linear-gradient(35deg, #8900fa, #f06000)'
     }
 }

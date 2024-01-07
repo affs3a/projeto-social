@@ -3,6 +3,7 @@ import { WhatsIcon, ArrowRight } from "@/style/icons"
 import api from "@/api"
 import { theme } from "@/style/config"
 import { Link } from "react-router-dom"
+import utils from "@/utils"
 
 const Div = styled(Link)`
     width: 100%;
@@ -50,9 +51,9 @@ const Container = styled.div`
 `
 
 const CardLoja = ({ data }) => {
-    const images = data.images ? JSON.parse(data.images) : null
+    const images = data.images ? utils.parseImages(data.images) : null
     return (
-        <Div to={`/servico/${data.id}`} image={images && (api.media_path + images[0])}>
+        <Div to={`/servico/${data.id}`} image={images && images[0]}>
             <Nome>{data.name}</Nome>
             <Span
                 href={`${api.whats_client}${data.whatsapp}`}

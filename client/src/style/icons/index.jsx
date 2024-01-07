@@ -2,7 +2,7 @@ import { styled } from "styled-components"
 import {
     ListAlt, ErrorOutline, Login, Menu, PersonAddOutlined, HomeOutlined, Close, ArrowForward,
     Search, ManageSearch, InfoOutlined, PersonOutline, SettingsOutlined, StoreOutlined, PeopleOutline,
-    ArrowBack, Add, CancelOutlined, CheckOutlined, EditOutlined, CloseOutlined, FileUploadOutlined, WhatsApp
+    ArrowBack, Add, CancelOutlined, CheckOutlined, EditOutlined, CloseOutlined, FileUploadOutlined, WhatsApp, Instagram
 } from '@mui/icons-material';
 
 export const ListIcon = styled(ListAlt)`
@@ -143,6 +143,12 @@ export const FileIcon = styled(FileUploadOutlined)`
 `
 
 export const WhatsIcon = styled(WhatsApp)`
+    font-size: ${props => props.fontSize};
+    color: ${props => props.color};
+    cursor: pointer;
+`
+
+export const InstaIcon = styled(Instagram)`
     font-size: ${props => props.fontSize};
     color: ${props => props.color};
     cursor: pointer;
