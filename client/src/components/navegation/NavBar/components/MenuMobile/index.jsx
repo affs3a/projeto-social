@@ -115,7 +115,7 @@ const Profile = ({ handler, menu, user }) => {
                     margin={"4px 0"}
                 >
                     <StoreIcon fontSize={'27px'} />
-                    <TitleLink>Minha Loja</TitleLink>
+                    <TitleLink>Gestão</TitleLink>
                 </LinkRouter>
             )}
             <LinkRouter

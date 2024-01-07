@@ -141,13 +141,13 @@ const Prestador = () => {
                 </Modal>
                 <Div $flex $row gap={'8px'} bottom={'12px'}>
                     <ListIcon />
-                    <Title>Serviços</Title>
+                    <Title>Meus Serviços</Title>
                     <Button
                         margin={'0 0 0 16px'}
                         back={theme.root.blueShadow}
                         hover={theme.root.shadow}
                         height={"34px"}
-                        onClick={() => navigate('/admin')}
+                        onClick={() => navigate('/')}
                     ><ArrowLeft />Voltar</Button>
                 </Div>
                 <Div $flex $row gap={'4px'} bottom={'12px'}>
