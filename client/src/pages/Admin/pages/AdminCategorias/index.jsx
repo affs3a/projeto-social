@@ -89,6 +89,60 @@ const AdminCategorias = () => {
         {(categories.isPending || addCategory.isPending || editCategory.isPending) && <Load />}
         {!categories.isError ? (
             <Div as={"section"} $flex gap={"10px"}>
+                <Modal $visible={modal != null}>
+                    <Div>
+                        <Div $flex $row gap={'8px'} bottom={'6px'}>
+                            {utils.empty(modal)
+                                ? <>
+                                    <PlusIcon fontSize={"30px"} />
+                                    <Title align={'center'}>Adicionar</Title>
+                                </>
+                                : <>
+                                    <EditIcon fontSize={"26px"} />
+                                    <Title align={'center'}>Editar</Title>
+                                    <Button
+                                        margin={'0 0 0 16px'}
+                                        back={theme.root.redOne}
+                                        hover={theme.root.redOneHover}
+                                        height={"34px"}
+                                        onClick={() => {
+                                            utils.alertAction(
+                                                'Tem certeza que deseja deletar?',
+                                                'deletar',
+                                                () => deleteCategory.mutate(modal)
+                                            )
+                                        }}
+                                    ><DeleteIcon />Deletar</Button>
+                                </>
+                            }
+                        </Div>
+                        <Form onSubmit={submitHandler}>
+                            <Div $flex gap={"8px"}>
+                                <HiddenField id={"id"} value={modal && modal.id} />
+                                <Field id={"name"} label={"Nome:"} place={"Nome da categoria"} value={modal && modal.name} required={utils.empty(modal)} />
+                                <Field id={"tags"} label={"Tags:"} place={"Sep. por vírgula Ex.: moda, roupas, loja..."} value={modal && modal.tags} required={utils.empty(modal)} />
+                                <Div $flex $row top={"8px"} gap={"8px"}>
+                                    <Button
+                                        type={"button"}
+                                        back={theme.root.blueShadow}
+                                        hover={theme.root.shadow}
+                                        height={"40px"}
+                                        width={"100%"}
+                                        onClick={() => setModal(null)}
+                                    ><CancelIcon />Cancelar</Button>
+                                    <Button
+                                        back={theme.root.blueOne}
+                                        hover={theme.root.blueOneHover}
+                                        color={theme.root.white}
+                                        height={"40px"}
+                                        width={"100%"}
+                                        type={"submit"}
+                                    ><CheckIcon />Enviar</Button>
+                                </Div>
+                            </Div>
+                        </Form>
+                    </Div>
+                </Modal>
                 <Div $flex $row gap={'8px'} bottom={'12px'}>
                     <SearchIcon />
                     <Title>Categorias</Title>
@@ -101,60 +155,6 @@ const AdminCategorias = () => {
                     ><ArrowLeft />Voltar</Button>
                 </Div>
                 <Div $flex $row gap={'4px'} bottom={'12px'}>
-                    <Modal $visible={modal != null}>
-                        <Div padding={"16px"}>
-                            <Div $flex $row gap={'8px'} bottom={'6px'}>
-                                {utils.empty(modal)
-                                    ? <>
-                                        <PlusIcon fontSize={"30px"} />
-                                        <Title align={'center'}>Adicionar</Title>
-                                    </>
-                                    : <>
-                                        <EditIcon fontSize={"26px"} />
-                                        <Title align={'center'}>Editar</Title>
-                                        <Button
-                                            margin={'0 0 0 16px'}
-                                            back={theme.root.redOne}
-                                            hover={theme.root.redOneHover}
-                                            height={"34px"}
-                                            onClick={() => {
-                                                utils.alertAction(
-                                                    'Tem certeza que deseja deletar?',
-                                                    'deletar',
-                                                    () => deleteCategory.mutate(modal)
-                                                )
-                                            }}
-                                        ><DeleteIcon />Deletar</Button>
-                                    </>
-                                }
-                            </Div>
-                            <Form onSubmit={submitHandler}>
-                                <Div $flex gap={"8px"}>
-                                    <HiddenField id={"id"} value={modal && modal.id} />
-                                    <Field id={"name"} label={"Nome:"} place={"Nome da categoria"} value={modal && modal.name} required={utils.empty(modal)} />
-                                    <Field id={"tags"} label={"Tags:"} place={"Sep. por vírgula Ex.: moda, roupas, loja..."} value={modal && modal.tags} required={utils.empty(modal)} />
-                                    <Div $flex $row top={"8px"} gap={"8px"}>
-                                        <Button
-                                            type={"button"}
-                                            back={theme.root.blueShadow}
-                                            hover={theme.root.shadow}
-                                            height={"40px"}
-                                            width={"100%"}
-                                            onClick={() => setModal(null)}
-                                        ><CancelIcon />Cancelar</Button>
-                                        <Button
-                                            back={theme.root.blueOne}
-                                            hover={theme.root.blueOneHover}
-                                            color={theme.root.white}
-                                            height={"40px"}
-                                            width={"100%"}
-                                            type={"submit"}
-                                        ><CheckIcon />Enviar</Button>
-                                    </Div>
-                                </Div>
-                            </Form>
-                        </Div>
-                    </Modal>
                     <Button
                         back={theme.root.blueOne}
                         hover={theme.root.blueOneHover}

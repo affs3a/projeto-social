@@ -102,20 +102,8 @@ const AdminServicos = () => {
         {(services.isPending || addService.isPending || editService.isPending) && <Load />}
         {!services.isError ? (
             <Div as={"section"} $flex gap={"10px"}>
-                <Div $flex $row gap={'8px'} bottom={'12px'}>
-                    <ListIcon />
-                    <Title>Serviços</Title>
-                    <Button
-                        margin={'0 0 0 16px'}
-                        back={theme.root.blueShadow}
-                        hover={theme.root.shadow}
-                        height={"34px"}
-                        onClick={() => navigate('/admin')}
-                    ><ArrowLeft />Voltar</Button>
-                </Div>
-                <Div $flex $row gap={'4px'} bottom={'12px'}>
-                    <Modal $visible={modal != null}>
-                        <Div padding={"16px"}>
+                <Modal $visible={modal != null}>
+                        <Div>
                             <Div $flex $row gap={'8px'} bottom={'6px'}>
                                 {utils.empty(modal)
                                     ? <>
@@ -182,6 +170,18 @@ const AdminServicos = () => {
                             </Form>
                         </Div>
                     </Modal>
+                <Div $flex $row gap={'8px'} bottom={'12px'}>
+                    <ListIcon />
+                    <Title>Serviços</Title>
+                    <Button
+                        margin={'0 0 0 16px'}
+                        back={theme.root.blueShadow}
+                        hover={theme.root.shadow}
+                        height={"34px"}
+                        onClick={() => navigate('/admin')}
+                    ><ArrowLeft />Voltar</Button>
+                </Div>
+                <Div $flex $row gap={'4px'} bottom={'12px'}>
                     <Button
                         back={theme.root.blueOne}
                         hover={theme.root.blueOneHover}

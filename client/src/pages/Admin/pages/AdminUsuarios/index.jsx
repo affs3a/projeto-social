@@ -101,7 +101,7 @@ const AdminUsuarios = () => {
             </Div>
             <Div $flex $row gap={'4px'} bottom={'12px'}>
                 <Modal $visible={modal != null}>
-                    <Div padding={"16px"}>
+                    <Div>
                         <Div $flex $row gap={'8px'} bottom={'6px'}>
                             {utils.empty(modal)
                                 ? <>

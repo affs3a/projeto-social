@@ -27,6 +27,13 @@ const Button = styled.a`
     }
 `
 
+const Text = styled.p`
+    white-space: pre-line;
+    max-width: 360px;
+    text-align: justify;
+    font-size: 1.1rem;
+`
+
 const Back = styled(Link)`
     color: #000;
     margin-right: auto;
@@ -65,7 +72,7 @@ const Loja = () => {
                 </SwiperSlide>
                 <Div $flex gap={'.5rem'}>
                     <Title as={"h2"} fontSize={'1.3rem'}>Descrição</Title>
-                    <Description>{data.description}</Description>
+                    <Text>{data.description}</Text>
                 </Div>
                 <Div $flex gap={'.5rem'}>
                     <Title as={"h2"} fontSize={'1.3rem'}>Contatos</Title>
