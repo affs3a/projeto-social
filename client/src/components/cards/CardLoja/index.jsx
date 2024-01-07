@@ -31,7 +31,7 @@ const Nome = styled.h3`
     align-self: self-end;
 `
 
-const Span = styled.a`
+const Span = styled.span`
     display: flex;
     margin-left: auto;
     width: fit-content;
@@ -55,10 +55,7 @@ const CardLoja = ({ data }) => {
     return (
         <Div to={`/servico/${data.id}`} image={images && images[0]}>
             <Nome>{data.name}</Nome>
-            <Span
-                href={`${api.whats_client}${data.whatsapp}`}
-                target="_blank"
-            >
+            <Span>
                 <Container>
                     <WhatsIcon fontSize={"27px"} />
                     <ArrowRight fontSize={"24px"} />
