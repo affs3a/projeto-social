@@ -46,7 +46,6 @@ class ServiceDetails(APIView):
     def get(self, request, service_id, format=False):
         service = self.get_service(service_id)
         serializer = ServiceSerialize(service)
-        print(type(serializer.data))
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def patch(self, request, service_id, format=False):

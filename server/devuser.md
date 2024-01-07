@@ -6,11 +6,11 @@
 ```python
 from apps.users.models import User;
 User.objects.create_user(
-    name='Dev',
-    username='dev',
-    password='dev',
-    email='dev@dev.com',
-    phone='00912344321',
+    name='Renan',
+    username='renan',
+    password='Renan_77Admin77_Renan',
+    email='alvesrenan990@gmail.com',
+    phone='8800000000',
     role=2,
 );
 ```
