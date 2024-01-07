@@ -103,7 +103,7 @@ class Utils {
         const obj = {}
 
         formData.forEach((value, key) => {
-            if (value != "") obj[key] = value
+            if (value != "" && value != "[]") obj[key] = value
         })
 
         return obj
