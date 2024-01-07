@@ -28,7 +28,7 @@ class ServiceSerialize(serializers.ModelSerializer):
         instance.category = validated_data.get('category', instance.category)
         instance.owner = validated_data.get('owner', instance.owner)
         if (validated_data.get('images')):
-            uploads.delete(json.loads(instance.images))
+            if (instance.images): uploads.delete(json.loads(instance.images))
             filenames = uploads.upload(validated_data.get('images'), to='images')
             if (filenames == None): raise serializers.ValidationError('Imagem muito grande!')
             instance.images = json.dumps(filenames)

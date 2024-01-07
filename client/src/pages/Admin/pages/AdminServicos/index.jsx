@@ -134,7 +134,7 @@ const AdminServicos = () => {
                                     <TextField id={"description"} label={"Descrição:"} place={"Informações do serviço"} text={modal && modal.description} required={utils.empty(modal)} />
                                     <Field id={"whatsapp"} label={"Whatsapp:"} place={"Número do celular"} value={modal && modal.whatsapp} />
                                     <Field id={"instagram"} label={"Instagram:"} place={"Instagram do serviço"} value={modal && modal.instagram} />
-                                    <FileField id={"images"} label={"Fotos (até 3):"} max={3} mimes={utils.imageMimes()} multiple />
+                                    <FileField id={"images"} label={"Fotos (até 4):"} max={4} mimes={utils.imageMimes()} multiple />
                                     <SelectField id={"category"} label={"Categoria:"}>
                                         {categories.isSuccess && categories.data.map(item => (
                                             <Option key={item.id} value={item.id} selected={modal && modal.category == item.id}>{item.name}</Option>

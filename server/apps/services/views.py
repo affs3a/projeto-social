@@ -55,7 +55,7 @@ class ServiceDetails(APIView):
 
     def patch(self, request, service_id, format=False):
         service = self.get_service(service_id)
-        if (request.user != service.owner):
+        if (request.user.role != 2 and request.user != service.owner):
             raise serializers.ValidationError("Você não é dono desta loja!")
         serializer = ServiceSerialize(service, data=request.data, partial=True)
         if not serializer.is_valid():
