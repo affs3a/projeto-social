@@ -45,7 +45,7 @@ const Sobre = () => {
                     <Image height={"50px"} src={Infor} />
                 </Div>
                 <Description>
-                    Esta plataforma Web é uma <Bold>Projeto Social</Bold> dos alunos do <Bold>Curso Técnico de
+                    Esta plataforma Web é um <Bold>Projeto Social</Bold> dos alunos do <Bold>Curso Técnico de
                         Informática</Bold> da <Bold>Escola Estadual de Educação Profissional Valter Nunes de Alencar</Bold>.
                 </Description>
                 <Description>
