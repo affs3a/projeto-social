@@ -39,8 +39,6 @@ const AdminServicos = () => {
         queryFn: async () => await api.getCategories(),
     })
 
-    if (services.error) return (<h1>Erro! Recarregue a página!</h1>)
-
     const addService = useMutation({
         mutationKey: [api.QUERY_SERVICES, 'add'],
         mutationFn: async (data) => api.addService(data),

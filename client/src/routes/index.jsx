@@ -14,6 +14,7 @@ import Loja from "@/pages/Loja";
 import AdminUsuarios from "@/pages/Admin/pages/AdminUsuarios";
 import AdminServicos from "@/pages/Admin/pages/AdminServicos";
 import AdminCategorias from "@/pages/Admin/pages/AdminCategorias";
+import Sobre from "@/pages/Sobre";
 
 
 export const router = createBrowserRouter([
@@ -39,9 +40,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "sobre",
-                element: (
-                    <h1>Sobre</h1>
-                )
+                element: <Sobre />
             },
             {
                 path: "login",

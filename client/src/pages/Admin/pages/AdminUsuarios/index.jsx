@@ -76,6 +76,7 @@ const AdminUsuarios = () => {
             addUser.mutate(json)
         } else {
             editUser.mutate(json)
+            setModal(null)
         }
     }
 
@@ -88,18 +89,6 @@ const AdminUsuarios = () => {
         {(users.isPending || addUser.isPending || editUser.isPending) && <Load />}
         {!users.error ? (<>
             <Div as={"section"} $flex gap={"10px"}>
-            <Div $flex $row gap={'8px'} bottom={'12px'}>
-                <PeopleIcon />
-                <Title>Usuários</Title>
-                <Button
-                    margin={'0 0 0 16px'}
-                    back={theme.root.blueShadow}
-                    hover={theme.root.shadow}
-                    height={"34px"}
-                    onClick={() => navigate('/admin')}
-                ><ArrowLeft />Voltar</Button>
-            </Div>
-            <Div $flex $row gap={'4px'} bottom={'12px'}>
                 <Modal $visible={modal != null}>
                     <Div>
                         <Div $flex $row gap={'8px'} bottom={'6px'}>
@@ -163,41 +152,53 @@ const AdminUsuarios = () => {
                         </Form>
                     </Div>
                 </Modal>
-                <Button
-                    back={theme.root.blueOne}
-                    hover={theme.root.blueOneHover}
-                    color={theme.root.white}
-                    height={"36px"}
-                    onClick={() => setModal({})}
-                ><PlusIcon />Adicionar</Button>
-                <Form onSubmit={searchHandler} $flex maxwidth={"300px"}>
-                    <Div $row $flex justify={"right"} gap={"4px"}>
-                        <Input
-                            padding={"6px"}
-                            type={"search"}
-                            name={"search"}
-                            id={"search"}
-                            placeholder={"Localizar"}
-                        />
-                        <Button
-                            type={"submit"}
-                            back={theme.root.white}
-                            border={theme.root.shadow}
-                            hover={theme.root.blueShadowTwo}
-                            height={"38px"}
-                        ><SearchIcon /></Button>
-                    </Div>
-                </Form>
+                <Div $flex $row gap={'8px'} bottom={'12px'}>
+                    <PeopleIcon />
+                    <Title>Usuários</Title>
+                    <Button
+                        margin={'0 0 0 16px'}
+                        back={theme.root.blueShadow}
+                        hover={theme.root.shadow}
+                        height={"34px"}
+                        onClick={() => navigate('/admin')}
+                    ><ArrowLeft />Voltar</Button>
+                </Div>
+                <Div $flex $row gap={'4px'} bottom={'12px'}>
+                    <Button
+                        back={theme.root.blueOne}
+                        hover={theme.root.blueOneHover}
+                        color={theme.root.white}
+                        height={"36px"}
+                        onClick={() => setModal({})}
+                    ><PlusIcon />Adicionar</Button>
+                    <Form onSubmit={searchHandler} $flex maxwidth={"300px"}>
+                        <Div $row $flex justify={"right"} gap={"4px"}>
+                            <Input
+                                padding={"6px"}
+                                type={"search"}
+                                name={"search"}
+                                id={"search"}
+                                placeholder={"Localizar"}
+                            />
+                            <Button
+                                type={"submit"}
+                                back={theme.root.white}
+                                border={theme.root.shadow}
+                                hover={theme.root.blueShadowTwo}
+                                height={"38px"}
+                            ><SearchIcon /></Button>
+                        </Div>
+                    </Form>
+                </Div>
+                <Div $flex gap={'8px'}>
+                    {users.isSuccess && users.data.length > 0
+                        ? users.data.map((item, key) => (
+                            <CardUser onClick={() => setModal(item)} key={key} data={item} />
+                        ))
+                        : <Empty />
+                    }
+                </Div>
             </Div>
-            <Div $flex gap={'8px'}>
-                {users.isSuccess && users.data.length > 0
-                    ? users.data.map((item, key)=> (
-                        <CardUser onClick={() => setModal(item)} key={key} data={item} />
-                    ))
-                    : <Empty />
-                }
-            </Div>
-        </Div>
         </>) : (<Error />)}
     </>
 }
