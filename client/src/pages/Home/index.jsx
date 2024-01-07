@@ -39,7 +39,7 @@ const imagesSlide = [
 const Home = () => {
     return (
         <>
-            <SwiperSlide width={"100vw"} height={"430px"}>
+            <SwiperSlide width={"100vw"} height={"300px"}>
                 <Slide
                     imagesSlide={imagesSlide}
                 />

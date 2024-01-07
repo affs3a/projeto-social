@@ -1,7 +1,7 @@
 import { Div, Title } from "@/style/tags"
 import { SearchIcon } from "@/style/icons"
 import CardCategory from "@/components/cards/CardCategory"
-import { useQuery } from "@tanstack/react-query"
+import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { Form, Input } from "@/components/common/Form"
 import Empty from "@/components/responses/Empty"
 import Error from "@/components/responses/Error"

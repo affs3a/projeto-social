@@ -12,7 +12,6 @@ const Image = styled.img`
 `
 
 const Slide = ({ imagesSlide, border }) => {
-    console.log(border)
     return (
         <Swiper
             className='swiper'
