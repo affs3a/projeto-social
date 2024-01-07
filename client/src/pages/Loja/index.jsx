@@ -62,14 +62,15 @@ const Loja = () => {
                     <Title fontSize={'1.7rem'}>{data.name}</Title>
                     <Description fontSize={'1.1rem'}>@{data.identifier}</Description>
                 </Div>
-                <SwiperSlide width={"100%"} height={"250px"}>
-                    {data.images ? (
+                {data.images ? (
+                    <SwiperSlide width={"100%"} height={"250px"}>
                         <Slide
                             imagesSlide={utils.parseImages(data.images)}
                             border={"10px"}
                         />
-                    ) : <Description>Sem imagens para mostrar!</Description>}
-                </SwiperSlide>
+                    </SwiperSlide>
+
+                ) : <Description>Sem imagens para mostrar!</Description>}
                 <Div $flex gap={'.5rem'}>
                     <Title as={"h2"} fontSize={'1.3rem'}>Descrição</Title>
                     <Text>{data.description}</Text>
@@ -77,14 +78,18 @@ const Loja = () => {
                 <Div $flex gap={'.5rem'}>
                     <Title as={"h2"} fontSize={'1.3rem'}>Contatos</Title>
                     <Div $flex $row gap={"2rem"} top={"0.50rem"}>
-                        <Button back={theme.root.gradientGreen} target="_blank" href={api.whats_client + data.whatsapp}>
-                            <WhatsIcon />
-                            <Title as={"p"}>WhatsApp</Title>
-                        </Button>
-                        <Button back={theme.root.gradientPurple} target="_blank" href={api.insta_client + data.instagram.replace('@', '')}>
-                            <InstaIcon />
-                            <Title as={"p"}>Instagram</Title>
-                        </Button>
+                        {data.whatsapp && (
+                            <Button back={theme.root.gradientGreen} target="_blank" href={api.whats_client + data.whatsapp}>
+                                <WhatsIcon />
+                                <Title as={"p"}>WhatsApp</Title>
+                            </Button>
+                        )}
+                        {data.instagram && (
+                            <Button back={theme.root.gradientPurple} target="_blank" href={api.insta_client + data.instagram.replace('@', '')}>
+                                <InstaIcon />
+                                <Title as={"p"}>Instagram</Title>
+                            </Button>
+                        )}
                     </Div>
                 </Div>
             </Div>

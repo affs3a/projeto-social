@@ -4,6 +4,7 @@ import api from "@/api"
 import { theme } from "@/style/config"
 import { Link } from "react-router-dom"
 import utils from "@/utils"
+import logo from "@public/images/icon2.png"
 
 const Div = styled(Link)`
     width: 100%;
@@ -53,7 +54,7 @@ const Container = styled.div`
 const CardLoja = ({ data }) => {
     const images = data.images ? utils.parseImages(data.images) : null
     return (
-        <Div to={`/servico/${data.id}`} image={images && images[0]}>
+        <Div to={`/servico/${data.id}`} image={images ? images[0] : logo}>
             <Nome>{data.name}</Nome>
             <Span>
                 <Container>
