@@ -24,6 +24,7 @@ class TokenObtain(TokenObtainPairSerializer):
 
         data.update({
             'user': {
+                'id': self.user.id,
                 'name': self.user.name,
                 'username': self.user.username,
                 'role': self.user.role,

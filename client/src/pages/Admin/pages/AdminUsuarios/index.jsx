@@ -27,7 +27,7 @@ const AdminUsuarios = () => {
 
     const users = useQuery({
         queryKey: [api.QUERY_USERS, filter],
-        queryFn: async () => await api.getUsers(filter),
+        queryFn: async () => await api.getUsers({search: filter}),
     })
 
     const addUser = useMutation({

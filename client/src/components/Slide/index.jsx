@@ -23,13 +23,13 @@ const Slide = ({ imagesSlide, border }) => {
                 delay: 3000
             }}
         >
-            {imagesSlide.map((image, key) => {
+            {imagesSlide && imagesSlide.map((image, key) => {
                 return (
                     <SwiperSlide className='swiper-slide' key={key}>
                         <Image
                             src={image}
                             className='swiper-image'
-                            radius={border}
+                            radius={border && border}
                         />
                     </SwiperSlide>
                 )

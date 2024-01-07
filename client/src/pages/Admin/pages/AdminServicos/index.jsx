@@ -26,7 +26,7 @@ const AdminServicos = () => {
 
     const services = useQuery({
         queryKey: [api.QUERY_SERVICES, filter],
-        queryFn: async () => await api.getServices(filter),
+        queryFn: async () => await api.getServices({search: filter}),
     })
 
     const users = useQuery({
@@ -65,7 +65,7 @@ const AdminServicos = () => {
         }
     })
 
-    const deleteCategory = useMutation({
+    const deleteService = useMutation({
         mutationKey: [api.QUERY_SERVICES, 'edit'],
         mutationFn: async (data) => api.deleteService(data),
         onSuccess: () => {
@@ -96,7 +96,7 @@ const AdminServicos = () => {
     }
 
     return <>
-        {(services.isPending || addService.isPending || editService.isPending) && <Load />}
+        {(services.isPending || addService.isPending || editService.isPending || categories.isPending) && <Load />}
         {!services.isError ? (
             <Div as={"section"} $flex gap={"10px"}>
                 <Modal $visible={modal != null}>
@@ -119,7 +119,7 @@ const AdminServicos = () => {
                                                 utils.alertAction(
                                                     'Tem certeza que deseja deletar?',
                                                     'deletar',
-                                                    () => deleteCategory.mutate(modal)
+                                                    () => deleteService.mutate(modal)
                                                 )
                                             }}
                                         ><DeleteIcon />Deletar</Button>

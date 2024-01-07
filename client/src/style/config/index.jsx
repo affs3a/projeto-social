@@ -23,7 +23,6 @@ export const theme = {
         blueOne: "#0043ff",
         blueOneHover: "#0031b9",
         blueTwo: "#191e2d",
-        greyOne: "#aaaaaa",
         blueThree: "#f1f4ff",
         blueThreeHover: "#dde0e9",
         blueFour: "#dde4ff",

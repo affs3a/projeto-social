@@ -26,7 +26,7 @@ const AdminCategorias = () => {
 
     const categories = useQuery({
         queryKey: [api.QUERY_CATEGORIES, filter],
-        queryFn: async () => await api.getCategories(filter),
+        queryFn: async () => await api.getCategories({search: filter}),
     })
 
     if (categories.error) return (<h1>Erro! Recarregue a página!</h1>)

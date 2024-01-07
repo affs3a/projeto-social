@@ -9,7 +9,7 @@ import Error from "@/components/responses/Error"
 import Load from "@/components/common/Load"
 import { useState } from "react"
 import utils from "@/utils"
-import { useQuery, useQueryClient } from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query"
 import CardLoja from "@/components/cards/CardLoja"
 import api from "@/api"
 import { Mark } from "@/components/common/Typing"
@@ -26,7 +26,7 @@ const Servicos = () => {
 
     const services = useQuery({
         queryKey: [api.QUERY_SERVICES, filter],
-        queryFn: async () => await api.getServices(filter, id),
+        queryFn: async () => await api.getServices({search: filter, category: id}),
     })
 
     const searchHandler = (e) => {

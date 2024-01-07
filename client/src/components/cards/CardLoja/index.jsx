@@ -1,6 +1,5 @@
 import styled from "styled-components"
 import { WhatsIcon, ArrowRight } from "@/style/icons"
-import api from "@/api"
 import { theme } from "@/style/config"
 import { Link } from "react-router-dom"
 import utils from "@/utils"

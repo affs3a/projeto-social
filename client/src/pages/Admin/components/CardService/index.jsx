@@ -9,10 +9,10 @@ const CardService = ({ data, dataset, onClick }) => {
                     <StoreIcon fontSize={"26px"} />
                     <Cp.Text><Cp.Bold>{data.name ?? ""}</Cp.Bold></Cp.Text>
                 </Cp.Horizontal>
-                <Cp.Text>{dataset.category.name}</Cp.Text>
+                <Cp.Text>{dataset.category && dataset.category.name}</Cp.Text>
             </Cp.Container>
             <Cp.Text><Cp.Bold>Identificador:</Cp.Bold> {data.identifier ?? ""}</Cp.Text>
-            <Cp.Text><Cp.Bold>Dono:</Cp.Bold> {dataset.owner.name ?? ""}</Cp.Text>
+            <Cp.Text><Cp.Bold>Dono:</Cp.Bold> {dataset.owner && dataset.owner.name}</Cp.Text>
             <Cp.Text><Cp.Bold>WhatsApp:</Cp.Bold> {data.whatsapp ?? ""}</Cp.Text>
         </Cp.Div>
     )

@@ -55,9 +55,9 @@ class API {
         Cookies.remove(this.USER)
     }
 
-    async getUsers(search = null) {
+    async getUsers(params = {}) {
         const { data } = await this.client.get('/users/', {
-            params: search && { search },
+            params: params,
             headers: this.buildHeader(),
         })
 
@@ -82,9 +82,9 @@ class API {
         })
     }
 
-    async getCategories(search = null) {
+    async getCategories(params = {}) {
         const { data } = await this.client.get('/categories/', {
-            params: search && { search },
+            params: params,
             headers: this.buildHeader(),
         })
 
@@ -117,12 +117,7 @@ class API {
         })
     }
 
-    async getServices(search = null, category = null) {
-        const params = {}
-
-        search && (params.search = search)
-        category && (params.category = category)
-
+    async getServices(params = {}) {
         const { data } = await this.client.get('/services/', {
             params: params,
             headers: this.buildHeader(),
@@ -178,10 +173,6 @@ class API {
 
     matchProfile(role) {
         return role ? this.getProfiles()[role] : null
-    }
-
-    queryClient() {
-        return useQueryClient()
     }
 }
 

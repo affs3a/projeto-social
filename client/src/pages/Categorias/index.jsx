@@ -18,7 +18,7 @@ const Categorias = () => {
 
     const categories = useQuery({
         queryKey: [api.QUERY_CATEGORIES, filter],
-        queryFn: async () => await api.getCategories(filter),
+        queryFn: async () => await api.getCategories({search: filter}),
     })
 
     const searchHandler = (e) => {
