@@ -16,10 +16,8 @@ class UserSerialize(serializers.ModelSerializer):
         return User.objects.create_user(**validated_data)
 
     def validate(self, attrs):
-        data = self.initial_data
-
-        password = data.get('password')
-        confirm = data.get('confirm')
+        password = self.initial_data.get('password')
+        confirm = self.initial_data.get('confirm')
 
         if ((password and confirm) and password != confirm):
             raise serializers.ValidationError('Senhas não conferem!')
@@ -30,7 +28,16 @@ class UserSerialize(serializers.ModelSerializer):
         instance.name = validated_data.get('name', instance.name)
         instance.phone = validated_data.get('phone', instance.phone)
         instance.username = validated_data.get('username', instance.username)
-        instance.password = validated_data.get('password', instance.password)
+
+        password = self.initial_data.get('password')
+        confirm = self.initial_data.get('confirm')
+
+        if ((password and confirm) and password != confirm):
+            raise serializers.ValidationError('Senhas não conferem!')
+        
+        if (validated_data.get('password')):
+            instance.set_password(validated_data.get('password')) 
+
         instance.role = validated_data.get('role', instance.role)
         instance.email = validated_data.get('email', instance.email)
         instance.save()

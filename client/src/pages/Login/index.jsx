@@ -29,7 +29,7 @@ const Login = () => {
                     utils.alert('Login realizado com sucesso!', 'success')
                     navigateTo('/')
                 } else if (error) {
-                    utils.alert(utils.getError(error), 'success')
+                    utils.alert(utils.getError(error), 'error')
                 }
             }
         )
