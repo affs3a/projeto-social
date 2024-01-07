@@ -11,24 +11,38 @@ import inforhome1 from "@public/images/inforhome1.jpg"
 import inforhome2 from "@public/images/inforhome2.jpg"
 import inforhome3 from "@public/images/inforhome3.jpg"
 
-const SwiperSlide = styled.div`
-    width: 100vw;
+export const SwiperSlide = styled.div`
+    width: ${props => props.width};
+    height: ${props => props.height};
     margin-top: -1rem;
     z-index: 1;
+    box-sizing: border-box;
 `
 
 const DivInfor = styled.div`
     width: 100vw;
     padding: 2rem 0.8rem 3rem;
-    background-color: ${({theme}) => theme.root.blueFive};
-    color: ${({theme}) => theme.root.white};
+    background-color: ${({ theme }) => theme.root.blueFive};
+    color: ${({ theme }) => theme.root.white};
 `
+
+//Imagens slide
+import image from "@public/images/slide.jpg"
+
+const imagesSlide = [
+    image,
+    image,
+    image
+]
+
 
 const Home = () => {
     return (
         <>
-            <SwiperSlide>
-                <Slide />
+            <SwiperSlide width={"100vw"} height={"430px"}>
+                <Slide
+                    imagesSlide={imagesSlide}
+                />
             </SwiperSlide>
             <Div as={"section"} $flex gap={"1rem"} padding={"2rem 0"}>
                 <CardHome

@@ -10,6 +10,7 @@ import Categorias from "@/pages/Categorias";
 import Admin from "@/pages/Admin";
 import Prestador from "@/pages/Prestador";
 import Servicos from "@/pages/Servicos";
+import Loja from "@/pages/Loja";
 import AdminUsuarios from "@/pages/Admin/pages/AdminUsuarios";
 import AdminServicos from "@/pages/Admin/pages/AdminServicos";
 import AdminCategorias from "@/pages/Admin/pages/AdminCategorias";
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
             {
                 path: "localizar/:id",
                 element: <Servicos />
+            },
+            {
+                path: "servico/:id",
+                element: <Loja />
             },
             {
                 path: "sobre",

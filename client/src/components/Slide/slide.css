@@ -1,18 +1,18 @@
 .swiper {
-    width: 100vw;
-    height: 300px;
+    width: 100%;
+    height: 100%;
 }
 
 .swiper-image {
     object-fit: cover;
-    width: 100vw;
+    width: 100%;
     height: 100%;
 }
 
 .swiper-slide-div {
     width: 100%;
     height: 100%;
-    padding:0 .3rem;
+    padding: 0 .3rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
