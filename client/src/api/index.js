@@ -15,14 +15,14 @@ class API {
         this.QUERY_SERVICES = 'services'
         
         this.client = axios.create({
-            baseURL: 'https://18.231.27.107:1234/api/',
+            baseURL: 'https://www.eeepvalternunes.com.br:1234/api/',
             timeout: 10000,
             headers: {
                 'Content-Type': 'application/json',
             }
         })
 
-        this.media_path = 'https://18.231.27.107:1234/'
+        this.media_path = 'https://www.eeepvalternunes.com.br:1234/'
         this.whats_client = 'https://api.whatsapp.com/send?phone=55'
         this.insta_client = 'https://www.instagram.com/'
     }
