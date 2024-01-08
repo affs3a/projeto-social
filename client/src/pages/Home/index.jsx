@@ -27,14 +27,19 @@ const DivInfor = styled.div`
 `
 
 //Imagens slide
-import image from "@public/images/slide.jpg"
+import slide1 from "@public/images/slide1.jpg"
+import slide2 from "@public/images/slide2.jpg"
+import slide3 from "@public/images/slide3.jpg"
+import slide4 from "@public/images/slide4.jpg"
+import slide5 from "@public/images/slide5.jpg"
 
 const imagesSlide = [
-    image,
-    image,
-    image
+    slide1,
+    slide2,
+    slide3,
+    slide4,
+    slide5,
 ]
-
 
 const Home = () => {
     return (
