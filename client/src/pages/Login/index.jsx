@@ -27,6 +27,7 @@ const Login = () => {
                 const { response, error } = object
                 if (response) {
                     utils.alert('Login realizado com sucesso!', 'success')
+                    window.location.reload()
                     navigateTo('/')
                 } else if (error) {
                     utils.alert(utils.getError(error), 'error')
