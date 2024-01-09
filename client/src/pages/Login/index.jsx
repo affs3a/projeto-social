@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom"
 import utils from "../../utils"
 
 const Login = () => {
+    console.log("teste")
     const navigateTo = useNavigate()
     const [loading, setLoading] = useState(false)
 
