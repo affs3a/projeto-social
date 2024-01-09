@@ -10,9 +10,9 @@ import { useState } from "react"
 import api from "../../api"
 import { useNavigate } from "react-router-dom"
 import utils from "../../utils"
+import { redirect } from "react-router-dom"
 
 const Login = () => {
-    console.log("teste")
     const navigateTo = useNavigate()
     const [loading, setLoading] = useState(false)
 
@@ -28,8 +28,11 @@ const Login = () => {
                 const { response, error } = object
                 if (response) {
                     utils.alert('Login realizado com sucesso!', 'success')
-                    window.location.reload()
                     navigateTo('/')
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1500)
+                    // window.location.href = "/"
                 } else if (error) {
                     utils.alert(utils.getError(error), 'error')
                 }
