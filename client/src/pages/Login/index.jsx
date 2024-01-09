@@ -10,7 +10,6 @@ import { useState } from "react"
 import api from "../../api"
 import { useNavigate } from "react-router-dom"
 import utils from "../../utils"
-import { redirect } from "react-router-dom"
 
 const Login = () => {
     const navigateTo = useNavigate()
